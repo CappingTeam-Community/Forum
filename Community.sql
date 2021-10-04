@@ -1,9 +1,20 @@
+/**
+* Initial database for Community Web Application
+* Community.sql creates the needed database and tables 
+*
+* @version  1.0
+* @since    10-03-2021
+* @author   Devin White
+**/
+
 USE communitydb;
 DROP DATABASE communitydb;
 
+--Creates and switches active database to 'communitydb'
 CREATE DATABASE communitydb;
 USE communitydb;
 
+--Creates all tables with appropriate attribues for database
 CREATE TABLE Category(
     CategoryID INT NOT NULL AUTO_INCREMENT,
     CategoryName VARCHAR(100),
@@ -69,7 +80,8 @@ CREATE TABLE UserComment(
     FOREIGN KEY (CommentID) REFERENCES Comment(CommentID));
 
 
-/*SHOW TABLE STATUS\G*/
+--SHOW TABLE STATUS\G
+--prints active tables & table attributes
 SHOW FULL TABLES;
 SHOW COLUMNS FROM Users;
 SHOW COLUMNS FROM Category;
