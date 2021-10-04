@@ -19,7 +19,8 @@ CREATE TABLE Category(
     CategoryID INT NOT NULL AUTO_INCREMENT,
     CategoryName VARCHAR(100),
     CategoryVotes INT,
-    PRIMARY KEY (CategoryID));
+    PRIMARY KEY (CategoryID)
+    );
 
 CREATE TABLE Post(
     PostID INT NOT NULL AUTO_INCREMENT,
@@ -29,7 +30,8 @@ CREATE TABLE Post(
     PostVotes INT,
     Creator VARCHAR(100),
     PRIMARY KEY (PostID),
-    FOREIGN KEY (CategoryID) REFERENCES Category(CategoryID));
+    FOREIGN KEY (CategoryID) REFERENCES Category(CategoryID)
+    );
 
 CREATE TABLE Comment(
     CommentID INT NOT NULL AUTO_INCREMENT,
@@ -40,7 +42,8 @@ CREATE TABLE Comment(
     CommentTags VARCHAR(100),
     CommentDate DATE,
     PRIMARY KEY (CommentID),
-    FOREIGN KEY (PostID) REFERENCES Post(PostID));
+    FOREIGN KEY (PostID) REFERENCES Post(PostID)
+    );
 
 CREATE TABLE Users(
     UserID INT NOT NULL AUTO_INCREMENT,
@@ -53,7 +56,8 @@ CREATE TABLE Users(
     PRIMARY KEY (UserID),
     FOREIGN KEY (CategoryID) REFERENCES Category(CategoryID),
     FOREIGN KEY (PostID) REFERENCES Post(PostID),
-    FOREIGN KEY (CommentID) REFERENCES Comment(CommentID));
+    FOREIGN KEY (CommentID) REFERENCES Comment(CommentID)
+    );
 
 CREATE TABLE UserCategory(
     UserCategoryID INT NOT NUll AUTO_INCREMENT,
@@ -61,7 +65,8 @@ CREATE TABLE UserCategory(
     CategoryID INT,
     PRIMARY KEY (UserCategoryID),
     FOREIGN KEY (UserID) REFERENCES Users(UserID),
-    FOREIGN KEY (CategoryID) REFERENCES Category(CategoryID));
+    FOREIGN KEY (CategoryID) REFERENCES Category(CategoryID)
+    );
 
 CREATE TABLE UserPost(
     UserPostID INT NOT NUll AUTO_INCREMENT,
@@ -69,7 +74,8 @@ CREATE TABLE UserPost(
     PostID INT,
     PRIMARY KEY (UserPostID),
     FOREIGN KEY (UserID) REFERENCES Users(UserID),
-    FOREIGN KEY (PostID) REFERENCES Post(PostID));
+    FOREIGN KEY (PostID) REFERENCES Post(PostID)
+    );
 
 CREATE TABLE UserComment(
     UserCommentID INT NOT NUll AUTO_INCREMENT,
@@ -77,7 +83,8 @@ CREATE TABLE UserComment(
     CommentID INT,
     PRIMARY KEY (UserCommentID),
     FOREIGN KEY (UserID) REFERENCES Users(UserID),
-    FOREIGN KEY (CommentID) REFERENCES Comment(CommentID));
+    FOREIGN KEY (CommentID) REFERENCES Comment(CommentID)
+    );
 
 
 --SHOW TABLE STATUS\G
