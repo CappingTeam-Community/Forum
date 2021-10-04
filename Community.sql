@@ -15,14 +15,14 @@ CREATE DATABASE communitydb;
 USE communitydb;
 
 --Creates all tables with appropriate attribues for database
-CREATE TABLE Category(
+CREATE TABLE Categorytbl(
     CategoryID INT NOT NULL AUTO_INCREMENT,
     CategoryName VARCHAR(100),
     CategoryVotes INT,
     PRIMARY KEY (CategoryID)
     );
 
-CREATE TABLE Post(
+CREATE TABLE Posttbl(
     PostID INT NOT NULL AUTO_INCREMENT,
     CategoryID INT,
     PostTitle VARCHAR(10000),
@@ -30,10 +30,10 @@ CREATE TABLE Post(
     PostVotes INT,
     Creator VARCHAR(100),
     PRIMARY KEY (PostID),
-    FOREIGN KEY (CategoryID) REFERENCES Category(CategoryID)
+    FOREIGN KEY (CategoryID) REFERENCES Categorytbl(CategoryID)
     );
 
-CREATE TABLE Comment(
+CREATE TABLE Commenttbl(
     CommentID INT NOT NULL AUTO_INCREMENT,
     PostID INT,
     Comment TEXT(100000),
@@ -42,10 +42,10 @@ CREATE TABLE Comment(
     CommentTags VARCHAR(100),
     CommentDate DATE,
     PRIMARY KEY (CommentID),
-    FOREIGN KEY (PostID) REFERENCES Post(PostID)
+    FOREIGN KEY (PostID) REFERENCES Posttbl(PostID)
     );
 
-CREATE TABLE Users(
+CREATE TABLE Usertbl(
     UserID INT NOT NULL AUTO_INCREMENT,
     UserName VARCHAR(100) NOT NULL,
     PassWord VARCHAR(100) NOT NULL,
@@ -54,46 +54,46 @@ CREATE TABLE Users(
     PostID INT,
     CommentID INT,
     PRIMARY KEY (UserID),
-    FOREIGN KEY (CategoryID) REFERENCES Category(CategoryID),
-    FOREIGN KEY (PostID) REFERENCES Post(PostID),
-    FOREIGN KEY (CommentID) REFERENCES Comment(CommentID)
+    FOREIGN KEY (CategoryID) REFERENCES Categorytbl(CategoryID),
+    FOREIGN KEY (PostID) REFERENCES Posttbl(PostID),
+    FOREIGN KEY (CommentID) REFERENCES Commenttbl(CommentID)
     );
 
-CREATE TABLE UserCategory(
+CREATE TABLE UserCategorytbl(
     UserCategoryID INT NOT NUll AUTO_INCREMENT,
     UserID INT,
     CategoryID INT,
     PRIMARY KEY (UserCategoryID),
-    FOREIGN KEY (UserID) REFERENCES Users(UserID),
-    FOREIGN KEY (CategoryID) REFERENCES Category(CategoryID)
+    FOREIGN KEY (UserID) REFERENCES Usertbl(UserID),
+    FOREIGN KEY (CategoryID) REFERENCES Categorytbl(CategoryID)
     );
 
-CREATE TABLE UserPost(
+CREATE TABLE UserPosttbl(
     UserPostID INT NOT NUll AUTO_INCREMENT,
     UserID INT,
     PostID INT,
     PRIMARY KEY (UserPostID),
-    FOREIGN KEY (UserID) REFERENCES Users(UserID),
-    FOREIGN KEY (PostID) REFERENCES Post(PostID)
+    FOREIGN KEY (UserID) REFERENCES Usertbl(UserID),
+    FOREIGN KEY (PostID) REFERENCES Posttbl(PostID)
     );
 
-CREATE TABLE UserComment(
+CREATE TABLE UserCommenttbl(
     UserCommentID INT NOT NUll AUTO_INCREMENT,
     UserID INT,
     CommentID INT,
     PRIMARY KEY (UserCommentID),
-    FOREIGN KEY (UserID) REFERENCES Users(UserID),
-    FOREIGN KEY (CommentID) REFERENCES Comment(CommentID)
+    FOREIGN KEY (UserID) REFERENCES Usertbl(UserID),
+    FOREIGN KEY (CommentID) REFERENCES Commenttbl(CommentID)
     );
 
 
 --SHOW TABLE STATUS\G
 --prints active tables & table attributes
 SHOW FULL TABLES;
-SHOW COLUMNS FROM Users;
-SHOW COLUMNS FROM Category;
-SHOW COLUMNS FROM Post;
-SHOW COLUMNS FROM Comment;
-SHOW COLUMNS FROM UserCategory;
-SHOW COLUMNS FROM UserPost;
-SHOW COLUMNS FROM UserComment;
+SHOW COLUMNS FROM Usertbl;
+SHOW COLUMNS FROM Categorytbl;
+SHOW COLUMNS FROM Posttbl;
+SHOW COLUMNS FROM Commenttbl;
+SHOW COLUMNS FROM UserCategorytbl;
+SHOW COLUMNS FROM UserPosttbl;
+SHOW COLUMNS FROM UserCommenttbl;
