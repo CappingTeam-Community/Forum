@@ -17,7 +17,7 @@ CREATE TABLE Users(
 CREATE TABLE Category (
     CategoryID INT NOT NULL AUTO_INCREMENT,
     CategoryName VARCHAR(100),
-    CategoryVotes INT
+    CategoryVotes INT,
     PRIMARY KEY (CategoryID)
 );
 
