@@ -36,8 +36,8 @@ CREATE TABLE Post_tbl(
 CREATE TABLE Comment_tbl(
     CommentID INT NOT NULL AUTO_INCREMENT,
     PostID INT,
-    Comment TEXT(100000),
-    Commenter VARCHAR(100),
+    Comment TEXT(100000) NOT NULL,
+    Commenter VARCHAR(100) NOT NULL,
     CommentVotes INT DEFAULT 0,
     CommentTags VARCHAR(100),
     CommentDate DATE,
