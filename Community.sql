@@ -17,17 +17,17 @@ USE community_db;
 --Creates all tables with appropriate attribues for database
 CREATE TABLE Category_tbl(
     CategoryID INT NOT NULL AUTO_INCREMENT,
-    CategoryName VARCHAR(100),
-    CategoryVotes INT,
+    CategoryName VARCHAR(100) NOT NULL,
+    CategoryVotes INT DEFAULT 0,
     PRIMARY KEY (CategoryID)
     );
 
 CREATE TABLE Post_tbl(
     PostID INT NOT NULL AUTO_INCREMENT,
     CategoryID INT,
-    PostTitle VARCHAR(10000),
+    PostTitle VARCHAR(10000) NOT NULL,
     DateCreated DATE,
-    PostVotes INT,
+    PostVotes INT DEFAULT 0,
     Creator VARCHAR(100),
     PRIMARY KEY (PostID),
     FOREIGN KEY (CategoryID) REFERENCES Category_tbl(CategoryID)
@@ -38,7 +38,7 @@ CREATE TABLE Comment_tbl(
     PostID INT,
     Comment TEXT(100000),
     Commenter VARCHAR(100),
-    CommentVotes INT,
+    CommentVotes INT DEFAULT 0,
     CommentTags VARCHAR(100),
     CommentDate DATE,
     PRIMARY KEY (CommentID),
