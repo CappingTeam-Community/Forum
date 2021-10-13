@@ -5,7 +5,7 @@
 * @version  1.0.1
 * @since    10-03-2021
 * @author   Devin White
-**/
+*/
 
 USE community_db;
 DROP DATABASE community_db;
