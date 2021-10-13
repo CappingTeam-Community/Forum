@@ -39,7 +39,18 @@ Advised to have three terminals open:
    1. use to streamline development
 
 ### Git
-Make sure not to make changes directly on master. Name your branch FIRSTNAME_LASTNAME
+Clone the Repo (Main Devs)
+1. Click green Code button on Github main page
+2. Copy the HTTPS url
+3. Go to desired directory in terminal
+4. `git clone COPIED_URL`
+5. Enter Github Username
+6. Enter Personal Access Token
+   7. Settings -> Developer Settings -> Personal Access Token -> Generate New Token
+
+Make sure NOT to make changes directly on master. Name your branch FIRSTNAME-LASTNAME-ISSUENUMBER
+
+Fork the Repo (Other Devs)
 
 ## Available Scripts
 
