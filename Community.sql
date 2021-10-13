@@ -2,7 +2,7 @@
 * Initial database for Community Web Application
 * Community.sql creates the needed database and tables 
 *
-* @version  1.0
+* @version  1.0.1
 * @since    10-03-2021
 * @author   Devin White
 **/
@@ -24,25 +24,14 @@ CREATE TABLE Category_tbl(
 
 CREATE TABLE Post_tbl(
     PostID INT NOT NULL AUTO_INCREMENT,
-    CategoryID INT,
+    CategoryID_Post INT,
     PostTitle VARCHAR(10000) NOT NULL,
-    DateCreated DATE,
+    PostBody TEXT(100000),
+    PostDate DATE,
     PostVotes INT DEFAULT 0,
     Creator VARCHAR(100),
     PRIMARY KEY (PostID),
-    FOREIGN KEY (CategoryID) REFERENCES Category_tbl(CategoryID)
-    );
-
-CREATE TABLE Comment_tbl(
-    CommentID INT NOT NULL AUTO_INCREMENT,
-    PostID INT,
-    Comment TEXT(100000) NOT NULL,
-    Commenter VARCHAR(100) NOT NULL,
-    CommentVotes INT DEFAULT 0,
-    CommentTags VARCHAR(100),
-    CommentDate DATE,
-    PRIMARY KEY (CommentID),
-    FOREIGN KEY (PostID) REFERENCES Post_tbl(PostID)
+    FOREIGN KEY (CategoryID_Post) REFERENCES Category_tbl(CategoryID)
     );
 
 CREATE TABLE User_tbl(
@@ -50,14 +39,39 @@ CREATE TABLE User_tbl(
     UserName VARCHAR(100) NOT NULL,
     PassWord VARCHAR(100) NOT NULL,
     Email VARCHAR(100) NOT NULL,
-    CategoryID INT,
-    PostID INT,
-    CommentID INT,
+    CategoryID_User INT,
+    PostID_User INT,
+    CommentID_User INT,
     PRIMARY KEY (UserID),
-    FOREIGN KEY (CategoryID) REFERENCES Category_tbl(CategoryID),
-    FOREIGN KEY (PostID) REFERENCES Post_tbl(PostID),
-    FOREIGN KEY (CommentID) REFERENCES Comment_tbl(CommentID)
+    FOREIGN KEY (CategoryID_User) REFERENCES Category_tbl(CategoryID),
+    FOREIGN KEY (PostID_User) REFERENCES Post_tbl(PostID)
     );
+
+   -- FOREIGN KEY (CommentID_User) REFERENCES Comment_tbl(CommentID)
+
+CREATE TABLE Comment_tbl(
+    CommentID INT NOT NULL AUTO_INCREMENT,
+    PostID_Comment INT,
+    Comment TEXT(100000) NOT NULL,
+    CommentDate DATE,
+    CommentVotes INT DEFAULT 0,
+    CommenterID INT,
+    CommentTags VARCHAR(100),
+    PRIMARY KEY (CommentID),
+    FOREIGN KEY (PostID_Comment) REFERENCES Post_tbl(PostID)
+    );
+        --FOREIGN KEY (CommenterID) REFERENCES User_tbl(UserID)
+
+/*
+CREATE TABLE PostCategory_tbl(
+    PostCategoryID INT NOT NUll AUTO_INCREMENT,
+    PostID INT,
+    CategoryID INT,
+    PRIMARY KEY (PostCategoryID),
+    FOREIGN KEY (PostID) REFERENCES Post_tbl(PostID),
+    FOREIGN KEY (CategoryID) REFERENCES Category_tbl(CategoryID)
+    );
+
 
 CREATE TABLE UserCategory_tbl(
     UserCategoryID INT NOT NUll AUTO_INCREMENT,
@@ -85,7 +99,7 @@ CREATE TABLE UserComment_tbl(
     FOREIGN KEY (UserID) REFERENCES User_tbl(UserID),
     FOREIGN KEY (CommentID) REFERENCES Comment_tbl(CommentID)
     );
-
+*/
 
 --SHOW TABLE STATUS\G
 --prints active tables & table attributes
@@ -94,6 +108,7 @@ SHOW COLUMNS FROM User_tbl;
 SHOW COLUMNS FROM Category_tbl;
 SHOW COLUMNS FROM Post_tbl;
 SHOW COLUMNS FROM Comment_tbl;
-SHOW COLUMNS FROM UserCategory_tbl;
-SHOW COLUMNS FROM UserPost_tbl;
-SHOW COLUMNS FROM UserComment_tbl;
+--SHOW COLUMNS FROM PostCategory_tbl;
+--SHOW COLUMNS FROM UserCategory_tbl;
+--SHOW COLUMNS FROM UserPost_tbl;
+--SHOW COLUMNS FROM UserComment_tbl;
