@@ -6,7 +6,7 @@
 * @version  1.0.0
 * @since    10-12-2021
 * @author   Devin White
-**/
+*/
 
 INSERT INTO User_tbl
 (UserName, Password, Email)
