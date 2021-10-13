@@ -25,6 +25,8 @@ It can be used in this way, including our modifications:
 
 `npx generate-react-cli component COMPONENT_NAME --type=PAGE/SHARED`
 
+TODO: First time using may require inital setup. ie) typescript, css modules, etc.
+
 It will create a folder named COMPONENT_NAME with a corresponding .jsx and .css module
 
 For more info: For more info: https://www.npmjs.com/package/generate-react-cli
