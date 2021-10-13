@@ -5,7 +5,7 @@
 * @version  1.0.1
 * @since    10-03-2021
 * @author   Devin White
-*/
+**/
 
 USE community_db;
 DROP DATABASE community_db;
@@ -16,26 +16,26 @@ USE community_db;
 
 --Creates all tables with appropriate attribues for database
 CREATE TABLE Category_tbl(
-    CategoryID INT NOT NULL AUTO_INCREMENT,
+    CategoryID INT NOT NULL,
     CategoryName VARCHAR(100) NOT NULL,
     CategoryVotes INT DEFAULT 0,
     PRIMARY KEY (CategoryID)
     );
 
 CREATE TABLE Post_tbl(
-    PostID INT NOT NULL AUTO_INCREMENT,
+    PostID INT NOT NULL,
     CategoryID_Post INT,
     PostTitle VARCHAR(10000) NOT NULL,
     PostBody TEXT(100000),
     PostDate DATE,
     PostVotes INT DEFAULT 0,
-    Creator VARCHAR(100),
+    CreatorID INT,
     PRIMARY KEY (PostID),
     FOREIGN KEY (CategoryID_Post) REFERENCES Category_tbl(CategoryID)
     );
 
 CREATE TABLE User_tbl(
-    UserID INT NOT NULL AUTO_INCREMENT,
+    UserID INT NOT NULL,
     UserName VARCHAR(100) NOT NULL,
     PassWord VARCHAR(100) NOT NULL,
     Email VARCHAR(100) NOT NULL,
@@ -50,7 +50,7 @@ CREATE TABLE User_tbl(
    -- FOREIGN KEY (CommentID_User) REFERENCES Comment_tbl(CommentID)
 
 CREATE TABLE Comment_tbl(
-    CommentID INT NOT NULL AUTO_INCREMENT,
+    CommentID INT NOT NULL,
     PostID_Comment INT,
     Comment TEXT(100000) NOT NULL,
     CommentDate DATE,
