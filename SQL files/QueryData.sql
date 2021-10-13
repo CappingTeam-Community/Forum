@@ -9,7 +9,7 @@
 * @version  1.0.0
 * @since    10-13-2021
 * @author   Devin White
-**/
+*/
 
 
 --Sort by votes
