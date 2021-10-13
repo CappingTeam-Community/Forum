@@ -48,9 +48,13 @@ Clone the Repo (Main Devs)
 6. Enter Personal Access Token
    7. Settings -> Developer Settings -> Personal Access Token -> Generate New Token
 
-Make sure NOT to make changes directly on master. Name your branch FIRSTNAME-LASTNAME-ISSUENUMBER
+#### Fixing Issues
+1. Make sure NOT to make changes directly on master. Create a new branch, name the branch FIRSTNAME-LASTNAME-ISSUENUMBER
+2. In your commit message, include "Fix #ISSUENUMBER" to automatically set the issue to fixed and pending review
+3. Only push the branch, allow another developer to review the pull request before merging with master
 
 Fork the Repo (Other Devs)
+1.
 
 ## Available Scripts
 
