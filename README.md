@@ -16,6 +16,9 @@ Material UI is the UI component Library of choice.
 
 `npm install @mui/material @mui/styles @mui/icons-material @emotion/react @emotion/styled`
 
+
+For more info: https://mui.com/
+
 ### Server Dependencies 
 `npm install express`
 `npm install body-parser`
@@ -23,7 +26,6 @@ Material UI is the UI component Library of choice.
 `npm install nodemon`
 
 
-For more info: https://mui.com/
 ## Template Generator
 react-generate-cli is an npm package to help streamline development. 
 It can be used in this way, including our modifications:
