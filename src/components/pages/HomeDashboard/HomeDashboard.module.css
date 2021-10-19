@@ -3,11 +3,11 @@
     height: 40vh;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
 }
 
 .Categories2 {
-    height: 10vh;
+    height: 50vh;
     display: flex;
     justify-content: center;
     align-items: center;
