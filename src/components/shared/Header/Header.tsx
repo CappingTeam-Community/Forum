@@ -1,10 +1,12 @@
 import * as React from 'react';
+import styles from './Header.module.css';
 import { AppBar, Box, Toolbar, IconButton, Typography, InputBase, Badge, MenuItem, Menu, styled} from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import AccountCircle from '@mui/icons-material/AccountCircle';
+import HomeIcon from '@mui/icons-material/Home';
 import NotificationsIcon from '@mui/icons-material/Notifications';
-import styles from './Header.module.css';
+import {NavLink} from "react-router-dom";
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
     color: 'inherit',
@@ -21,6 +23,7 @@ function Header() {
     const isMenuOpen = Boolean(anchorEl);
     const menuId = 'navBar';
     const notificationCount = 0;
+    var loggedIn = false;
 
     const accountMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorEl(event.currentTarget);
@@ -40,8 +43,9 @@ function Header() {
             open={isMenuOpen}
             onClose={accountMenuClose}
         >
-            <MenuItem onClick={accountMenuClose}>Settings</MenuItem>
-            <MenuItem onClick={accountMenuClose}>Login</MenuItem>
+            <MenuItem><NavLink exact to='/setting'>Account</NavLink></MenuItem>
+            <MenuItem><NavLink exact to='/login'>Login</NavLink></MenuItem>
+            <MenuItem><NavLink exact to='/signup'>Signup</NavLink></MenuItem>
         </Menu>
     );
 
@@ -52,6 +56,12 @@ function Header() {
                     <IconButton size="large" edge="start" color="inherit" sx={{ mr: 2 }}>
                         <MenuIcon />
                     </IconButton>
+                    <NavLink exact to='/'>
+                        <IconButton size="large" edge="start" color="inherit" sx={{ mr: 2 }}>
+                            <HomeIcon />
+                        </IconButton>
+                    </NavLink>
+
                     <Typography variant="h6" noWrap component="div" sx={{ display: { xs: 'none', sm: 'block' } }}>
                         Community Forum
                     </Typography>
