@@ -62,3 +62,14 @@ FROM Comment_tbl, User_tbl
 WHERE CommenterID = UserID;
 
 
+--Displays all users who enjoy category
+SELECT UserName
+FROM User_tbl
+    JOIN UserCategory ON User_tbl.UserID = UserCategory.IDUser
+WHERE UserCategory.IDCategory = 4;
+
+--Displays all categories enjoyed by user
+SELECT CategoryName
+FROM Category_tbl
+    JOIN UserCategory ON Category_tbl.CategoryID = UserCategory.IDCategory
+WHERE UserCategory.IDUser = 1;
