@@ -11,6 +11,8 @@ Install Node.js at https://nodejs.org/en/download/
 ### React
 `npm install react`
 
+`npm install --save react-router-dom`
+
 ### Material UI
 Material UI is the UI component Library of choice.
 
