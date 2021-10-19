@@ -51,6 +51,8 @@ class Signup extends React.Component<{} , MyState > {
     } 
     private onComplete (event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
+        // TODO: @Devin make post request to database.
+
         this.setState({ redirectToLogin: true })
     }
 
