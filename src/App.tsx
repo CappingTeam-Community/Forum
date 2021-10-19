@@ -1,17 +1,18 @@
-import React from 'react';
+import * as React from 'react';
 import './App.css';
 
 import Home from './components/pages/HomeDashboard/HomeDashboard';
 import Footer from './components/shared/Footer/Footer';
 import Header from './components/shared/Header/Header'
-import { createTheme } from "@mui/material";
-import { ThemeProvider } from "@mui/styles";
+import { createTheme} from "@mui/material";
+
+//Theme not working
 
 // Theme
-const theme = createTheme({
+export const theme = createTheme({
   palette: {
     primary: {
-      main: '#28699a',
+      main: '#006400',
     },
     secondary: {
       main: '#3cb24c',
@@ -32,11 +33,9 @@ function App() {
 
   return (
     <div className="container">
-      <ThemeProvider theme={theme}>
-      <Header />
+        <Header />
         <Home />
         <Footer />
-      </ThemeProvider>
     </div>
   );
 }
