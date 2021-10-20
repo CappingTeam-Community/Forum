@@ -1,12 +1,11 @@
 import {Button, Checkbox, Container, Grid, Paper, Typography} from '@mui/material';
-import FormControlLabel from "@mui/material/FormControlLabel";
 import React from "react";
 import PostComponent from "../../shared/PostComponent/PostComponent";
 
 function PostListing() {
     //Logic
     //TODO: TEST prop. correlate with database
-    const prop1 = {
+    const post1 = {
         id: 1,
         authorData: {
             username: 'blynch'
@@ -17,7 +16,7 @@ function PostListing() {
         date: new Date().toLocaleString(),
         postBody: 'Endgame spoiler test text iterated.Endgame spoiler test text iterated. Endgame spoiler test text iterated. Endgame spoiler test text iterated.',
     }
-    const postArray: any = [prop1, prop1, prop1];
+    const postArray: any = [post1, post1, post1];
 
     return (
         <Container sx={{marginTop: 8, display: "flex", flexDirection: "column", alignItems: "center"}}>
@@ -34,7 +33,7 @@ function PostListing() {
                         />
                     </Grid>
                 );
-            })}
+            })};
         </Container>
     )
 }

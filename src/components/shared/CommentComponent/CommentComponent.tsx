@@ -10,43 +10,40 @@ import {
     IconButton,
     Typography
 } from "@mui/material";
-import Button from "@mui/material/Button";
 import {orange, red} from "@mui/material/colors";
 import FavoriteIcon from "@mui/icons-material/Favorite"
 import {Component} from "react";
+import Button from "@mui/material/Button";
 
 interface Props {
     id: number,
     authorData: Object,
-    title: string,
     date: string,
-    categories: Array<any>,
+    tags: Array<any>,
     voteCount: number,
-    postBody: string,
+    commentBody: string,
 }
 
 interface State {
     isLiked: boolean;
 }
 
-class PostComponent extends Component<Props, State> {
+class CommentComponent extends Component<Props, State> {
     private id: number;
     private authorData: any;
-    private title: string;
     private date: string;
-    private categories: Array<any>;
+    private tags: Array<any>;
     private voteCount: number;
-    private postBody: string;
+    private commentBody: string;
 
     constructor(props: any) {
         super(props);
         this.id = this.props.id;
         this.authorData = this.props.authorData;
-        this.title = this.props.title;
         this.date = this.props.date;
-        this.categories = this.props.categories;
+        this.tags = this.props.tags;
         this.voteCount = this.props.voteCount;
-        this.postBody = this.props.postBody;
+        this.commentBody = this.props.commentBody;
 
         this.state = {
             isLiked: false
@@ -78,32 +75,24 @@ class PostComponent extends Component<Props, State> {
                         {this.voteCount}
                     </Typography>
                 </Box>
-                <Card sx={{maxWidth: 900}}>
+                <Card sx={{width: 400, height: 125}}>
                     {/* TODO: Replace test with card forum page */}
-                    <CardActionArea href='/test'>
                         <CardHeader
                             avatar={<Avatar sx={{bgcolor: orange[500]}}>{this.authorData.username.charAt(0)}</Avatar>}
-                            title={this.title}
-                            subheader={this.date}
+                            subheader={this.authorData.username}
                         />
                         <Container sx={{ display:'flex', pb:3}}>
-                            <CardMedia
-                                component="img"
-                                height="100"
-                                width="100"
-                                src='https://m.media-amazon.com/images/M/MV5BMTc5MDE2ODcwNV5BMl5BanBnXkFtZTgwMzI2NzQ2NzM@._V1_.jpg'
-                                alt="endgame-image"
-                                sx={{ width:'200px', height:'100px' }}
-                            />
                             <CardContent>
                                 <Typography variant='body2' color='text.secondary'>
-                                    {this.postBody}
+                                    {this.commentBody}
                                 </Typography>
                             </CardContent>
+                            <CardActions>
+                                <Button href='commenttest' size='small'sx={{ml:'auto', mr:0}} >Reply</Button>
+                            </CardActions>
                         </Container>
-                    </CardActionArea>
-                </Card>
+                    </Card>
             </Container>
         )};
 }
-export default PostComponent;
+export default CommentComponent;
