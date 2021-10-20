@@ -21,6 +21,17 @@ Material UI is the UI component Library of choice.
 
 For more info: https://mui.com/
 
+### Database instalation
+
+`brew install mariadb`
+
+`mysql.server start`
+
+`brew services start mariadb`
+
+log in as root user
+`mysql -u root -p`
+
 ### Server Dependencies 
 `npm install express body-parser mysql nodemon cors`
 
