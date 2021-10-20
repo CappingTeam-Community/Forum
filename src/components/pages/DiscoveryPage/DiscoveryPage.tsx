@@ -7,15 +7,26 @@ import styles from './DiscoveryPage.module.css';
 
 function DiscoveryPage(){
     //Logic
-    const categories: any = [];
 
+
+    const prop1 = {
+        title: 'Endgame Spoilers',
+        description: 'Endgame spoiler test text iterated.Endgame spoiler test text iterated. Endgame spoiler test text iterated. ',
+        image: "./test-endgameImage.jpg",
+        link: ""
+    }
+
+    const categories: any = [prop1, prop1, prop1];
 
     //Template
     return (
+
         <div className={styles.DiscoveryPage}>
-            <h1> \(!_!)/ waa</h1>
+
+            <h1> \(!_!)/ Waa</h1>
+
             <div className={styles.centerGrid}>
-            <Box sx={{ width: '70%' }}>
+            <Box sx={{ width: '60%' }}>
                 <Grid container spacing={{ md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
                     {categories.map((category: any, index: number) => {
                         return (

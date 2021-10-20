@@ -26,10 +26,10 @@ class DiscoveryComponet extends Component<PropsCat, {}>{
 
     constructor(props: any) {
         super(props);
-        this.title = '';
-        this.description = '';
-        this.image = '';
-        this.link = '';
+        this.title = this.props.title;
+        this.description = this.props.description;
+        this.image = this.props.image;
+        this.link = this.props.link;
     }
     render() {
         return (
