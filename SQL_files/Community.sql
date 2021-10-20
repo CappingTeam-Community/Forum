@@ -2,7 +2,7 @@
 * Initial database for Community Web Application
 * Community.sql creates the needed database and tables 
 *
-* @version  1.0.1
+* @version  1.0.2
 * @since    10-03-2021
 * @author   Devin White
 **/
