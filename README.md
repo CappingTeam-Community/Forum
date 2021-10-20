@@ -129,7 +129,7 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 ## Theming
 ## Database
 
-###Run database
+### Run database
 
 `mysql -u root -p`
 
