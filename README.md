@@ -128,4 +128,16 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 ### services
 ## Theming
 ## Database
+
+###Run database
+`mysql -u root -p`
+
+enter password 'password'
+
+`use mysql`
+
+`Source/../community.sql`
+`Source/../insertdata.sql`
+
+
 ## AI
