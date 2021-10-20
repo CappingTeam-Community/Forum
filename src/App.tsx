@@ -43,11 +43,10 @@ function App() {
                 <Header />
                 <Switch>
                     <Route exact path='/'>
-                        <Home />
+                        <DiscoverPage />
                     </Route>
-                    <Route exact path='/posts'>
-                        <PostListing />
-                    </Route>
+                    <Route exact path='/category/:CategoryID' render={(props) => <PostListing {...props} />} />
+                    <Route exact path='/category/' render={(props) => <PostListing {...props} />} />
                     <Route exact path='/post'>
                         <PostDashboard />
                     </Route>
@@ -60,14 +59,9 @@ function App() {
                     <Route exact path='/signup'>
                         <Signup />
                     </Route>
-                    <Route exact path='/discover'>
-                        <DiscoverPage />
-                    </Route>
-                    <Route exact path='/forum'>
-                        <ForumPage />
-                    </Route>
+                    <Route exact path='/forum/:PostID' render={(props) => <ForumPage {...props} />} />
                 </Switch>
-                <Footer />
+
             </BrowserRouter>
         </div>
     );

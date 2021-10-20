@@ -19,6 +19,7 @@ CREATE TABLE Category_tbl(
     CategoryID INT NOT NULL AUTO_INCREMENT,
     CategoryName VARCHAR(100) NOT NULL,
     CategoryDescription TEXT(1000000),
+    CategoryImage VARCHAR(1000),
     CategoryVotes INT DEFAULT 0,
     PRIMARY KEY (CategoryID)
     );
@@ -28,6 +29,7 @@ CREATE TABLE Post_tbl(
     CategoryID_Post INT,
     PostTitle VARCHAR(10000) NOT NULL,
     PostBody TEXT(100000),
+    PostImage VARCHAR(1000),
     PostDate DATE,
     PostVotes INT DEFAULT 0,
     CreatorID INT,

@@ -13,30 +13,32 @@ import styles from './DiscoveryPage.module.css';
 
 
 interface PropsCat {
+    id: number;
     title: string,
     description: string,
-    image: string,
-    link: string
+    image: string
 
 }
 class DiscoveryComponet extends Component<PropsCat, {}>{
+    private id: number;
     private title: string;
     private description: string;
     private image: string;
-    private link: string;
+    private route: string;
 
     constructor(props: any) {
         super(props);
         this.title = this.props.title;
         this.description = this.props.description;
         this.image = this.props.image;
-        this.link = this.props.link;
+        this.id = this.props.id;
+        this.route = '/category/' + (this.id).toString()
     }
     render() {
         return (
-            <Container>
-                <Card sx={{ maxWidth: 345 }}>
-                    <CardActionArea href='/posts'>
+            <Container >
+                <Card sx={{ mb:2, height:300, width: 250 }}>
+                    <CardActionArea href={this.route}>
                         <CardMedia
                             component="img"
                             height="140"
