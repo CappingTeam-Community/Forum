@@ -1,12 +1,14 @@
 import * as React from 'react';
 import styles from './Header.module.css';
-import { AppBar, Box, Toolbar, IconButton, Typography, InputBase, Badge, MenuItem, Menu, styled} from '@mui/material';
+import { AppBar, Box, Toolbar, IconButton, Typography, InputBase, Badge, MenuItem, Menu, styled, Button, ButtonProps} from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import HomeIcon from '@mui/icons-material/Home';
 import NotificationsIcon from '@mui/icons-material/Notifications';
-import {NavLink} from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import { purple } from '@mui/material/colors';
+
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
     color: 'inherit',
@@ -15,6 +17,14 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
         // vertical padding + font size from searchIcon
         paddingLeft: `calc(1em + ${theme.spacing(4)})`,
         width: '100%',
+    },
+}));
+
+const ColorButton = styled(Button)<ButtonProps>(({ theme }) => ({
+    color: theme.palette.getContrastText(purple[500]),
+    backgroundColor: purple[500],
+    '&:hover': {
+        backgroundColor: purple[700],
     },
 }));
 
@@ -49,12 +59,39 @@ function Header() {
         </Menu>
     );
 
+    const [anchorE2, setAnchorE2] = React.useState<null | HTMLElement>(null);
+    const isToolbarOpen = Boolean(anchorE2);
+    const toolId = 'navBar';
+
+    const toolbarOpen = (event: React.MouseEvent<HTMLElement>) => {
+        setAnchorE2(event.currentTarget);
+    };
+    const toolbarClose = () => {
+        setAnchorE2(null);
+    };
+    const renderToolbar = (
+        <Menu
+            anchorEl={anchorE2}
+            anchorOrigin={{
+                vertical: 'top',
+                horizontal: 'left',
+            }}
+            id={toolId}
+            keepMounted
+            open={isToolbarOpen}
+            onClose={toolbarClose}
+        >
+            <MenuItem><NavLink exact to='/post'><ColorButton variant="contained">+ New Post </ColorButton></NavLink></MenuItem>
+        </Menu>
+    );
+
     return (
         <Box sx={{ flexGrow: 1 }}>
             <AppBar position="static">
                 <Toolbar>
-                    <IconButton size="large" edge="start" color="inherit" sx={{ mr: 2 }}>
-                        <MenuIcon />
+                    <IconButton size="large" edge="start" color="inherit" aria-controls={toolId} onClick={toolbarOpen} sx={{ mr: 2 }}>
+                        <MenuIcon/>
+                        
                     </IconButton>
                     <NavLink exact to='/'>
                         <IconButton size="large" edge="start" color="inherit" sx={{ mr: 2 }}>
@@ -86,6 +123,7 @@ function Header() {
                 </Toolbar>
             </AppBar>
             {renderMenu}
+            {renderToolbar}
         </Box>
     );
 }
