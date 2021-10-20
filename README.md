@@ -30,6 +30,7 @@ For more info: https://mui.com/
 `brew services start mariadb`
 
 log in as root user
+
 `mysql -u root -p`
 
 ### Server Dependencies 
