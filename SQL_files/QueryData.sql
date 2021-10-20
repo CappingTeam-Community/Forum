@@ -66,7 +66,11 @@ WHERE CommenterID = UserID;
 SELECT UserName
 FROM User_tbl
     JOIN UserCategory ON User_tbl.UserID = UserCategory.IDUser
+<<<<<<< Updated upstream:SQL_files/QueryData.sql
 WHERE UserCategory.IDCategory = 4;
+=======
+WHERE UserCategory.IDCategory = 1;
+>>>>>>> Stashed changes:SQL_files/QueryData.sql
 
 --Displays all categories enjoyed by user
 SELECT CategoryName

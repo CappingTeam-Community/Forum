@@ -4,6 +4,9 @@
 * to display on web application
 *
 * @version  1.0.0
+
+* @version  1.0.1
+>>>>>>> Stashed changes
 * @since    10-12-2021
 * @author   Devin White
 **/
@@ -52,6 +55,13 @@ D-LIST - Once you get to this point it's hard to really determine which characte
 
 I'm not sure what to call this but there also seemed to be this weird area where Punisher and Blade were where they're pretty well-known to the public but weren't traditionally associated with Marvel heroes. Blade was a massively successful action-horror franchise but even today I have met people who didn't seem to know it was a Marvel movie, and at this point Punisher's skull symbol has taken on a completely new life as a mascot for the 'extreme edge goth punk' crowd, and an unsettling amount of soldiers and police officers, which is kind of scary.
 
+
+I admit that I was not into Marvel much until around the first Avengers movie, so what I'm saying is largely based on second-hand experiences and what I can vaguely remember before Iron Man came out. Here is what I generally think the hierarchy of Marvel was:
+A-LIST - Spider-Man, X-Men, Fantastic Four, Hulk. Basically all of the heroes who regularly got cartoons, movies, merchandise, etc. and were front and center on posters.
+B-LIST - Iron Man, Captain America, Thor, Daredevil, and a few others that weren't as exposed in the public eye but were still very much prevalent in Marvel media, just usually as supporting roles and not the main focus. Though I'd say Cap and Daredevil sort of rode the line between A and B-list.
+C-LIST - Ant-Man, Doctor Strange, Black Panther, Captain Marvel, and most of the characters introduced after Phase 1 in the MCU. Fans of comics almost certainly knew who they were but they were mostly obscure in the eyes of the general public.
+D-LIST - Once you get to this point it's hard to really determine which characters belong here, but what I generally consider 'D-list' are the characters who even some comic fans didn't know anything about. I would like to say groups like the Guardians of the Galaxy or the Eternals, but I actually think those were too obscure to even justify calling them D-list; they were basically off the radar entirely.
+I'm not sure what to call this but there also seemed to be this weird area where Punisher and Blade were where they're pretty well-known to the public but weren't traditionally associated with Marvel heroes. Blade was a massively successful action-horror franchise but even today I have met people who didn't seem to know it was a Marvel movie, and at this point Punisher's skull symbol has taken on a completely new life as a mascot for the 'extreme edge goth punk' crowd, and an unsettling amount of soldiers and police officers, which is kind of scary.
 Does this sound about right? If not, who would you rank as A-list, B-list, etc. before the inception of the Marvel Cinematic Universe?",
 '2021-10-13',
 6,
@@ -60,6 +70,7 @@ Does this sound about right? If not, who would you rank as A-list, B-list, etc. 
 
 After watching what feels like a dozen movies over the last several years (some out of order) and with the time-travel shenanigans, multiverses, the Snap and Blip, and fact that the films themselves are set in different “time periods” of the MCU, I don’t know which heroes are dead and which aren’t as of “present day” MCU.
 
+After watching what feels like a dozen movies over the last several years (some out of order) and with the time-travel shenanigans, multiverses, the Snap and Blip, and fact that the films themselves are set in different “time periods” of the MCU, I don’t know which heroes are dead and which aren’t as of “present day” MCU.
 Tony Stark, I think… and I remember Captain America getting real old and retiring after time-travel stuff so I guess he is dead too? Anyone else?', '2021-10-13', 20, 6),
 
         (1, "Adam Warlock vs Captain Marvel", "As you know, it is already known who will be the actor who will give life to the character of Adam, who do you think would win?", "2021-10-14", 1, 2),
@@ -100,6 +111,24 @@ Feel free to make your top 5, top 10, top 23, etc. list if you dont want to do a
 
 Also, we are comparing to their final Endgame versions: Thor with only Stormbreaker, Endgame Hulk, etc.
 
+"The original 6" (Iron Man, Captian America, Thor, Hulk, Black Widow, and Hawkeye)
+Guardians Of The Galaxy (Star-Lord, Gamora, Drax, Groot, Rocket, Nebula, and Mantis)
+War Machine
+Falcon
+Bucky
+Scarlet Witch
+Black Panther
+Ant-Man
+The Wasp
+Doctor Strange
+Spider-Man
+Captain Marvel
+23 in total
+I picked the based on the final Endgame scene and/or if they have had a big enough impact in the MCU. As you see, no Vision nor Quicksilver.
+The rule is that their characters are based on the MCU versions, not comic book versions. If there is no information, then a fallback to the comics is allowed. Also, anything the filmmakers say (even if contradicting the comics and/or the films) also is taken into account.
+Feel free to make your top 5, top 10, top 23, etc. list if you dont want to do all 23
+Also, we are comparing to their final Endgame versions: Thor with only Stormbreaker, Endgame Hulk, etc.
+>>>>>>> Stashed changes
 Good luck', "2021-10-14", 1, 8);
 
 SELECT * FROM Post_tbl;
@@ -210,6 +239,34 @@ Black Widow - She ran at Thanos with a taser. Has no superpowers, just hand-to-h
 
 Drax - Isn't actually all that remarkable other than using knives and being able to jump very high. Kind of a dimwit, doesn't know how to be stealthy.
 
+
+Scarlet Witch - Held Thanos back vs. 5 Infinity Stones and only using half her powers, while focused on destroying the final Infinity Stone, then almost singlehandedly ripped Thanos apart without the stones.
+Doctor Strange - Wielded time itself, went one-on-one for Thanos and stopped a black hole, can conjure the Mirror Dimension, can see millions of futures in minutes.
+Captain Marvel - Photon blasts, held the Gauntlet open before being blasted away by the Power Stone, destroys entire fleets just by flying through their ships.
+Thor - Unrestricted lightning powers without Mjolnir, wounded Thanos with Stormbreaker, beheaded him later.
+Still unbeatable but not OP tier
+Iron Man - Genius, builds his own suits, uses nanobot technology, can locate anything with FRIDAY.
+Captain America - Enhanced super-soldier with a vibranium shield. Took all the punches from Thanos and still got up. Can do it all day.
+Hulk - Now with brains and brawn put together. Smashed Loki like a toy, ripped apart Ultron-bots.
+Groot - Sacrificed a limb for Stormbreaker, can penetrate soldiers and Chitauri with his arm. Also practically invincible unless he's completely disintegrated.
+Rocket - Advantage of space-tech, small size, and intelligence. Basically a furry Tony Stark.
+Black Panther - Vibranium suit can absorb energy and release it all with a punch or a kick. Gifted with the powers of the heart-shaped herb.
+Still a valuable asset tier
+Hawkeye - Impeccable aim with a bow and arrow ('played 18, shot 18'). Took on Chitauri and won. Otherwise, no other powers.
+Gamora - A green Black Widow and an estranged daughter of Thanos. Could easily beat Black Widow in a fight, don't @ me.
+War Machine - Black Iron Man with W E A P O N S.
+Bucky - White War Machine with a vibranium arm and W E A P O N S.
+Ant-Man - Pretty much Black Widow but with shrinking and growing capabilities. He punched ships out of the air in Endgame. As long as he has Pym Particles, he's good to go.
+Wasp - Probably the same as Ant-Man, but has the advantage of flight.
+Spider-Man - Can lift tons in weight, has the Iron Spider suit with insta-kill mode.
+Average tier
+Star-Lord - Resourceful, good at planning, advantage of space-tech. If he had his Celestial powers still, he would have been unbeatable-tier.
+Mantis - Put a living planet to sleep and took a small meteor to the face. Otherwise, nothing else. Too naive, anyway.
+Nebula - Basically the same as Gamora but since she lost all their battles (except the one in GOTG2), she's stuck here.
+Normie tier
+Black Widow - She ran at Thanos with a taser. Has no superpowers, just hand-to-hand skills. Almost got taken down by Ant-Man.
+Drax - Isn't actually all that remarkable other than using knives and being able to jump very high. Kind of a dimwit, doesn't know how to be stealthy.
+>>>>>>> Stashed changes
 Falcon - No superpowers to speak of, and all he has is carbon-fiber wings and special goggles. Better step his game up if he's the new Captain America.", "2021-10-14", 12, 9, "tierlist"),
         (6, "Gamora - A green Black Widow and an estranged daughter of Thanos. Could easily beat Black Widow in a fight, don't @ me. OH SHIT. YOU FUCKED UP NOW. Im not tackling this one... Black Widow - She ran at Thanos with a taser. Has no superpowers, just hand-to-hand skills. Almost got taken down by Ant-Man. I actually thought this too. But she has actually been experiemented on and is enhanced (besides comic, implied in Age Of Ultron). Besides hand-to-hand skills a EXPERT strategist (just like Cap)", "2021-10-14", 1, 3, null),
         (6, 'Hulk “Voiceprint authorization required” “Banner.” ”Welcome, Strongest Avenger” “Uhhhhhh, what?”', "2021-10-14", 0, 2, "Hulk"),
@@ -237,4 +294,4 @@ VALUES('Marvel', 'A community dedicated to Marvel Studios and the Marvel Cinemat
 
 INSERT INTO UserCategory
 (IDUser, IDCategory)
-VALUES(6, 1);
+VALUES(6, 1), (2, 1), (5,1), (11, 1);
