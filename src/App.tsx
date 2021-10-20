@@ -9,60 +9,67 @@ import Header from './components/shared/Header/Header';
 import Login from './components/pages/Login/Login';
 import PostListing from './components/pages/PostListing/PostListing';
 import Signup from './components/pages/Signup/Signup';
-import {Container, createTheme} from "@mui/material";
-import {BrowserRouter, Route, Switch} from "react-router-dom";
+import { Container, createTheme } from "@mui/material";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import DiscoverPage from "./components/pages/DiscoveryPage/DiscoveryPage";
 
 
 // Theme
 export const theme = createTheme({
-  palette: {
-    primary: {
-      main: '#006400',
-    },
-    secondary: {
-      main: '#3cb24c',
-    },
-    background: {
-      default: '#ece6e2',
-    },
-    error: {
-      main: '#c2293a',
-    },
-    info: {
-      main: '#00e7ff',
-    },
-  }
+    palette: {
+        primary: {
+            main: '#006400',
+        },
+        secondary: {
+            main: '#3cb24c',
+        },
+        background: {
+            default: '#ece6e2',
+        },
+        error: {
+            main: '#c2293a',
+        },
+        info: {
+            main: '#00e7ff',
+        },
+    }
 });
 
 function App() {
-  return (
-    <div className='App'>
-      <BrowserRouter>
-        <Header />
-        <Switch>
-          <Route exact path='/'>
-            <Home />
-          </Route>
-          <Route exact path='/posts'>
-            <PostListing />
-          </Route>
-          <Route exact path='/post'>
-            <PostDashboard />
-          </Route>
-          <Route exact path='/user'>
-            <UserDashboard />
-          </Route>
-          <Route exact path='/login'>
-            <Login />
-          </Route>
-          <Route exact path='/signup'>
-            <Signup />
-          </Route>
-        </Switch>
-        <Footer />
-      </BrowserRouter>
-    </div>
-  );
+    return (
+        <div className='App'>
+            <BrowserRouter>
+                <Header />
+                <Switch>
+                    <Route exact path='/'>
+                        <Home />
+                    </Route>
+                    <Route exact path='/posts'>
+                        <PostListing />
+                    </Route>
+                    <Route exact path='/post'>
+                        <PostDashboard />
+                    </Route>
+                    <Route exact path='/user'>
+                        <UserDashboard />
+                    </Route>
+                    <Route exact path='/login'>
+                        <Login />
+                    </Route>
+                    <Route exact path='/signup'>
+                        <Signup />
+                    </Route>
+                    <Route exact path='/discover'>
+                        <DiscoverPage />
+                    </Route>
+                    <Route exact path='/discover'>
+                        <DiscoverPage />
+                    </Route>
+                </Switch>
+                <Footer />
+            </BrowserRouter>
+        </div>
+    );
 }
 
 export default App;
