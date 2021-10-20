@@ -22,10 +22,7 @@ Material UI is the UI component Library of choice.
 For more info: https://mui.com/
 
 ### Server Dependencies 
-`npm install express`
-`npm install body-parser`
-`npm install mariadb`
-`npm install nodemon`
+`npm install express body-parser mysql nodemon cors`
 
 
 ## Template Generator
