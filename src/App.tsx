@@ -7,8 +7,9 @@ import UserDashboard from "./components/pages/UserDashboard/UserDashboard";
 import Footer from './components/shared/Footer/Footer';
 import Header from './components/shared/Header/Header';
 import Login from './components/pages/Login/Login';
+import PostListing from './components/pages/PostListing/PostListing';
 import Signup from './components/pages/Signup/Signup';
-import { createTheme } from "@mui/material";
+import {Container, createTheme} from "@mui/material";
 import {BrowserRouter, Route, Switch} from "react-router-dom";
 
 
@@ -35,12 +36,15 @@ export const theme = createTheme({
 
 function App() {
   return (
-    <div className="container">
+    <div className='App'>
       <BrowserRouter>
         <Header />
         <Switch>
           <Route exact path='/'>
             <Home />
+          </Route>
+          <Route exact path='/posts'>
+            <PostListing />
           </Route>
           <Route exact path='/post'>
             <PostDashboard />
