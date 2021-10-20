@@ -6,21 +6,20 @@ import {
     CardContent,
     CardHeader,
     CardMedia,
-    Container,
+    Container, Grid,
     IconButton,
     Typography
 } from "@mui/material";
-import Button from "@mui/material/Button";
 import {orange, red} from "@mui/material/colors";
 import FavoriteIcon from "@mui/icons-material/Favorite"
 import {Component} from "react";
-import { NavLink } from "react-router-dom";
 
 interface Props {
     id: number,
-    authorData: Object,
+    author: string,
     title: string,
     date: string,
+    PostImage: string;
     categories: Array<any>,
     voteCount: number,
     postBody: string,
@@ -32,26 +31,32 @@ interface State {
 
 class PostComponent extends Component<Props, State> {
     private id: number;
-    private authorData: any;
+    private author: any;
     private title: string;
     private date: string;
+    private image: string;
     private categories: Array<any>;
     private voteCount: number;
     private postBody: string;
+    private route:string;
+    private avatarColor: string;
 
     constructor(props: any) {
         super(props);
         this.id = this.props.id;
-        this.authorData = this.props.authorData;
+        this.author = this.props.author;
         this.title = this.props.title;
-        this.date = this.props.date;
+        this.date = new Date(Date.parse(this.props.date)).toDateString();
+        this.image = this.props.PostImage
         this.categories = this.props.categories;
         this.voteCount = this.props.voteCount;
         this.postBody = this.props.postBody;
+        this.route = '/forum/' + this.id;
+        this.avatarColor = this.getRandomColor();
 
-        this.state = {
-            isLiked: false
-        }
+            this.state = {
+                isLiked: false
+            }
 
         this.onLikeClick = this.onLikeClick.bind(this);
     }
@@ -68,6 +73,15 @@ class PostComponent extends Component<Props, State> {
             this.voteCount --;
         }
     }
+    private getRandomColor() {
+        var letters = '0123456789ABCDEF';
+        var color = '#';
+        for (var i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+    }
+
     render() {
         return (
             <Container sx={{ display: 'flex'}}>
@@ -79,29 +93,35 @@ class PostComponent extends Component<Props, State> {
                         {this.voteCount}
                     </Typography>
                 </Box>
-                <Card sx={{maxWidth: 900}}>
+                <Card sx={{width: 900, height: 260}}>
                     {/* TODO: Replace test with card forum page */}
-                    <CardActionArea href='/forum'> 
+                    <CardActionArea href={this.route}>
                         <CardHeader
-                            avatar={<Avatar sx={{bgcolor: orange[500]}}>{this.authorData.username.charAt(0)}</Avatar>}
-                            title={this.title}
+                            avatar={<Avatar sx={{bgcolor: this.avatarColor}}>{this.author.charAt(0)}</Avatar>}
+                            title= {
+                                <Typography sx={{ overflow: 'hidden'}}>{this.title}</Typography>
+                            }
                             subheader={this.date}
                         />
-                        <Container sx={{ display:'flex', pb:3}}>
+                        <Box sx={{
+                            display:'flex',
+                            mb:0
+                        }}>
                             <CardMedia
                                 component="img"
-                                height="100"
                                 width="100"
-                                src='https://m.media-amazon.com/images/M/MV5BMTc5MDE2ODcwNV5BMl5BanBnXkFtZTgwMzI2NzQ2NzM@._V1_.jpg'
-                                alt="endgame-image"
-                                sx={{ width:'200px', height:'100px' }}
+                                height="150"
+                                src={this.image}
+                                alt="image not "
+                                sx={{width:'200px'}}
+
                             />
-                            <CardContent>
-                                <Typography variant='body2' color='text.secondary'>
+                            <CardContent sx={{pl:4}}>
+                                <Typography paragraph variant='body2' color='text.secondary'>
                                     {this.postBody}
                                 </Typography>
                             </CardContent>
-                            </Container>        
+                        </Box>
                     </CardActionArea>
                 </Card>
             </Container>

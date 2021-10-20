@@ -1,49 +1,55 @@
 
-import { Grid } from '@mui/material';
+import {Container, Grid, Typography} from '@mui/material';
 import { Box } from '@mui/material';
 import DiscoveryComponet from './DiscoveryComponet';
 import styles from './DiscoveryPage.module.css';
+import React from "react";
+import Axios from "axios";
 
 
-function DiscoveryPage(){
-    //Logic
-
-
-    const prop1 = {
-        title: 'Endgame Spoilers',
-        description: 'Endgame spoiler test text iterated.Endgame spoiler test text iterated. Endgame spoiler test text iterated. ',
-        image: "./test-endgameImage.jpg",
-        link: ""
+class DiscoveryPage extends React.Component<{}, any> {
+    constructor(props: any) {
+        super(props)
+        this.state = {
+            data: []
+        }
     }
 
-    const categories: any = [prop1, prop1, prop1];
+    componentDidMount() {
+        Axios.get(`http://localhost:3001/category/select/`)
+            .then(res => {
+                const data = res.data;
+                this.setState({data})
+            })
+    }
 
-    //Template
-    return (
-
-        <div className={styles.DiscoveryPage}>
-
-            <h1> \(!_!)/ Waa</h1>
-
-            <div className={styles.centerGrid}>
-            <Box sx={{ width: '60%' }}>
-                <Grid container spacing={{ md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
-                    {categories.map((category: any, index: number) => {
-                        return (
-                            <Grid item md={6} key={index}>
-                                <DiscoveryComponet
-                                    title={category.title}
-                                    description={category.description}
-                                    image={category.image}
-                                    link={category.link}
-                                />
-                            </Grid>
-                        );
-                    })}
-                </Grid>
-                </Box>
+    render() {
+        return (
+            <Container className={styles.DiscoveryPage} sx={{display: 'block'}}>
+                <Typography variant='h3' color='text.primary' sx={{textAlign: 'center', p: 5}}>
+                    Discover
+                </Typography>
+                <div className={styles.centerGrid}>
+                    <Box sx={{width:'100%'}}>
+                        <Grid container spacing={2}>
+                            {this.state.data.map((category: any, index: number) => {
+                                return (
+                                    <Grid item key={index}>
+                                        <DiscoveryComponet
+                                            id={category.CategoryID}
+                                            title={category.CategoryName}
+                                            description={category.Description}
+                                            image={category.CategoryImage}
+                                        />
+                                    </Grid>
+                                );
+                            })}
+                        </Grid>
+                    </Box>
                 </div>
-        </div>
-    )};
+            </Container>
+        )
+    }
+}
 
 export default DiscoveryPage;

@@ -13,6 +13,7 @@ import Button from "@mui/material/Button";
 import React from "react";
 import FormControlLabel from '@mui/material/FormControlLabel';
 import { Redirect } from 'react-router-dom';
+import Axios from "axios";
 
 type MyState = {
     user: {
@@ -23,12 +24,12 @@ type MyState = {
         password: any,
         interests: Array<any>
     },
+    categoryList: any,
     showUserInfo: any,
-    redirectToLogin: any
+    redirect: any
 }
 
 class Signup extends React.Component<{} , MyState > {
-    private testCategoryList: string[];
     
     constructor(props:any) {
         super(props);
@@ -41,22 +42,28 @@ class Signup extends React.Component<{} , MyState > {
                 password: '',
                 interests: []
             },
+            categoryList: [],
             showUserInfo: true,
-            redirectToLogin: false
+            redirect: false
         }
-        /* TODO: Get categories from database */
-        this.testCategoryList = ["Marvel", "Olympics", "Cars", "Politics", "Soccer", "Football", "Technology", "Fashion"];
 
         // Must Bind for State
         this.onContinue = this.onContinue.bind(this);
         this.onSelectInterest = this.onSelectInterest.bind(this);
         this.onComplete = this.onComplete.bind(this);
-    } 
+    }
+    componentDidMount() {
+        Axios.get(`http://localhost:3001/category/select/`)
+            .then(res => {
+                const data = res.data;
+                this.setState({categoryList: data })
+            })
+    }
     private onComplete (event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
         // TODO: @Devin make post request to database.
 
-        this.setState({ redirectToLogin: true })
+        this.setState({ redirect: true })
     }
 
     // TODO: Fix the @ts-ignores
@@ -97,11 +104,11 @@ class Signup extends React.Component<{} , MyState > {
             <FormGroup>
                 <Box component='form' onSubmit={this.onComplete} sx={{width:'100%'}}>
                     <Grid container spacing={{md:3}} columns={{ xs: 4, sm: 8, md: 12 }}>
-                        { this.testCategoryList.map((category: any, index: number) => {
+                        { this.state.categoryList.map((category: any, index: number) => {
                             return (
                                 <Grid item md={6} key={index}>
                                     <Paper sx={{ width:'100%', backgroundColor:'#CBE7F3'}}>
-                                        <FormControlLabel control={<Checkbox onChange={this.onSelectInterest} />} label={category}  sx={{ pl:2 }}/>
+                                        <FormControlLabel control={<Checkbox onChange={this.onSelectInterest} />} label={category.CategoryName}  sx={{ pl:2 }}/>
                                     </Paper>
                                 </Grid>
                             );
@@ -148,7 +155,7 @@ class Signup extends React.Component<{} , MyState > {
     render() { return (
         <div className="signup">
             {this.state.showUserInfo ? this.userInfo() : this.userPreferences()}
-            {this.state.redirectToLogin ? <Redirect to='/'/> : null}
+            {this.state.redirect ? <Redirect to='/category/'/> : null}
         </div>
     )}
 }

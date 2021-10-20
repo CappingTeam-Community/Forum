@@ -58,7 +58,7 @@ function HomeDashboard() {
                     >
                         <Item>
                             <Card sx={{ maxWidth: 345 }}>
-                                <CardActionArea href='/discover'>
+                                <CardActionArea href='/s'>
                                     <CardMedia
                                         component="img"
                                         height="140"

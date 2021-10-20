@@ -8,7 +8,7 @@ import HomeIcon from '@mui/icons-material/Home';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import { NavLink } from "react-router-dom";
 import { purple } from '@mui/material/colors';
-
+import {common} from '@mui/material/colors'
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
     color: 'inherit',
@@ -53,9 +53,9 @@ function Header() {
             open={isMenuOpen}
             onClose={accountMenuClose}
         >
-            <MenuItem><NavLink exact to='/setting'>Account</NavLink></MenuItem>
-            <MenuItem><NavLink exact to='/login'>Login</NavLink></MenuItem>
-            <MenuItem><NavLink exact to='/signup'>Signup</NavLink></MenuItem>
+            <MenuItem><NavLink exact to='/setting' style={{textDecoration:'none'}}>Account</NavLink></MenuItem>
+            <MenuItem><NavLink exact to='/login' style={{textDecoration:'none'}}>Login</NavLink></MenuItem>
+            <MenuItem><NavLink exact to='/signup'style={{textDecoration:'none'}}>Signup</NavLink></MenuItem>
         </Menu>
     );
 
@@ -94,7 +94,7 @@ function Header() {
                         
                     </IconButton>
                     <NavLink exact to='/'>
-                        <IconButton size="large" edge="start" color="inherit" sx={{ mr: 2 }}>
+                        <IconButton size="large" edge="start" sx={{ color:common["white"], mr:2}}>
                             <HomeIcon />
                         </IconButton>
                     </NavLink>

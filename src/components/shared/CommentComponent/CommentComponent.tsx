@@ -17,7 +17,7 @@ import Button from "@mui/material/Button";
 
 interface Props {
     id: number,
-    authorData: Object,
+    author: string,
     date: string,
     tags: Array<any>,
     voteCount: number,
@@ -30,7 +30,7 @@ interface State {
 
 class CommentComponent extends Component<Props, State> {
     private id: number;
-    private authorData: any;
+    private author: any;
     private date: string;
     private tags: Array<any>;
     private voteCount: number;
@@ -39,7 +39,7 @@ class CommentComponent extends Component<Props, State> {
     constructor(props: any) {
         super(props);
         this.id = this.props.id;
-        this.authorData = this.props.authorData;
+        this.author = this.props.author;
         this.date = this.props.date;
         this.tags = this.props.tags;
         this.voteCount = this.props.voteCount;
@@ -48,7 +48,6 @@ class CommentComponent extends Component<Props, State> {
         this.state = {
             isLiked: false
         }
-
         this.onLikeClick = this.onLikeClick.bind(this);
     }
     private onLikeClick() {
@@ -78,8 +77,8 @@ class CommentComponent extends Component<Props, State> {
                 <Card sx={{width: 400, height: 125}}>
                     {/* TODO: Replace test with card forum page */}
                         <CardHeader
-                            avatar={<Avatar sx={{bgcolor: orange[500]}}>{this.authorData.username.charAt(0)}</Avatar>}
-                            subheader={this.authorData.username}
+                            avatar={<Avatar sx={{bgcolor: orange[500]}}>{this.author.charAt(0)}</Avatar>}
+                            subheader={this.author.username}
                         />
                         <Container sx={{ display:'flex', pb:3}}>
                             <CardContent>
