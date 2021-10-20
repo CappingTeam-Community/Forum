@@ -18,6 +18,7 @@ type MyState = {
     user: {
         firstName: any,
         lastName: any,
+        username: any,
         email: any,
         password: any,
         interests: Array<any>
@@ -35,6 +36,7 @@ class Signup extends React.Component<{} , MyState > {
             user: {
                 firstName: '',
                 lastName: '',
+                username: '',
                 email: '',
                 password: '',
                 interests: []
@@ -45,6 +47,7 @@ class Signup extends React.Component<{} , MyState > {
         /* TODO: Get categories from database */
         this.testCategoryList = ["Marvel", "Olympics", "Cars", "Politics", "Soccer", "Football", "Technology", "Fashion"];
 
+        // Must Bind for State
         this.onContinue = this.onContinue.bind(this);
         this.onSelectInterest = this.onSelectInterest.bind(this);
         this.onComplete = this.onComplete.bind(this);
@@ -76,6 +79,7 @@ class Signup extends React.Component<{} , MyState > {
             user: {
                 firstName: data.get('firstName'),
                 lastName: data.get('lastName'),
+                username: data.get('username'),
                 email: data.get('email'),
                 password: data.get('password'),
                 interests: []
@@ -100,7 +104,6 @@ class Signup extends React.Component<{} , MyState > {
                                         <FormControlLabel control={<Checkbox onChange={this.onSelectInterest} />} label={category}  sx={{ pl:2 }}/>
                                     </Paper>
                                 </Grid>
-
                             );
                         })}
                     </Grid>
@@ -124,6 +127,9 @@ class Signup extends React.Component<{} , MyState > {
                         </Grid>
                         <Grid item xs={12} sm={6}>
                             <TextField name='lastName' id='lastName' label="Last Name" autoFocus required fullWidth />
+                        </Grid>
+                        <Grid item xs={12}>
+                            <TextField name='username' id='username' label="Username" autoFocus required fullWidth />
                         </Grid>
                         <Grid item xs={12}>
                             <TextField name='email' id='email' label="Email" autoFocus required fullWidth />
