@@ -130,6 +130,7 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 ## Database
 
 ###Run database
+
 `mysql -u root -p`
 
 enter password 'password'
@@ -137,7 +138,17 @@ enter password 'password'
 `use mysql`
 
 `Source/../community.sql`
+
+enter local sorce path 
+
 `Source/../insertdata.sql`
 
+enter local sorce path 
+
+`ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'root';`
+
+`flush privileges;`
+
+alters privileges to use defalut root@localhost
 
 ## AI
