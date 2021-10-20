@@ -47,6 +47,7 @@ class Signup extends React.Component<{} , MyState > {
         /* TODO: Get categories from database */
         this.testCategoryList = ["Marvel", "Olympics", "Cars", "Politics", "Soccer", "Football", "Technology", "Fashion"];
 
+        // Must Bind for State
         this.onContinue = this.onContinue.bind(this);
         this.onSelectInterest = this.onSelectInterest.bind(this);
         this.onComplete = this.onComplete.bind(this);
@@ -103,7 +104,6 @@ class Signup extends React.Component<{} , MyState > {
                                         <FormControlLabel control={<Checkbox onChange={this.onSelectInterest} />} label={category}  sx={{ pl:2 }}/>
                                     </Paper>
                                 </Grid>
-
                             );
                         })}
                     </Grid>
