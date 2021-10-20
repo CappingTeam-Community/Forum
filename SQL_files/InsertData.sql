@@ -3,12 +3,11 @@
 * InsertData.sql will hard insert some sample data
 * to display on web application
 *
-* @version  1.0.0
 * @version  1.0.1
->>>>>>> Stashed changes
 * @since    10-12-2021
 * @author   Devin White
 **/
+
 INSERT INTO User_tbl
 (FirstName, LastName, UserName, Password, Email)
 VALUES  ('', '', 'root', 'Password', 'root@community.com'),
@@ -40,14 +39,14 @@ VALUES  ('', '', 'root', 'Password', 'root@community.com'),
 INSERT INTO Category_tbl
 (CategoryName, CategoryDescription, CategoryImage, CategoryVotes)
 VALUES('Marvel', 'A community dedicated to Marvel Studios and the Marvel Cinematic Universe!', 'https://pbs.twimg.com/profile_images/573984336271122432/k8vEBoCW.jpeg', 2000000),
-      ('League of Legends', 'This is a community devoted to the game League of Legends.', 'https://pbs.twimg.com/profile_images/573984336271122432/k8vEBoCW.jpeg', 5400000),
-      ('Politics', 'Politics community is for news and discussion about U.S. politics.', 'https://pbs.twimg.com/profile_images/573984336271122432/k8vEBoCW.jpeg', 5765),
-      ('Cars', "Cars is the largest automotive enthusiast community on the Internet. We serve as communities' central hub for vehicle-related discussion including industry news, reviews, projects, videos, DIY guides, advice, stories, and more.", 'https://pbs.twimg.com/profile_images/573984336271122432/k8vEBoCW.jpeg', 75432),
-      ('Technology', 'Community dedicated to the news and discussions about the creation and use of technology and its surrounding issues.', 'https://pbs.twimg.com/profile_images/573984336271122432/k8vEBoCW.jpeg', 83364),
-      ('Fashion', 'Community dedicated too fashion, fashion industry, fashion news, clothing, fashion design', 'https://pbs.twimg.com/profile_images/573984336271122432/k8vEBoCW.jpeg', 1545),
-      ('Olympics', 'Community for links and discussion about the Olympics and Paralympics.', 'https://pbs.twimg.com/profile_images/573984336271122432/k8vEBoCW.jpeg', 6848),
-      ('Soccer', 'The futball Community. News, results and discussion about the beautiful game.', 'https://pbs.twimg.com/profile_images/573984336271122432/k8vEBoCW.jpeg', 87538),
-      ('Football', 'Community for those who love the classic American Sport', 'https://pbs.twimg.com/profile_images/573984336271122432/k8vEBoCW.jpeg', 6);
+      ('League of Legends', 'This is a community devoted to the game League of Legends.', 'https://cdn1.dotesports.com/wp-content/uploads/2019/09/12195522/league-of-legends.jpg', 5400000),
+      ('Politics', 'Politics community is for news and discussion about U.S. politics.', 'https://dynaimage.cdn.cnn.com/cnn/q_auto,w_1177,c_fill,g_auto,h_662,ar_16:9/http%3A%2F%2Fcdn.cnn.com%2Fcnnnext%2Fdam%2Fassets%2F181105112842-donkey-elephant-top.jpg', 5765),
+      ('Cars', "Cars is the largest automotive enthusiast community on the Internet. We serve as communities' central hub for vehicle-related discussion including industry news, reviews, projects, videos, DIY guides, advice, stories, and more.", 'https://previews.123rf.com/images/welcomia/welcomia1405/welcomia140500063/28416319-colorful-cars-stock-cars-for-sale-dealer-lot-cars-row-.jpg', 75432),
+      ('Technology', 'Community dedicated to the news and discussions about the creation and use of technology and its surrounding issues.', 'https://cdn.britannica.com/q:60/84/203584-050-57D326E5/speed-internet-technology-background.jpg', 83364),
+      ('Fashion', 'Community dedicated too fashion, fashion industry, fashion news, clothing, fashion design', 'https://static.standard.co.uk/2021/10/07/12/Fashion_digi_web.jpg?width=968&auto=webp&quality=75&crop=968%3A645%2Csmart', 1545),
+      ('Olympics', 'Community for links and discussion about the Olympics and Paralympics.', 'https://stillmed.olympics.com/media/Images/OlympicOrg/IOC/The_Organisation/The-Olympic-Rings/Olympic_rings_TM_c_IOC_All_rights_reserved_1.jpg', 6848),
+      ('Soccer', 'The futball Community. News, results and discussion about the beautiful game.', 'https://www.pe.com/wp-content/uploads/2021/05/xxxx_spo_ocr-l-soccer-generic-stock-001-8.jpg', 87538),
+      ('Football', 'Community for those who love the classic American Sport', 'https://www.wkbn.com/wp-content/uploads/sites/48/2021/06/football-and-football-field-2.jpg?w=1280', 6);
 SELECT * FROM Category_tbl;
 INSERT INTO Post_tbl
 (CategoryID_Post, PostTitle, PostBody, PostDate, PostVotes, CreatorID)
@@ -107,9 +106,7 @@ RNG Cryin', "2021-10-20", 1, 6),
         (2, 'Teemo is life', "When are they going to get rid of sweeping lens so the entire enemy team can't destroy my beautiful shrooms D: life is not fairrrrrrrrrrrr", "2021-10-20", 6, 12),
         (2, 'Anyone remember the "We are gamers" LCS ad?', "Not sure if this is allowed here, but I was wondering if anyone remembered the 'We are gamers' ad that played in the middle of the lcs or was it worlds? Years ago. like 2015/2016. Sorry if this isn't allowed, but I was wondering if anyone had a link to it if it's still up on youtube or not? Thanks.", "2021-10-20", 2, 10),
         (2, 'Is my client bugged?', "I tried to do several times the missions on the client that are connected to lolesports (like the one where you need to watch a game on lolesports, or the one needing you to do the knockout pickems) but I don't receive the rewards. I restart the client after doing them but I get nothing.
-
 Does anybody know if there's a solution? (I'm logging on lolesports with the same account I play, yeah)
-
 Thanks in advance.", "2021-10-20", 3, 2),
         (2, 'Why didnt I get my chest?', 'So i wanted to get s chest by playing sivir with a premade teammate. The game has ended and i got an S+ but the chest is nowhere to be found. Yes i did have avalible chests Yes i do have sivir No i havent earned a chest yet for her The name of the profile is ezazoli EUNE Can u please report this bug if it is one?', "2021-10-20", 9, 15),
         (3, 'Biden admin calls on SCOTUS to let police enter homes, confiscate guns without a warrant', 'https://saraacarter.com/biden-admin-calls-on-scotus-to-let-police-enter-homes-confiscate-guns-without-a-warrant/', "2021-10-20", 12, 2),
@@ -120,11 +117,9 @@ Thanks in advance.", "2021-10-20", 3, 2),
         (3, "Kamala Harris' AG office illegally colluded with abortion providers during investigation, attorneys allege", 'https://www.foxnews.com/politics/kamala-harris-colluded-abortion-providers', "2021-10-20", 1, 6),
         (4, 'New 2022 Range Rover teased ahead of reveal next week - pictures', 'https://www.autoexpress.co.uk/land-rover/range-rover/108912/new-2022-range-rover-teased-ahead-reveal-next-week-pictures', "2021-10-20", 10, 14),
         (4, 'Clutch shudder in first, take it back or keep driving? 04 WRX.', "I had a Subaru tuning shop replace my clutch and flywheel on my 04 WRX with an Exedy OEM organic clutch and lightweight flywheel and now when the clutch starts to heat up and sometimes when cold when I'm taking off in first gear the entire car shakes, I can avoid it by revving to near 3000rpm when pulling away but I feel that's just going to burn the clutch.
-
 Should I take it back to the shop? I've put about 1000km on it, maybe it needs more time to bed with the flywheel?", "2021-10-20", 14, 13),
         (4, 'Acura rolls over 400,000 miles. "I love driving it too much," says owner', 'https://www.thedrive.com/news/42807/owner-puts-330000-miles-on-acura-nsx-i-love-driving-it-too-much', "2021-10-20", 21, 12),
         (4, 'Which cars have overrated power figures from the manufacturer?', 'Saw the recent post about underrated cars, now to do one with the opposite. The one I can think of was the 1999 Ford Mustang SVT Cobra, which was advertised for 320 hp. Independent testing found the number was closer to 290 hp, it was enough for Ford to recall the car and skip the standard Cobra for next year to fix the issue (300 Cobra Rs were produced for the year 2000 that heavily deviated from the base car).
-
 What other examples are out there?', "2021-10-20", 14, 10),
         (4, 'Red Honda badges.', 'Why are the red Honda badges found on Type R models acceptable to put on a civic Si, but not a “non type r” civic hatchback? Is it to do with speed class, putting respek on the red badge, or just people being gate keeping gremlins?', "2021-10-20", 6, 9),
         (4, 'Which cars have underrated power figures from the manufacturer?', "I've read about the SRT 4 and the MK VII GTI as having very underrated hp and torque figures. What other cars were / are underrated?", "2021-10-20", 7, 41),
@@ -142,12 +137,10 @@ What other examples are out there?', "2021-10-20", 14, 10),
         (6, 'New York Fashion Week Is Still Happening, Says Cuomo', 'https://www.thecut.com/2020/08/new-york-fashion-week-spring-2021-confirmed.html', "2020-10-20", 21, 2),
         (7, "An Olympian came to my school today", "Idk I just thought it was cool. It was Taliqua Clancy of Beach Volleyball fame. We got to see her silver medal and do a small interview of some questions we submitted earlier in the week. Was pretty cool.", "2020-10-20", 21, 26),
         (7, "Where to find old Olympic replays?", "So I know that most (if not all) full replays of all events of London 2012, Rio 2016, and Tokyo 2020 are on the Olympic website, but for older events, such as Athens 2004, Beijing 2008, Sydney 2000, etc, there's nothing.
-
 Is there any other website out there (apart from the Olympic website) that has some full replays from said events? If so please link", "2020-10-20", 20, 25),
         (7, "Tokyo Replays", "Well, the Olympic replays for all the 2020 events is gone, and now we have 'archives' w/ other games, with events now gone. Half of basketball events now gone. Really outdone yourselves", "2020-10-20", 29, 23),
         (7, "Non-olympians getting Olympic tattoos to pick up women: Is this a thing?", "Hi! Please direct me to a better forum for posting this, if this isn’t the right place. I was on a hike yesterday and ran into a guy at the top of the mountain who had an Olympic tattoo on his forearm. I asked him about it and he said he was X athlete, competed in two Olympics, won medals, broke records, etc. He told me he still competes in Masters events, but now lives in Ohio and coaches. I just said, “Cool, I will look you up!” And went on my way. Yep. Looked him up and the real Olympian (who he described accurately) is actually an attorney in Montana. I told my girlfriend this story who then told me she met a guy with an Olympic tattoo a few months ago, and he said he competed bobsled/skeleton. She also looked him up, and discovered clearly that wasn’t true. I know a few Olympians through work, and a most of them do have Olympic ring tattoos that are super important to them. I am really, really hoping this is not some bad pick-up artist hack…", "2020-10-20", 28, 24),
         (7, "is there a list of all the new sports added since the modern olympics started in 1896?", "i am doing a school project on the olympic games and i am looking for what sports got added since the start of the the olympics.
-
 is there a list i can find somewhere? it would help out.", "2020-10-20", 26, 23),
         (7, "Agnes Tirop's Husband has been arrested in connection with her death.", "According to Kenyan officials, the husband of Olympic runner Agnes Tirop has been apprehended and will be charged with her murder after a nationwide manhunt was started and he was apprehended in the costal city of Mombasa while attempting to exit the country. https://knowafrika.com/agnes-tirops-husband-has-been-arrested-in-connection-with-her-death/", "2020-10-20", 2, 22),
         (8, "According to Kenyan officials, the husband of Olympic runner Agnes Tirop has been apprehended and will be charged with her murder after a nationwide manhunt was started and he was apprehended in the costal city of Mombasa while attempting to exit the country. ", "https://knowafrika.com/agnes-tirops-husband-has-been-arrested-in-connection-with-her-death/", "2021-02-12", 21, 21),
@@ -156,30 +149,19 @@ is there a list i can find somewhere? it would help out.", "2020-10-20", 26, 23)
         (8, "The numbers that show Raith Rovers have improved on last season as John McGlynn proves there is life after Regan Hendry and Co.", "https://www.thecourier.co.uk/fp/sport/football/2666235/raith-rovers-john-mcglynn-championship-regan-hendry/", "2021-06-17", 61, 18),
         (8, "Paulo Fonseca front-runner to become next Newcastle manager after talks during summer.", "https://www.telegraph.co.uk/football/2021/10/20/contenders-next-newcastle-united-manager-steve-bruce-sacked/", "2021-06-17", 27, 17),
         (8, "[Pre-Match Thread] SL Benfica v Bayern München (UEFA Champions League Group Stage)", "SL Benfica v Bayern München
-
 Competition: UEFA Champions League
-
 Kick off: 20 October 2021, 20:00 GMT
-
 Venue: Estádio Da Luz
-
 Referee: Ovidiu Hategan
-
 Team News: Goretzka and Davies out for the game, Diogo Gonçalves back by the looks of it but shouldn't start while Rafa seems to be fully fit.
-
 Possible SL Benfica starting XI: Odysseas, Diogo Gonçalves, Lucas Veríssimo, Otamendi, Verthoghen, Grimaldo, Weigl, João Mário, Rafa, Darwin and Yaremchuk
-
 Possible Bayern München starting XI: Neuer, Pavard, Süle, Upamecano, Lucas, Sabitzer, Kimmich, Coman, Muller, Sane, Lewandowski", "2021-07-13", 21, 16),
         (9, "How soon after a new FM release do the download for leagues down to tier 10 appear?", "Really enjoying starting with a low team recently, but wondering if that is an option when fm22 releases or it takes a while for the download to appear.", "2021-08-18", 37, 16),
         (9, "Game Pass and Mods", "With FM22 launching on Game Pass, I am guessing the mode available on Steam cannot work? As I believe it is a separate launcher? Thanks.", "2021-08-18", 37, 17),
         (9, "Advice for a beginner", "Just after a bit of advice really
-
 I'm fairly new to FM, 4 seasons into my first save with Aston Villa. I'm doing constantly okay, finishing 6th or 7th every year, never getting far in Europe though.
-
 Villa start with a decent amount of debt, I've just managed to clear that with a few player sales so hopefully I start getting some more money
-
 I don't seem to be progressing at all, are there any tips or tricks I'm missing to push into the champions League places? Or do I just need to be patient and slowly progress over the years
-
 I know it's vague, but any help would be appreciated", "2021-08-18", 37, 18),
         (9, "Weekly Help Thread - Ask your help requests here | Week Commencing 20/10/2021", "", "2021-08-18", 37, 11),
         (9, "Adding to training camp", "Is there a way to add a player to my training camp? I signed a player on the opening day of the season and he was on international duty but when he returned I couldn’t play him as he was not on the training camp.", "2021-08-18", 37, 12),
@@ -241,60 +223,32 @@ Then, after that sales channel, it comes to subscription streaming services.", "
         (6, "Strange (technically not an Avenger) Danvers is? Neither officially are. Then again when Rogers says Assemble you can count them in.... Comic wise (since MCU neither confirms nor denies) they are or were members.", "2021-10-14", 1, 3, null),
         (6, "Danvers has more weight since she joined the others to kill farmer Thanos and liaised operations with Romanoff in the 5 year time gap", "2021-10-14", 2, 13, "CaptianMarvel"),
         (6, "Unbeatable tier
-
 Scarlet Witch - Held Thanos back vs. 5 Infinity Stones and only using half her powers, while focused on destroying the final Infinity Stone, then almost singlehandedly ripped Thanos apart without the stones.
-
 Doctor Strange - Wielded time itself, went one-on-one for Thanos and stopped a black hole, can conjure the Mirror Dimension, can see millions of futures in minutes.
-
 Captain Marvel - Photon blasts, held the Gauntlet open before being blasted away by the Power Stone, destroys entire fleets just by flying through their ships.
-
 Thor - Unrestricted lightning powers without Mjolnir, wounded Thanos with Stormbreaker, beheaded him later.
-
 Still unbeatable but not OP tier
-
 Iron Man - Genius, builds his own suits, uses nanobot technology, can locate anything with FRIDAY.
-
 Captain America - Enhanced super-soldier with a vibranium shield. Took all the punches from Thanos and still got up. Can do it all day.
-
 Hulk - Now with brains and brawn put together. Smashed Loki like a toy, ripped apart Ultron-bots.
-
 Groot - Sacrificed a limb for Stormbreaker, can penetrate soldiers and Chitauri with his arm. Also practically invincible unless he's completely disintegrated.
-
 Rocket - Advantage of space-tech, small size, and intelligence. Basically a furry Tony Stark.
-
 Black Panther - Vibranium suit can absorb energy and release it all with a punch or a kick. Gifted with the powers of the heart-shaped herb.
-
 Still a valuable asset tier
-
 Hawkeye - Impeccable aim with a bow and arrow ('played 18, shot 18'). Took on Chitauri and won. Otherwise, no other powers.
-
 Gamora - A green Black Widow and an estranged daughter of Thanos. Could easily beat Black Widow in a fight, don't @ me.
-
 War Machine - Black Iron Man with W E A P O N S.
-
 Bucky - White War Machine with a vibranium arm and W E A P O N S.
-
 Ant-Man - Pretty much Black Widow but with shrinking and growing capabilities. He punched ships out of the air in Endgame. As long as he has Pym Particles, he's good to go.
-
 Wasp - Probably the same as Ant-Man, but has the advantage of flight.
-
 Spider-Man - Can lift tons in weight, has the Iron Spider suit with insta-kill mode.
-
 Average tier
-
 Star-Lord - Resourceful, good at planning, advantage of space-tech. If he had his Celestial powers still, he would have been unbeatable-tier.
-
 Mantis - Put a living planet to sleep and took a small meteor to the face. Otherwise, nothing else. Too naive, anyway.
-
 Nebula - Basically the same as Gamora but since she lost all their battles (except the one in GOTG2), she's stuck here.
-
 Normie tier
-
 Black Widow - She ran at Thanos with a taser. Has no superpowers, just hand-to-hand skills. Almost got taken down by Ant-Man.
-
 Drax - Isn't actually all that remarkable other than using knives and being able to jump very high. Kind of a dimwit, doesn't know how to be stealthy.
-
-
 Scarlet Witch - Held Thanos back vs. 5 Infinity Stones and only using half her powers, while focused on destroying the final Infinity Stone, then almost singlehandedly ripped Thanos apart without the stones.
 Doctor Strange - Wielded time itself, went one-on-one for Thanos and stopped a black hole, can conjure the Mirror Dimension, can see millions of futures in minutes.
 Captain Marvel - Photon blasts, held the Gauntlet open before being blasted away by the Power Stone, destroys entire fleets just by flying through their ships.
