@@ -58,7 +58,7 @@ function HomeDashboard() {
                     >
                         <Item>
                             <Card sx={{ maxWidth: 345 }}>
-                                <CardActionArea>
+                                <CardActionArea href='/discover'>
                                     <CardMedia
                                         component="img"
                                         height="140"
@@ -72,7 +72,8 @@ function HomeDashboard() {
                                         <Typography variant="body2" color="text.secondary">
                                             All about sportss, insert a actual froum here.
                                         </Typography>
-                                    </CardContent>
+                                        
+                                        </CardContent>
                                 </CardActionArea>
                                 <CardActions>
                                     <Button size="medium">Explore Topic</Button>

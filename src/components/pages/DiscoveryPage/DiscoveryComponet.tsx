@@ -7,6 +7,7 @@ import { Typography } from '@mui/material';
 import { CardMedia } from '@mui/material';
 import { CardActionArea } from '@mui/material';
 import { Component } from 'react';
+import { NavLink } from 'react-router-dom';
 import styles from './DiscoveryPage.module.css';
 
 
@@ -35,7 +36,7 @@ class DiscoveryComponet extends Component<PropsCat, {}>{
         return (
             <Container>
                 <Card sx={{ maxWidth: 345 }}>
-                    <CardActionArea href={this.link}>
+                    <CardActionArea href='/posts'>
                         <CardMedia
                             component="img"
                             height="140"

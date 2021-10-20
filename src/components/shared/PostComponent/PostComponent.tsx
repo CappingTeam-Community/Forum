@@ -14,6 +14,7 @@ import Button from "@mui/material/Button";
 import {orange, red} from "@mui/material/colors";
 import FavoriteIcon from "@mui/icons-material/Favorite"
 import {Component} from "react";
+import { NavLink } from "react-router-dom";
 
 interface Props {
     id: number,
@@ -80,7 +81,7 @@ class PostComponent extends Component<Props, State> {
                 </Box>
                 <Card sx={{maxWidth: 900}}>
                     {/* TODO: Replace test with card forum page */}
-                    <CardActionArea href='/test'>
+                    <CardActionArea href='/forum'> 
                         <CardHeader
                             avatar={<Avatar sx={{bgcolor: orange[500]}}>{this.authorData.username.charAt(0)}</Avatar>}
                             title={this.title}
@@ -100,7 +101,7 @@ class PostComponent extends Component<Props, State> {
                                     {this.postBody}
                                 </Typography>
                             </CardContent>
-                        </Container>
+                            </Container>        
                     </CardActionArea>
                 </Card>
             </Container>
