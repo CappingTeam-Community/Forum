@@ -1,6 +1,7 @@
-.HomeDashboard {}
-.Categories1 {
-    height: 40vh;
+.DiscoveryPage {}
+
+.centerGrid {
+    height: 30vh;
     display: flex;
     justify-content: center;
     align-items: flex-start;

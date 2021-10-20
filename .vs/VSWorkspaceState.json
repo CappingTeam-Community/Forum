@@ -4,9 +4,11 @@
     "\\src",
     "\\src\\components",
     "\\src\\components\\pages",
+    "\\src\\components\\pages\\HomeDashboard",
     "\\src\\components\\shared",
     "\\src\\components\\shared\\Footer",
     "\\src\\components\\shared\\Header"
   ],
+  "SelectedNode": "\\src\\components\\pages\\HomeDashboard\\HomeDashboard.tsx",
   "PreviewInSolutionExplorer": false
 }
