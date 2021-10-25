@@ -152,7 +152,9 @@ enter local sorce path to insertdata.sql
 alters privileges to use defalut root@localhost
 only needs to be ran first time*
 
-### In a seperate terminal cd to ../forum/
+### In a seperate terminal:
+
+cd to ../forum/
 
 `npm run devStart`
 
