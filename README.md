@@ -137,18 +137,21 @@ enter password 'password'
 
 `use mysql`
 
-`Source/../community.sql`
+`Source /../community.sql`
 
-enter local sorce path 
+enter local sorce path to community.sql
 
-`Source/../insertdata.sql`
+`Source /../insertdata.sql`
 
-enter local sorce path 
+enter local sorce path to insertdata.sql
 
 `ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'root';`
 
 `flush privileges;`
 
 alters privileges to use defalut root@localhost
+only needs to be ran first time*
+
+
 
 ## AI
