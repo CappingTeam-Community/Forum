@@ -150,7 +150,8 @@ enter local sorce path to insertdata.sql
 `flush privileges;`
 
 alters privileges to use defalut root@localhost
-only needs to be ran first time*
+
+*Above commands only need to be ran first time*
 
 ### In a seperate terminal:
 
