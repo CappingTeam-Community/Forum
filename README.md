@@ -129,19 +129,19 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 ## Theming
 ## Database
 
-### Run database
+### To run the database it is suggested to use two terminals. In the first terminal do:
 
 `mysql -u root -p`
 
-enter password 'password'
+enter password 'password' to get access to your database.
 
 `use mysql`
 
-`Source /../community.sql`
+`Source /../forum/sql_files/community.sql`
 
 enter local sorce path to community.sql
 
-`Source /../insertdata.sql`
+`Source /../forum/sql_files/insertdata.sql`
 
 enter local sorce path to insertdata.sql
 
@@ -152,9 +152,11 @@ enter local sorce path to insertdata.sql
 alters privileges to use defalut root@localhost
 only needs to be ran first time*
 
-in a seperate terminal cd to /forum
+###in a seperate terminal cd to /forum
 
 `npm run devStart`
+
+This will keep the database server running, and auto update whenever a new change is made.
 
 
 
