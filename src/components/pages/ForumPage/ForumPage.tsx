@@ -12,6 +12,18 @@ import CommentComponent from "../../shared/CommentComponent/CommentComponent";
 
 function ForumPage() {
     //Logic
+
+    function sendToDBComment() {
+        console.log("clieckd");
+    }
+
+    //New Comment
+    const [newComment, setNewComment] = React.useState('');
+
+    const newCommentChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setNewComment(event.target.value);
+    };
+
     const [age, setAge] = React.useState('');
 
     const handleChange = (event: SelectChangeEvent) => {
@@ -60,13 +72,35 @@ function ForumPage() {
                         />
                     </Grid>
                 );
-            })};
+            })}
 
-            <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                <AccountCircle sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
-                <TextField id="input-with-sx" label="Comment" variant="standard" />
-                <Button variant="outlined">Post Comment</Button>
-                <FormControl sx={{ m: 0, minWidth: 90 }} >
+            <Box sx={{ display: 'flex',}}>
+                <AccountCircle sx={{ color: 'action.active', mr: 0.5, mt: 3 }} />
+                <TextField
+                    sx={{ m: 2, width: '70ch', }}
+                    id="input-with-sx"
+                    label="Comment"
+                    variant="standard"
+                    size="small"
+                    multiline
+                    maxRows={10}
+                    minRows={1}
+                    value={newComment}
+                    onChange={newCommentChange}
+                />
+
+                <Button
+                    sx = {{ m: 1, width: '20ch', height: '40px',  }}
+                    variant="outlined"
+                    onClick={sendToDBComment}
+                    
+                >
+                    Post Comment
+                </Button>
+
+                </Box>
+                <Box sx={{ display: 'flex', alignItems: 'left', }}>
+                <FormControl sx={{ m: 2, minWidth: 90 }} >
                     <InputLabel id="demo-simple-select-label">SortBy</InputLabel>
                     <Select
                         labelId="demo-simple-select-label"
@@ -80,10 +114,11 @@ function ForumPage() {
                         </MenuItem>
                         <MenuItem value={10}>Recent</MenuItem>
                         <MenuItem value={20}>Popular</MenuItem>
-                        <MenuItem value={30}>Thirty</MenuItem>
+                        <MenuItem value={30}>Oldest</MenuItem>
                     </Select>
-                </FormControl>
-            </Box>
+                    </FormControl>
+                    </Box>
+           
 
             {commentArray.map((data: any, index: number) => {
                 return (
