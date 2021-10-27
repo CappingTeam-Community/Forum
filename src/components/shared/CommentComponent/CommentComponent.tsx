@@ -16,6 +16,8 @@ import {orange, red} from "@mui/material/colors";
 import FavoriteIcon from "@mui/icons-material/Favorite"
 import {Component} from "react";
 import Button from "@mui/material/Button";
+import {styled} from "@mui/system";
+
 
 interface Props {
     id: number,
@@ -66,6 +68,15 @@ class CommentComponent extends Component<Props, State> {
         }
     }
     render() {
+        const CommentBody = styled('div') ({
+            overflowY: 'scroll',
+            width:'500px',
+            float: 'left',
+            maxHeight:'148px',
+            position:'relative',
+            color:'green'
+
+        });
         return (
             <Container sx={{ display: 'flex'}}>
                 <Box sx={{ m:'auto' }}>
@@ -76,7 +87,7 @@ class CommentComponent extends Component<Props, State> {
                         {this.voteCount}
                     </Typography>
                 </Box>
-                <Card sx={{width: 650, height: 200}}>
+                <Card sx={{width: 650, height: 300}}>
                     {/* TODO: Replace test with card forum page */}
                         <CardHeader
                             avatar={<Avatar sx={{bgcolor: orange[500]}}>{this.author.charAt(0)}</Avatar>}
@@ -85,9 +96,11 @@ class CommentComponent extends Component<Props, State> {
                         <Container sx={{ display:'block', pb:3}}>
                         <List style={{maxHeight: '100%', overflow: 'auto'}} >
                             <CardContent>
-                                <Typography variant='body2' color='text.secondary' >
+                                <CommentBody>
+                                <Typography variant='body2' color='text.secondary' sx={{pl:1,pr:1}}>
                                     {this.commentBody}
                                 </Typography>
+                                </CommentBody>
                             </CardContent>
                             <CardActions>
                                 <Button href='commenttest' size='small'sx={{ml:'auto', mr:0}} >Reply</Button>
