@@ -2,7 +2,7 @@ import styles from './PostDashboard.module.css';
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import { Button } from '@mui/material';
+import { Button, Paper } from '@mui/material';
 
 
 function PostDashboard() {
@@ -40,9 +40,10 @@ function PostDashboard() {
         <div className={styles.PostDashboard}>
             <h1> Create a new post</h1>
 
-            <Box sx={{ display: 'flex', flexWrap: 'wrap', alignContent: "center", justifyContent: "left", px: 10 }}>
+            <Box sx={{ display: 'flex', flexWrap: 'wrap', alignContent: "center", justifyContent: "left", px: 8, m: 2 }}>
+                <Paper sx={{ boxShadow: '4', backgroundColor: 'transparent' }} elevation={3}>
                 <TextField
-                    sx={{ m: 2, width: '50ch', }}
+                        sx={{ m: 2, width: '50ch', backgroundColor: 'white' }}
                     id="title"
                     label="Title"
                     multiline
@@ -51,12 +52,14 @@ function PostDashboard() {
                     value={title}
                     onChange={titleChange}
                     variant="filled"
-                />
+                    />
+                    </Paper>
             </Box>
 
-            <Box sx={{ display: 'flex', flexWrap: 'wrap', alignContent: "center", justifyContent: "left", px: 10 }}>
+            <Box sx={{ display: 'flex', flexWrap: 'wrap', alignContent: "center", justifyContent: "left", px: 8, m: 2 }}>
+                <Paper sx={{ boxShadow: '4', backgroundColor: 'transparent' }} elevation={3}>
                 <TextField
-                    sx={{ m: 2, width: '100ch', }}
+                        sx={{ m: 2, width: '100ch', backgroundColor: 'white' }}
 
                     id="PostContent"
                     label="Post Content"
@@ -66,12 +69,14 @@ function PostDashboard() {
                     value={content}
                     onChange={contentChange}
                     variant="filled"
-                />
+                    />
+                    </Paper>
             </Box>
 
-            <Box sx={{ display: 'flex', flexWrap: 'wrap', alignContent: "center", justifyContent: "left", px: 10 }}>
+                <Box sx={{ display: 'flex', flexWrap: 'wrap', alignContent: "center", justifyContent: "left", px: 8, m: 2 }}>
+                <Paper sx={{ boxShadow: '4', backgroundColor: 'transparent' }} elevation={3}>
                 <TextField
-                    sx={{ m: 2, width: '50ch' }}
+                        sx={{ m: 2, width: '50ch', backgroundColor: 'white' }}
                     id="tags"
                     label="Tags"
                     size="small"
@@ -81,17 +86,18 @@ function PostDashboard() {
                     value={tags}
                     onChange={tagsChange}
                     variant="filled"
-                />
+                    />
+                    </Paper>
             </Box>
 
-            <Box sx={{ display: 'flex', flexWrap: 'wrap', alignContent: "center", justifyContent: "left", px: 10 }}>
+            <Box sx={{ display: 'flex', flexWrap: 'wrap', alignContent: "center", justifyContent: "left", px: 8 }}>
                 <Button
                     sx={{ m: 2, width: "15ch", justifyContent: "left" }}
                     onClick={sendToDB}
                     variant="contained"
                     color="success">
                     Post:
-                </Button>
+                    </Button>
             </Box>
 
         </div>
