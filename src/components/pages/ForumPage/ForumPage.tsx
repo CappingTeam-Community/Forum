@@ -14,19 +14,30 @@ import Axios from "axios";
 interface State {
     age: any,
     postData: any,
-    commentData: any
+    commentData: any,
+    newComment: any
 }
 
-class ForumPage extends React.Component<{} , State> {
-    private PostID:number;
+function sendToDBComment() {
+    console.log("clieckd");
+}
 
-    constructor(props:any) {
+
+class ForumPage extends React.Component<{}, State> {
+    private PostID: number;
+
+
+
+
+    constructor(props: any) {
         super(props);
 
         this.state = {
             age: '',
             postData: [],
-            commentData: []
+            commentData: [],
+            newComment: ''
+
         }
         this.PostID = props.match.params.PostID;
 
@@ -36,7 +47,7 @@ class ForumPage extends React.Component<{} , State> {
 
     handleChange = (event: SelectChangeEvent) => {
         const val = event.target.value as string;
-        this.setState({age: val});
+        this.setState({ age: val });
     };
 
     async getPost() {
@@ -44,14 +55,14 @@ class ForumPage extends React.Component<{} , State> {
             .then(res => {
                 const data = res.data;
                 console.log('GETPOSTDATA', data);
-                this.setState({postData:data});
+                this.setState({ postData: data });
             })
     }
     async getComments() {
         await Axios.get(`http://localhost:3001/post-comment/select/${this.PostID}`)
             .then(res => {
                 const data = res.data;
-                this.setState({commentData:data});
+                this.setState({ commentData: data });
             })
     }
 
@@ -63,26 +74,50 @@ class ForumPage extends React.Component<{} , State> {
     //Template
     render() {
         return (
-            <Container sx={{marginTop: 8, display: "flex", flexDirection: "column", alignItems: "center"}}>
-                {this.state.postData.map((data:any) => {
+            <Container sx={{ marginTop: 8, display: "flex", flexDirection: "column", alignItems: "center" }}>
+                {this.state.postData.map((data: any) => {
                     return (
                         <PostComponent id={data.PostID}
-                                       author={data.UserName}
-                                       title={data.PostTitle}
-                                       date={data.PostDate}
-                                       PostImage={data.PostImage}
-                                       categories={[]}
-                                       voteCount={data.PostVotes}
-                                       postBody={data.PostBody}
+                            author={data.UserName}
+                            title={data.PostTitle}
+                            date={data.PostDate}
+                            PostImage={data.PostImage}
+                            categories={[]}
+                            voteCount={data.PostVotes}
+                            postBody={data.PostBody}
                         />
                     )
                 })}
 
-                <Box sx={{display: 'flex', alignItems: 'center'}}>
-                    <AccountCircle sx={{color: 'action.active', mr: 1, my: 0.5}}/>
-                    <TextField id="input-with-sx" label="Comment" variant="standard"/>
+                <Box sx={{ display: 'flex', }}>
+                    <AccountCircle sx={{ color: 'action.active', mr: 0.5, mt: 3 }} />
+                    <TextField
+                        sx={{ m: 2, width: '70ch', }}
+                        id="input-with-sx"
+                        label="Comment"
+                        variant="standard"
+                        size="small"
+                        multiline
+                        maxRows={10}
+                        minRows={1}
+
+                    />
+
+                    <Button
+                        sx={{ m: 1, width: '20ch', height: '40px', }}
+                        variant="outlined"
+                        onClick={sendToDBComment}
+
+                    >
+                        Post Comment
+                    </Button>
+
+                </Box>
+                <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                    <AccountCircle sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
+                    <TextField id="input-with-sx" label="Comment" variant="standard" />
                     <Button variant="outlined">Post Comment</Button>
-                    <FormControl sx={{m: 0, minWidth: 90}}>
+                    <FormControl sx={{ m: 0, minWidth: 90 }}>
                         <InputLabel id="demo-simple-select-label">SortBy</InputLabel>
                         <Select
                             labelId="demo-simple-select-label"
@@ -103,13 +138,13 @@ class ForumPage extends React.Component<{} , State> {
 
                 {this.state.commentData.map((data: any, index: number) => {
                     return (
-                        <Grid item md={10} key={index} sx={{pb: 3}}>
+                        <Grid item md={10} key={index} sx={{ pb: 3 }}>
                             <CommentComponent id={data.CommentID}
-                                              author={data.UserName}
-                                              date={data.CommentDate}
-                                              tags={[]}
-                                              voteCount={data.CommentVotes}
-                                              commentBody={data.Comment}
+                                author={data.UserName}
+                                date={data.CommentDate}
+                                tags={[]}
+                                voteCount={data.CommentVotes}
+                                commentBody={data.Comment}
                             />
                         </Grid>
                     );
