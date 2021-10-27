@@ -8,7 +8,9 @@ import {
     CardMedia,
     Container,
     IconButton,
-    Typography
+    Typography,
+    TabScrollButton,
+    List
 } from "@mui/material";
 import {orange, red} from "@mui/material/colors";
 import FavoriteIcon from "@mui/icons-material/Favorite"
@@ -74,21 +76,23 @@ class CommentComponent extends Component<Props, State> {
                         {this.voteCount}
                     </Typography>
                 </Box>
-                <Card sx={{width: 400, height: 125}}>
+                <Card sx={{width: 650, height: 200}}>
                     {/* TODO: Replace test with card forum page */}
                         <CardHeader
                             avatar={<Avatar sx={{bgcolor: orange[500]}}>{this.author.charAt(0)}</Avatar>}
                             subheader={this.author.username}
                         />
-                        <Container sx={{ display:'flex', pb:3}}>
+                        <Container sx={{ display:'block', pb:3}}>
+                        <List style={{maxHeight: '100%', overflow: 'auto'}} >
                             <CardContent>
-                                <Typography variant='body2' color='text.secondary'>
+                                <Typography variant='body2' color='text.secondary' >
                                     {this.commentBody}
                                 </Typography>
                             </CardContent>
                             <CardActions>
                                 <Button href='commenttest' size='small'sx={{ml:'auto', mr:0}} >Reply</Button>
                             </CardActions>
+                            </List>
                         </Container>
                     </Card>
             </Container>

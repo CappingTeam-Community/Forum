@@ -29,6 +29,8 @@ interface State {
     isLiked: boolean;
 }
 
+
+
 class PostComponent extends Component<Props, State> {
     private id: number;
     private author: any;
@@ -40,6 +42,7 @@ class PostComponent extends Component<Props, State> {
     private postBody: string;
     private route:string;
     private avatarColor: string;
+    
 
     constructor(props: any) {
         super(props);
@@ -81,6 +84,7 @@ class PostComponent extends Component<Props, State> {
         }
         return color;
     }
+    
 
     render() {
         return (
@@ -93,7 +97,7 @@ class PostComponent extends Component<Props, State> {
                         {this.voteCount}
                     </Typography>
                 </Box>
-                <Card sx={{width: 900, height: 260}}>
+                <Card sx={{width: 900, height: ""}}>
                     {/* TODO: Replace test with card forum page */}
                     <CardActionArea href={this.route}>
                         <CardHeader
@@ -106,7 +110,7 @@ class PostComponent extends Component<Props, State> {
                         <Box sx={{
                             display:'flex',
                             mb:0
-                        }}>
+                        }}  whiteSpace="pre-line">
                             <CardMedia
                                 component="img"
                                 width="100"

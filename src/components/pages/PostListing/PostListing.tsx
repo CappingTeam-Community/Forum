@@ -32,7 +32,7 @@ class PostListing extends React.Component<{}, State> {
             Axios.get(`http://localhost:3001/post/select/`)
                 .then(res => {
                     const data = res.data;
-                    this.setState({data:data})
+                    this.setState({data:data, categoryName:'Recent'})
                 })
         } else {
             Axios.get(`http://localhost:3001/post-category/select/${this.CategoryID}`)
