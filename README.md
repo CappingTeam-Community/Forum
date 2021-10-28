@@ -145,7 +145,7 @@ enter local sorce path to community.sql
 
 enter local sorce path to insertdata.sql
 
-`ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'root';`
+`ALTER USER 'root'@'localhost' IDENTIFIED BY 'root';`
 
 `flush privileges;`
 
