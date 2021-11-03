@@ -36,6 +36,7 @@ VALUES  ('', '', 'root', 'Password', 'root@community.com'),
         ('Sidney', 'Jusdon', 'sidpuppy', 'Password23', 'judson15@gmail.com'),
         ('jordyn', 'Deubel', 'jordeubs', 'Password24', 'jdeubel@coma>hospital'),
         ('Ahmed', 'Sallam', 'sallamsalad', 'Password25', 'terrorist12@isis.whatnow');
+
 INSERT INTO Category_tbl
 (CategoryName, CategoryDescription, CategoryImage, CategoryVotes)
 VALUES('Marvel', 'A community dedicated to Marvel Studios and the Marvel Cinematic Universe!', 'https://pbs.twimg.com/profile_images/573984336271122432/k8vEBoCW.jpeg', 2000000),
@@ -48,6 +49,8 @@ VALUES('Marvel', 'A community dedicated to Marvel Studios and the Marvel Cinemat
       ('Soccer', 'The futball Community. News, results and discussion about the beautiful game.', 'https://www.pe.com/wp-content/uploads/2021/05/xxxx_spo_ocr-l-soccer-generic-stock-001-8.jpg', 87538),
       ('Football', 'Community for those who love the classic American Sport', 'https://www.wkbn.com/wp-content/uploads/sites/48/2021/06/football-and-football-field-2.jpg?w=1280', 6);
 SELECT * FROM Category_tbl;
+
+--insert posts into category 'marvel'
 INSERT INTO Post_tbl
 (CategoryID_Post, PostTitle, PostBody, PostDate, PostImage, PostVotes, CreatorID)
 VALUES  (1, 'Why is Shang Chi Disney Plus release date November 11th, when they said only 45 Days of Exclusivity?',
@@ -98,8 +101,12 @@ I picked the based on the final Endgame scene and/or if they have had a big enou
 The rule is that their characters are based on the MCU versions, not comic book versions. If there is no information, then a fallback to the comics is allowed. Also, anything the filmmakers say (even if contradicting the comics and/or the films) also is taken into account.
 Feel free to make your top 5, top 10, top 23, etc. list if you dont want to do all 23
 Also, we are comparing to their final Endgame versions: Thor with only Stormbreaker, Endgame Hulk, etc.
-Good luck', "2021-10-14", 'https://filmdaily.co/wp-content/uploads/2021/01/mcu-lede-1300x731.jpg', 1, 19),
-        (2, 'League Esports Funny Joke', 'Hey guys I was watching worlds and I came up with this joke
+Good luck', "2021-10-14", 'https://filmdaily.co/wp-content/uploads/2021/01/mcu-lede-1300x731.jpg', 1, 19);
+
+--insert posts into category 'League of Legends'
+INSERT INTO Post_tbl
+(CategoryID_Post, PostTitle, PostBody, PostDate, PostImage, PostVotes, CreatorID)
+VALUES  (2, 'League Esports Funny Joke', 'Hey guys I was watching worlds and I came up with this joke
 What do you call it when you randomly start crying for no reason and you cant figure out why?
 RNG Cryin', "2021-10-20", "https://s.yimg.com/uu/api/res/1.2/W._x8EY3MXq4Q_t2qeWP7Q--~B/aD0xMTU4O3c9MTgwMDthcHBpZD15dGFjaHlvbg--/https://s.yimg.com/os/creatr-uploaded-images/2021-01/cdcf03a0-4e92-11eb-afdf-ffae59fc8055.cf.jpg", 1, 6),
         (2, 'The Ranked Ladder did not update yesterday', 'I know this isnt a big issue, but it is just super weird. I got to grandmaster for the first time i stayed awake to see my Account transition from Master to GM aaaaaaaaaand nothing... Eventually i started panicking and adding all players that were also supposed to get upgraded yesterday. And yes they didnt get it either. Please fix Riot, all players didnt get it and all players that were supposed to drop out stayed. It isnt a big deal but i asked like 20 people and they never heard of that even being a thing. Thank you for your time.', "2021-10-20", "https://preview.redd.it/9h9a7d0mttv31.png?width=1132&format=png&auto=webp&s=fa8b1575a45a69dfd186828600a182780c9871c4", 8, 15),
@@ -108,46 +115,70 @@ RNG Cryin', "2021-10-20", "https://s.yimg.com/uu/api/res/1.2/W._x8EY3MXq4Q_t2qeW
         (2, 'Is my client bugged?', "I tried to do several times the missions on the client that are connected to lolesports (like the one where you need to watch a game on lolesports, or the one needing you to do the knockout pickems) but I don't receive the rewards. I restart the client after doing them but I get nothing.
 Does anybody know if there's a solution? (I'm logging on lolesports with the same account I play, yeah)
 Thanks in advance.", "2021-10-20", "https://www.dexerto.com/wp-content/uploads/thumbnails/_thumbnailLarge/na-lcs-roster-moves-hub.jpg", 3, 2),
-        (2, 'Why didnt I get my chest?', 'So i wanted to get s chest by playing sivir with a premade teammate. The game has ended and i got an S+ but the chest is nowhere to be found. Yes i did have avalible chests Yes i do have sivir No i havent earned a chest yet for her The name of the profile is ezazoli EUNE Can u please report this bug if it is one?', "2021-10-20", "https://i.ytimg.com/vi/BetIkC8WDrw/maxresdefault.jpg", 9, 15),
-        (3, 'Biden admin calls on SCOTUS to let police enter homes, confiscate guns without a warrant', 'https://saraacarter.com/biden-admin-calls-on-scotus-to-let-police-enter-homes-confiscate-guns-without-a-warrant/', "2021-10-20", "https://media-cldnry.s-nbcnews.com/image/upload/newscms/2021_41/3512243/211013-biden-mb-1036.jpg", 12, 2),
+        (2, 'Why didnt I get my chest?', 'So i wanted to get s chest by playing sivir with a premade teammate. The game has ended and i got an S+ but the chest is nowhere to be found. Yes i did have avalible chests Yes i do have sivir No i havent earned a chest yet for her The name of the profile is ezazoli EUNE Can u please report this bug if it is one?', "2021-10-20", "https://i.ytimg.com/vi/BetIkC8WDrw/maxresdefault.jpg", 9, 15);
+        
+--insert posts into category 'Politics'
+INSERT INTO Post_tbl
+(CategoryID_Post, PostTitle, PostBody, PostDate, PostImage, PostVotes, CreatorID)
+VALUES  (3, 'Biden admin calls on SCOTUS to let police enter homes, confiscate guns without a warrant', 'https://saraacarter.com/biden-admin-calls-on-scotus-to-let-police-enter-homes-confiscate-guns-without-a-warrant/', "2021-10-20", "https://media-cldnry.s-nbcnews.com/image/upload/newscms/2021_41/3512243/211013-biden-mb-1036.jpg", 12, 2),
         (3, 'More than 100 San Francisco first responders remain unvaccinated and could lose jobs', 'https://www.sfchronicle.com/sf/article/More-than-100-San-Francisco-police-and-16532932.php?sid=5d54065e91d15c7b08162233&utm_source=newsletter&utm_medium=email&utm_content=headlines&utm_campaign=sfc_morningfix', "2021-10-20", "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/San_Francisco_from_the_Marin_Headlands_in_March_2019.jpg/1200px-San_Francisco_from_the_Marin_Headlands_in_March_2019.jpg", 24, 6),
         (3, 'U.S. Coal Use Is Rebounding Under Biden Like It Never Did With Trump', 'https://www.bloomberg.com/news/articles/2021-10-12/u-s-coal-use-rebounds-under-biden-as-energy-crisis-drives-fossil-fuel-demand', "2021-10-20", "https://www.aljazeera.com/wp-content/uploads/2021/10/379645697.jpg?resize=770%2C513", 19, 3),
         (3, 'Youngkin vows to hold Loudoun County officials responsible after alleged sexual assaults', 'https://www.foxnews.com/politics/youngkin-vows-to-hold-loudoun-county-officials-responsible-after-alleged-sexual-assaults', "2021-10-20", "https://thumbor.forbes.com/thumbor/fit-in/1200x0/filters%3Aformat%28jpg%29/https%3A%2F%2Fspecials-images.forbesimg.com%2Fimageserve%2F614414c183d4f3dd71dc9bde%2F0x0.jpg%3FcropX1%3D0%26cropX2%3D3000%26cropY1%3D0%26cropY2%3D1687", 8, 14),
         (3, "Aaron Rodgers has a big problem with 'woke cancel culture", 'https://nypost.com/2021/10/19/aaron-rodgers-has-a-big-problem-with-woke-cancel-culture/?utm_source=reddit.com', "2021-10-20", "https://cdn.vox-cdn.com/thumbor/_sJEM10TSI59oT24IpNiNUfO7mQ=/0x0:4800x3200/1200x800/filters:focal(2016x1216:2784x1984)/cdn.vox-cdn.com/uploads/chorus_image/image/70008055/rodgers__3_.0.jpg", 3, 4),
-        (3, "Kamala Harris' AG office illegally colluded with abortion providers during investigation, attorneys allege", 'https://www.foxnews.com/politics/kamala-harris-colluded-abortion-providers', "2021-10-20", "https://thehill.com/sites/default/files/harriskamalatwo_10152019getty.jpg", 1, 6),
-        (4, 'New 2022 Range Rover teased ahead of reveal next week - pictures', 'https://www.autoexpress.co.uk/land-rover/range-rover/108912/new-2022-range-rover-teased-ahead-reveal-next-week-pictures', "2021-10-20", "https://images.hgmsites.net/hug/land-rover-range-rover_100809988_h.jpg", 10, 14),
+        (3, "Kamala Harris' AG office illegally colluded with abortion providers during investigation, attorneys allege", 'https://www.foxnews.com/politics/kamala-harris-colluded-abortion-providers', "2021-10-20", "https://thehill.com/sites/default/files/harriskamalatwo_10152019getty.jpg", 1, 6);
+        
+--insert posts into category 'cars'
+INSERT INTO Post_tbl
+(CategoryID_Post, PostTitle, PostBody, PostDate, PostImage, PostVotes, CreatorID)
+VALUES  (4, 'New 2022 Range Rover teased ahead of reveal next week - pictures', 'https://www.autoexpress.co.uk/land-rover/range-rover/108912/new-2022-range-rover-teased-ahead-reveal-next-week-pictures', "2021-10-20", "https://images.hgmsites.net/hug/land-rover-range-rover_100809988_h.jpg", 10, 14),
         (4, 'Clutch shudder in first, take it back or keep driving? 04 WRX.', "I had a Subaru tuning shop replace my clutch and flywheel on my 04 WRX with an Exedy OEM organic clutch and lightweight flywheel and now when the clutch starts to heat up and sometimes when cold when I'm taking off in first gear the entire car shakes, I can avoid it by revving to near 3000rpm when pulling away but I feel that's just going to burn the clutch.
 Should I take it back to the shop? I've put about 1000km on it, maybe it needs more time to bed with the flywheel?", "2021-10-20", "https://oards.com/wp-content/uploads/clutch-pedal-adjustment.jpg", 14, 13),
         (4, 'Acura rolls over 400,000 miles. "I love driving it too much," says owner', 'https://www.thedrive.com/news/42807/owner-puts-330000-miles-on-acura-nsx-i-love-driving-it-too-much', "2021-10-20", "https://www.autoguide.com/blog/wp-content/uploads/2020/12/Mitsubishi-mirage-400k-miles3.jpg", 21, 12),
         (4, 'Which cars have overrated power figures from the manufacturer?', 'Saw the recent post about underrated cars, now to do one with the opposite. The one I can think of was the 1999 Ford Mustang SVT Cobra, which was advertised for 320 hp. Independent testing found the number was closer to 290 hp, it was enough for Ford to recall the car and skip the standard Cobra for next year to fix the issue (300 Cobra Rs were produced for the year 2000 that heavily deviated from the base car).
 What other examples are out there?', "2021-10-20", "https://hips.hearstapps.com/hmg-prod/amv-prod-cad-assets/images/media/267321/1999-ford-mustang-svt-cobra-tested-review-car-and-driver-photo-561584-s-original.jpg?crop=0.929xw:0.761xh;0.0497xw,0.168xh&resize=1200:*", 14, 10),
         (4, 'Red Honda badges.', 'Why are the red Honda badges found on Type R models acceptable to put on a civic Si, but not a “non type r” civic hatchback? Is it to do with speed class, putting respek on the red badge, or just people being gate keeping gremlins?', "2021-10-20", "https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/2022_Honda_Civic_Sport%2C_Front_Right%2C_06-20-2021.jpg/1200px-2022_Honda_Civic_Sport%2C_Front_Right%2C_06-20-2021.jpg", 6, 9),
-        (4, 'Which cars have underrated power figures from the manufacturer?', "I've read about the SRT 4 and the MK VII GTI as having very underrated hp and torque figures. What other cars were / are underrated?", "2021-10-20", "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/cd12dn92e-1604609584.jpg?crop=0.867xw:0.760xh;0.0731xw,0.0561xh&resize=640:*", 7, 41),
-        (5, 'Study: Fossil fuel plans would far overshoot climate goals', 'https://apnews.com/article/climate-science-business-environment-europe-dcbcc6388b24c8b83476ddea14b92e21', "2021-10-20", "https://cdn2.opendemocracy.net/media/images/pxfuel.com.max-760x504.jpg", 9, 7),
+        (4, 'Which cars have underrated power figures from the manufacturer?', "I've read about the SRT 4 and the MK VII GTI as having very underrated hp and torque figures. What other cars were / are underrated?", "2021-10-20", "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/cd12dn92e-1604609584.jpg?crop=0.867xw:0.760xh;0.0731xw,0.0561xh&resize=640:*", 7, 21);
+        
+--insert posts into category 'technology'
+INSERT INTO Post_tbl
+(CategoryID_Post, PostTitle, PostBody, PostDate, PostImage, PostVotes, CreatorID)
+VALUES  (5, 'Study: Fossil fuel plans would far overshoot climate goals', 'https://apnews.com/article/climate-science-business-environment-europe-dcbcc6388b24c8b83476ddea14b92e21', "2021-10-20", "https://cdn2.opendemocracy.net/media/images/pxfuel.com.max-760x504.jpg", 9, 7),
         (5, 'Google Play Store will soon show you how much apps know about you', 'https://www.techradar.com/news/google-play-store-will-soon-show-you-how-much-apps-know-about-you', "2021-10-20", "https://cdn.arstechnica.net/wp-content/uploads/2020/09/Google-Play-Store-logo.jpg", 23, 6),
         (5, 'Facebook plans to soon rebrand with a new name', 'https://www.marketwatch.com/story/facebook-plans-to-soon-rebrand-with-a-new-name-report-11634701715?mod=home-page', "2021-10-20", "https://blog.logomyway.com/wp-content/uploads/2019/09/facebook-logo.jpg", 17, 5),
         (5, "The CFO's Guide to Ransomware Risk Mitigation", 'https://accelerationeconomy.com/cyber-security/the-cfos-guide-to-ransomware-risk-mitigation/', "2021-10-20", "https://www.kaspersky.com/content/en-global/images/repository/isc/2021/ransomware.jpg", 9, 4),
         (5, 'Wearable Microphone Jamming', 'http://sandlab.cs.uchicago.edu/jammer/', "2021-10-20", "https://m.media-amazon.com/images/I/71OkWZr+U-L._AC_SX355_.jpg", 37, 3),
-        (5, 'Teen Girls Are Developing Tics. Doctors Say TikTok Could Be a Factor.', 'https://www.wsj.com/articles/teen-girls-are-developing-tics-doctors-say-tiktok-could-be-a-factor-11634389201?mod=e2tw', "2021-10-20", "https://www.trustedreviews.com/wp-content/uploads/sites/54/2020/02/how-to-delete-tiktok-920x515.jpg", 21, 2),
-        (6, 'The hot new Aussie designers to know from Australian Fashion Week', 'https://www.standard.co.uk/insider/fashion/australian-fashion-week-designers-resortwear-collections-b938549.html', "2021-10-20", "", 9, 7),
-        (6, 'Modified Runway Set for Fendi Show', 'https://www.frameweb.com/article/fendi-aw-2021-bureau-betak', "2021-10-20", "", 23, 6),
-        (6, 'How to donate clothes in the most ethical ways possible', 'https://mashable.com/article/how-to-ethically-donate-clothes', "2021-10-20", "", 17, 5),
-        (6, "I knew VS had a lot of major changes going on. But I didn't know why until I read this: L Brands sells majority stake in Victoria's Secret, CEO Wexner to step down", 'https://www.reuters.com/article/us-victoria-s-secret-m-a-sycamore-partne-idUSKBN20E1T7?utm_source=reddit.com', "2021-10-10", "", 9, 4),
-        (6, 'Balenciaga Will Introduce Couture for Men', 'https://www.gq.com/story/balenciaga-mens-couture', "2021-01-20", "", 37, 3),
-        (6, 'New York Fashion Week Is Still Happening, Says Cuomo', 'https://www.thecut.com/2020/08/new-york-fashion-week-spring-2021-confirmed.html', "2020-10-20", "", 21, 2),
-        (7, "An Olympian came to my school today", "Idk I just thought it was cool. It was Taliqua Clancy of Beach Volleyball fame. We got to see her silver medal and do a small interview of some questions we submitted earlier in the week. Was pretty cool.", "2020-10-20", "", 21, 26),
+        (5, 'Teen Girls Are Developing Tics. Doctors Say TikTok Could Be a Factor.', 'https://www.wsj.com/articles/teen-girls-are-developing-tics-doctors-say-tiktok-could-be-a-factor-11634389201?mod=e2tw', "2021-10-20", "https://www.trustedreviews.com/wp-content/uploads/sites/54/2020/02/how-to-delete-tiktok-920x515.jpg", 21, 2);
+        
+--insert posts into category 'fashion'
+INSERT INTO Post_tbl
+(CategoryID_Post, PostTitle, PostBody, PostDate, PostImage, PostVotes, CreatorID)
+VALUES  (6, 'The hot new Aussie designers to know from Australian Fashion Week', 'https://www.standard.co.uk/insider/fashion/australian-fashion-week-designers-resortwear-collections-b938549.html', "2021-10-20", "https://static.standard.co.uk/2021/06/03/10/newFile-4.jpg?width=990&auto=webp&quality=75&crop=968%3A645%2Csmart", 9, 7),
+        (6, 'Modified Runway Set for Fendi Show', 'https://www.frameweb.com/article/fendi-aw-2021-bureau-betak', "2021-10-20", "https://d1tm14lrsghf7q.cloudfront.net/public/media/385/77408_00title_bureau_betak_fendi_ss21_2_cropped.jpg", 23, 6),
+        (6, 'How to donate clothes in the most ethical ways possible', 'https://mashable.com/article/how-to-ethically-donate-clothes', "2021-10-20", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQykI3ggpX6yjSD2v-7z2sSXSOxMOPbUpHnHA&usqp=CAU", 17, 5),
+        (6, "I knew VS had a lot of major changes going on. But I didn't know why until I read this: L Brands sells majority stake in Victoria's Secret, CEO Wexner to step down", 'https://www.reuters.com/article/us-victoria-s-secret-m-a-sycamore-partne-idUSKBN20E1T7?utm_source=reddit.com', "2021-10-10", "https://www.asiaone.com/sites/default/files/inline/images/736_1542686140.jpg", 9, 4),
+        (6, 'Balenciaga Will Introduce Couture for Men', 'https://www.gq.com/story/balenciaga-mens-couture', "2021-01-20", "https://image-cdn.hypb.st/https%3A%2F%2Fhypebeast.com%2Fwp-content%2Fblogs.dir%2F6%2Ffiles%2F2020%2F09%2Fbalenciaga-mens-couture-collection-show-demna-gvasalia-announcement-1.jpg?q=90&w=1400&cbr=1&fit=max", 37, 3),
+        (6, 'New York Fashion Week Is Still Happening, Says Cuomo', 'https://www.thecut.com/2020/08/new-york-fashion-week-spring-2021-confirmed.html', "2020-10-20", "https://assets.vogue.com/photos/5e45a97db5eb1f0009e55a46/master/w_2560%2Cc_limit/00_nicole_story.jpg", 21, 2);
+        
+--insert posts into category 'Olympics'
+INSERT INTO Post_tbl
+(CategoryID_Post, PostTitle, PostBody, PostDate, PostImage, PostVotes, CreatorID)
+VALUES  (7, "An Olympian came to my school today", "Idk I just thought it was cool. It was Taliqua Clancy of Beach Volleyball fame. We got to see her silver medal and do a small interview of some questions we submitted earlier in the week. Was pretty cool.", "2020-10-20", "https://pbs.twimg.com/profile_images/765069538467512320/ZJSdr6Gb.jpg", 21, 26),
         (7, "Where to find old Olympic replays?", "So I know that most (if not all) full replays of all events of London 2012, Rio 2016, and Tokyo 2020 are on the Olympic website, but for older events, such as Athens 2004, Beijing 2008, Sydney 2000, etc, there's nothing.
-Is there any other website out there (apart from the Olympic website) that has some full replays from said events? If so please link", "2020-10-20", "", 20, 25),
-        (7, "Tokyo Replays", "Well, the Olympic replays for all the 2020 events is gone, and now we have 'archives' w/ other games, with events now gone. Half of basketball events now gone. Really outdone yourselves", "2020-10-20", "", 29, 23),
-        (7, "Non-olympians getting Olympic tattoos to pick up women: Is this a thing?", "Hi! Please direct me to a better forum for posting this, if this isn’t the right place. I was on a hike yesterday and ran into a guy at the top of the mountain who had an Olympic tattoo on his forearm. I asked him about it and he said he was X athlete, competed in two Olympics, won medals, broke records, etc. He told me he still competes in Masters events, but now lives in Ohio and coaches. I just said, “Cool, I will look you up!” And went on my way. Yep. Looked him up and the real Olympian (who he described accurately) is actually an attorney in Montana. I told my girlfriend this story who then told me she met a guy with an Olympic tattoo a few months ago, and he said he competed bobsled/skeleton. She also looked him up, and discovered clearly that wasn’t true. I know a few Olympians through work, and a most of them do have Olympic ring tattoos that are super important to them. I am really, really hoping this is not some bad pick-up artist hack…", "2020-10-20", "", 28, 24),
+Is there any other website out there (apart from the Olympic website) that has some full replays from said events? If so please link", "2020-10-20", "https://media.npr.org/assets/img/2021/08/01/gettyimages-1331862723-e6eb732d0c0147ff71ad581c703338075ec9ca36.jpg", 20, 25),
+        (7, "Tokyo Replays", "Well, the Olympic replays for all the 2020 events is gone, and now we have 'archives' w/ other games, with events now gone. Half of basketball events now gone. Really outdone yourselves", "2020-10-20", "https://s.abcnews.com/images/Sports/WireAP_2739c5e9ed1849209f093cc29c4b9191_16x9_1600.jpg", 29, 23),
+        (7, "Non-olympians getting Olympic tattoos to pick up women: Is this a thing?", "Hi! Please direct me to a better forum for posting this, if this isn’t the right place. I was on a hike yesterday and ran into a guy at the top of the mountain who had an Olympic tattoo on his forearm. I asked him about it and he said he was X athlete, competed in two Olympics, won medals, broke records, etc. He told me he still competes in Masters events, but now lives in Ohio and coaches. I just said, “Cool, I will look you up!” And went on my way. Yep. Looked him up and the real Olympian (who he described accurately) is actually an attorney in Montana. I told my girlfriend this story who then told me she met a guy with an Olympic tattoo a few months ago, and he said he competed bobsled/skeleton. She also looked him up, and discovered clearly that wasn’t true. I know a few Olympians through work, and a most of them do have Olympic ring tattoos that are super important to them. I am really, really hoping this is not some bad pick-up artist hack…", "2020-10-20", "https://swimswam.com/wp-content/uploads/2012/08/HaleyAndersonOlympicRingsTattoo.jpg", 28, 24),
         (7, "is there a list of all the new sports added since the modern olympics started in 1896?", "i am doing a school project on the olympic games and i am looking for what sports got added since the start of the the olympics.
-is there a list i can find somewhere? it would help out.", "2020-10-20", "", 26, 23),
-        (7, "Agnes Tirop's Husband has been arrested in connection with her death.", "According to Kenyan officials, the husband of Olympic runner Agnes Tirop has been apprehended and will be charged with her murder after a nationwide manhunt was started and he was apprehended in the costal city of Mombasa while attempting to exit the country. https://knowafrika.com/agnes-tirops-husband-has-been-arrested-in-connection-with-her-death/", "2020-10-20", "", 2, 22),
-        (8, "According to Kenyan officials, the husband of Olympic runner Agnes Tirop has been apprehended and will be charged with her murder after a nationwide manhunt was started and he was apprehended in the costal city of Mombasa while attempting to exit the country. ", "https://knowafrika.com/agnes-tirops-husband-has-been-arrested-in-connection-with-her-death/", "2021-02-12", "", 21, 21),
-        (8, "PSG [3] - 2 Leipzig - Lionel Messi penalty 74' (panenka)", "https://streamwo.com/5vhtnK7", "2021-03-02", "", 23, 20),
-        (8, "[The Athletic] Steve Bruce will receive around £8 million in compensation due to a clause in his three year rolling contract", "https://theathletic.com/news/steve-bruce-departs-as-newcastle-head-coach/0ETO8FwlrlFI/", "2021-04-30", "", 1, 19),
-        (8, "The numbers that show Raith Rovers have improved on last season as John McGlynn proves there is life after Regan Hendry and Co.", "https://www.thecourier.co.uk/fp/sport/football/2666235/raith-rovers-john-mcglynn-championship-regan-hendry/", "2021-06-17", "", 61, 18),
-        (8, "Paulo Fonseca front-runner to become next Newcastle manager after talks during summer.", "https://www.telegraph.co.uk/football/2021/10/20/contenders-next-newcastle-united-manager-steve-bruce-sacked/", "2021-06-17", "", 27, 17),
+is there a list i can find somewhere? it would help out.", "2020-10-20", "https://www.kreedon.com/wp-content/uploads/2021/08/n4qxv7qvpeur6hfdvfyw-1024x576-1.jpg", 26, 23),
+        (7, "Agnes Tirop's Husband has been arrested in connection with her death.", "According to Kenyan officials, the husband of Olympic runner Agnes Tirop has been apprehended and will be charged with her murder after a nationwide manhunt was started and he was apprehended in the costal city of Mombasa while attempting to exit the country. https://knowafrika.com/agnes-tirops-husband-has-been-arrested-in-connection-with-her-death/", "2020-10-20", "https://s.yimg.com/ny/api/res/1.2/V6rF40HndFvEgQAVodzoOg--/YXBwaWQ9aGlnaGxhbmRlcjt3PTY0MA--/https://s.yimg.com/os/creatr-uploaded-images/2021-10/1a00a3c0-33a6-11ec-bee3-dd850e2f90c6", 2, 22);
+        
+--insert posts into category 'Soccer'
+INSERT INTO Post_tbl
+(CategoryID_Post, PostTitle, PostBody, PostDate, PostImage, PostVotes, CreatorID)
+VALUES  (8, "According to Kenyan officials, the husband of Olympic runner Agnes Tirop has been apprehended and will be charged with her murder after a nationwide manhunt was started and he was apprehended in the costal city of Mombasa while attempting to exit the country. ", "https://knowafrika.com/agnes-tirops-husband-has-been-arrested-in-connection-with-her-death/", "2021-02-12", "https://s.yimg.com/ny/api/res/1.2/V6rF40HndFvEgQAVodzoOg--/YXBwaWQ9aGlnaGxhbmRlcjt3PTY0MA--/https://s.yimg.com/os/creatr-uploaded-images/2021-10/1a00a3c0-33a6-11ec-bee3-dd850e2f90c6", 21, 21),
+        (8, "PSG [3] - 2 Leipzig - Lionel Messi penalty 74' (panenka)", "https://streamwo.com/5vhtnK7", "2021-03-02", "https://img.bleacherreport.net/img/images/photos/003/791/835/hi-res-36fc279ed60ecfbf060e6c8f19bc2df3_crop_north.jpg?1550352893&w=3072&h=2048", 23, 20),
+        (8, "[The Athletic] Steve Bruce will receive around £8 million in compensation due to a clause in his three year rolling contract", "https://theathletic.com/news/steve-bruce-departs-as-newcastle-head-coach/0ETO8FwlrlFI/", "2021-04-30", "https://static.independent.co.uk/s3fs-public/thumbnails/image/2020/03/04/11/steve-bruce.jpg?width=1200", 1, 19),
+        (8, "The numbers that show Raith Rovers have improved on last season as John McGlynn proves there is life after Regan Hendry and Co.", "https://www.thecourier.co.uk/fp/sport/football/2666235/raith-rovers-john-mcglynn-championship-regan-hendry/", "2021-06-17", "https://cdn.shopify.com/s/files/1/0274/0708/9716/files/socialmedia_201920_1200x1200.jpg?v=1573212987", 61, 18),
+        (8, "Paulo Fonseca front-runner to become next Newcastle manager after talks during summer.", "https://www.telegraph.co.uk/football/2021/10/20/contenders-next-newcastle-united-manager-steve-bruce-sacked/", "2021-06-17", "https://d2x51gyc4ptf2q.cloudfront.net/content/uploads/2021/10/21121227/Paulo-Fonseca.jpg", 27, 17),
         (8, "[Pre-Match Thread] SL Benfica v Bayern München (UEFA Champions League Group Stage)", "SL Benfica v Bayern München
 Competition: UEFA Champions League
 Kick off: 20 October 2021, 20:00 GMT
@@ -155,8 +186,12 @@ Venue: Estádio Da Luz
 Referee: Ovidiu Hategan
 Team News: Goretzka and Davies out for the game, Diogo Gonçalves back by the looks of it but shouldn't start while Rafa seems to be fully fit.
 Possible SL Benfica starting XI: Odysseas, Diogo Gonçalves, Lucas Veríssimo, Otamendi, Verthoghen, Grimaldo, Weigl, João Mário, Rafa, Darwin and Yaremchuk
-Possible Bayern München starting XI: Neuer, Pavard, Süle, Upamecano, Lucas, Sabitzer, Kimmich, Coman, Muller, Sane, Lewandowski", "2021-07-13", "", 21, 16),
-        (9, "How soon after a new FM release do the download for leagues down to tier 10 appear?", "Really enjoying starting with a low team recently, but wondering if that is an option when fm22 releases or it takes a while for the download to appear.", "2021-08-18", "", 37, 16),
+Possible Bayern München starting XI: Neuer, Pavard, Süle, Upamecano, Lucas, Sabitzer, Kimmich, Coman, Muller, Sane, Lewandowski", "2021-07-13", "https://cdn.vox-cdn.com/thumbor/BKt18xrXoXWDBIBpV_xRvD7BoJM=/0x0:4500x3000/1200x800/filters:focal(1020x388:1740x1108)/cdn.vox-cdn.com/uploads/chorus_image/image/70023413/1347743550.0.jpg", 21, 16);
+        
+--insert posts into category 'football'
+INSERT INTO Post_tbl
+(CategoryID_Post, PostTitle, PostBody, PostDate, PostImage, PostVotes, CreatorID)
+VALUES  (9, "How soon after a new FM release do the download for leagues down to tier 10 appear?", "Really enjoying starting with a low team recently, but wondering if that is an option when fm22 releases or it takes a while for the download to appear.", "2021-08-18", "", 37, 16),
         (9, "Game Pass and Mods", "With FM22 launching on Game Pass, I am guessing the mode available on Steam cannot work? As I believe it is a separate launcher? Thanks.", "2021-08-18", "", 37, 17),
         (9, "Advice for a beginner", "Just after a bit of advice really
 I'm fairly new to FM, 4 seasons into my first save with Aston Villa. I'm doing constantly okay, finishing 6th or 7th every year, never getting far in Europe though.
@@ -167,9 +202,9 @@ I know it's vague, but any help would be appreciated", "2021-08-18", "", 37, 18)
         (9, "Adding to training camp", "Is there a way to add a player to my training camp? I signed a player on the opening day of the season and he was on international duty but when he returned I couldn’t play him as he was not on the training camp.", "2021-08-18", "", 37, 12),
         (9, "My two most desired stats are workrate and teamwork. Dont know if they make too much difference but I like the thought that the boys are working hard for each other.", "", "2021-08-18", "", 37, 13);
 
-
 SELECT * FROM Post_tbl;
 
+--insert comments into postid 1
 INSERT INTO Comment_tbl
 (PostID_Comment, Comment, CommentDate, CommentVotes, CommenterID, CommentTags)
 VALUES  (1, "Just cause it has a 45 day exclusive window doesnt mean they will release the movie right away on digital, it just means tfter 45 days they now are allowed to release it digitally, but if they want to hold if off for another month or 2, they can do it.
@@ -182,8 +217,12 @@ Then, after that sales channel, it comes to subscription streaming services.", "
         (1, "it's been killing the box office and has been one of the few films to have some staying power in theaters during the pandemic.", "2021-10-11", 0, 8, 'Pandemic'),
         (1, "Eternals is being released November 5", "2021-10-11", 1, 5, null),
         (1, "I think so that it matches with the release of the Eternals. More HYPE and more marketing so people are more likely to watch it then", "2021-10-11", 0, 2, null),
-        (1, "45 day minimum. They are holding off because it has been successful in theaters. It hasn’t even come to theaters in some areas yet", "2021-10-11", 0, 5, null),
-        (2, "I think that’s pretty accurate. I think the MCU not having access to hardly any of your A listers was a good thing for them. They laid down a solid foundation for the MCU with a B list appetizer Now we get our A list main course.", "2021-10-13", 10, 6, null),
+        (1, "45 day minimum. They are holding off because it has been successful in theaters. It hasn’t even come to theaters in some areas yet", "2021-10-11", 0, 5, null);
+        
+--insert comments into postid 2
+INSERT INTO Comment_tbl
+(PostID_Comment, Comment, CommentDate, CommentVotes, CommenterID, CommentTags)
+VALUES  (2, "I think that’s pretty accurate. I think the MCU not having access to hardly any of your A listers was a good thing for them. They laid down a solid foundation for the MCU with a B list appetizer Now we get our A list main course.", "2021-10-13", 10, 6, null),
         (2, "I think you nailed them pretty perfectly.", "2021-10-13", 7, 2, null),
         (2, "If you go by pre-2008: A-List: Hulk Spider-Man B-List: Captain America Daredevil C-List: Black Panther Doctor Strange Iron Man Thor D-List: Ant Man Captain Marvel", "2021-10-13", 3, 3, 'teir-list'),
         (2, "Where would you put X-Men or Fantastic Four in there?", "2021-10-13", 2, 4, null),
@@ -192,8 +231,12 @@ Then, after that sales channel, it comes to subscription streaming services.", "
         (2, "That run inserted two A-Listers (Spider-Man & Wolverine).", "2021-10-13", 2, 5, null),
         (2, "Yep, that's true, I forgot about that.", "2021-10-13", 1, 2, null),
         (2, "how do you measure iconicness? it has be put down in numbers somehow and sales are a good barometer", "2021-10-13", 1, 2, 'iconicness'),
-        (2, "My list is your list.", "2021-10-13", 1, 3, null),
-        (3, "Natasha is dead as of End Game as well. Steve isn't dead just retired", "2021-10-13", 2, 4, null),
+        (2, "My list is your list.", "2021-10-13", 1, 3, null);
+        
+--insert comments into postid 3
+INSERT INTO Comment_tbl
+(PostID_Comment, Comment, CommentDate, CommentVotes, CommenterID, CommentTags)
+VALUES  (3, "Natasha is dead as of End Game as well. Steve isn't dead just retired", "2021-10-13", 2, 4, null),
         (3, "Didn’t Far From Home say that he was dead?", "2021-10-13", 0, 3, null),
 	(3, "hmm, im not sure.", "2021-10-13", 0, 5, null),
         (3, "I don't think so. Maybe the general public thinks he could be dead? In Falcon and The Winter Soldier, Torres (I think that's his name, can't remember) asks Sam if Steve is in a base on the moon. So it seems like it's not public knowledge where Steve is. I assume we’ll find out what's going on with him in an upcoming movie or series, especially Captain America 4. I don't think the audience is meant to think he's dead.", "2021-10-13", 1, 2, null),
@@ -201,15 +244,27 @@ Then, after that sales channel, it comes to subscription streaming services.", "
         (3, "Tony, Cap, Black Widow and Gamora are all deceased. Cap isn’t technically confirmed dead, but it’s heavily implied. There’s a chance Old Man Steve could come back.", "2021-10-13", 7, 4, null),
         (3, "I love that Abraham Lincoln is in there Edit: just so this isn't misinterpreted, I just find it funny he was listed when he hasn't appeared in the MCU (unless I missed something)", "2021-10-13", 2, 5, null),
         (3, "His portrait appeared in Agents of SHIELD.", "2021-10-13", 0, 6, null),
-        (3, "Widow, died for the soul stone. Iron man,dead, died from snapping. Steve Rogers, retired. Loki, dead, strangled by thanos. Gamora from Guardians1-2, dead, also died for the soul stone. quicksilver, dead, shot by ultron. Tchalla, written out. Vision, dead? Maria Rambeau,dead.", "2021-10-13", 6, 8, 'helpful'),
-        (4, "Honestly for the MCU only it’ll probably be a stalemate", "2021-10-13", 0, 4, null),
+        (3, "Widow, died for the soul stone. Iron man,dead, died from snapping. Steve Rogers, retired. Loki, dead, strangled by thanos. Gamora from Guardians1-2, dead, also died for the soul stone. quicksilver, dead, shot by ultron. Tchalla, written out. Vision, dead? Maria Rambeau,dead.", "2021-10-13", 6, 8, 'helpful');
+        
+--insert comments into postid 4
+INSERT INTO Comment_tbl
+(PostID_Comment, Comment, CommentDate, CommentVotes, CommenterID, CommentTags)
+VALUES  (4, "Honestly for the MCU only it’ll probably be a stalemate", "2021-10-13", 0, 4, null),
         (4, "See at this point they should keep the original premises of Adams origin, but not before they introduce the FF and the High Evolutionary. They really need to bring on the Fantastic Four!", "2021-10-13", 0, 1, null),
-        (4, "Adam Warlock is a much much more powerful character than Captain Marvel.", "2021-10-14", 1, 8, null),
-        (5, "He says it in Infinity War right after Loki unveils he took the Tesseract. This was before he got metal gagged by Ebony Maw.", "2021-10-14", 0, 5, null),
+        (4, "Adam Warlock is a much much more powerful character than Captain Marvel.", "2021-10-14", 1, 8, null);
+        
+--insert comments into postid 5
+INSERT INTO Comment_tbl
+(PostID_Comment, Comment, CommentDate, CommentVotes, CommenterID, CommentTags)
+VALUES  (5, "He says it in Infinity War right after Loki unveils he took the Tesseract. This was before he got metal gagged by Ebony Maw.", "2021-10-14", 0, 5, null),
         (5, "It was in the beginning of Infinity war when Thanos is speaking to Loki.", "2021-10-14", 0, 6, null),
         (5, "You're really the worst, brother", "2021-10-14", 1, 6, null),
-        (5, "let me YouTube that for you", "2021-10-14", 0, 7, null),
-        (6, "If we’re just picking one then I would say Captain Marvel", "2021-10-14", 7, 10, 'CaptianMarvel'),
+        (5, "let me YouTube that for you", "2021-10-14", 0, 7, null);
+        
+--insert comments into postid 6
+INSERT INTO Comment_tbl
+(PostID_Comment, Comment, CommentDate, CommentVotes, CommenterID, CommentTags)
+VALUES  (6, "If we’re just picking one then I would say Captain Marvel", "2021-10-14", 7, 10, 'CaptianMarvel'),
         (6, "I ment a list; Not just one person. That I agree she is a HIGH contender for the number one spot.", "2021-10-14", 0, 4, null),
         (6, "Oh okay. At the top of the post it says one is the strongest. I thought you were asking. My bad.", "2021-10-14", 0, 10, null),
         (6, "Cleared it up", "2021-10-14", 0, 4, null),
@@ -222,8 +277,7 @@ Then, after that sales channel, it comes to subscription streaming services.", "
         (6, "I find that the 3 that are often talked about (Wanda, Danvers, Strange) peak in their own ways. Wanda: Highest non-AoE destructive power. Danvers: All-rounder + physical strength. Strange (technically not an Avenger): Most versatile", "2021-10-14", 5, 6, 'Top3'),
         (6, "Strange (technically not an Avenger) Danvers is? Neither officially are. Then again when Rogers says Assemble you can count them in.... Comic wise (since MCU neither confirms nor denies) they are or were members.", "2021-10-14", 1, 3, null),
         (6, "Danvers has more weight since she joined the others to kill farmer Thanos and liaised operations with Romanoff in the 5 year time gap", "2021-10-14", 2, 13, "CaptianMarvel"),
-        (6, "Unbeatable tier
-Scarlet Witch - Held Thanos back vs. 5 Infinity Stones and only using half her powers, while focused on destroying the final Infinity Stone, then almost singlehandedly ripped Thanos apart without the stones.
+        (6, "Unbeatable tier Scarlet Witch - Held Thanos back vs. 5 Infinity Stones and only using half her powers, while focused on destroying the final Infinity Stone, then almost singlehandedly ripped Thanos apart without the stones.
 Doctor Strange - Wielded time itself, went one-on-one for Thanos and stopped a black hole, can conjure the Mirror Dimension, can see millions of futures in minutes.
 Captain Marvel - Photon blasts, held the Gauntlet open before being blasted away by the Power Stone, destroys entire fleets just by flying through their ships.
 Thor - Unrestricted lightning powers without Mjolnir, wounded Thanos with Stormbreaker, beheaded him later.

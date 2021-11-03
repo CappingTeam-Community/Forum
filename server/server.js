@@ -17,7 +17,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // Select all Posts
 app.get('/post/select', (req, res) => {
-    const sqlSelectPost = "SELECT PostId, PostTitle, PostVotes, PostDate, PostBody, PostImage, UserID, UserName FROM Post_tbl, User_tbl WHERE CreatorID = UserID"
+    const sqlSelectPost = "SELECT PostId, PostTitle, PostVotes, PostDate, PostBody, PostImage, UserID, UserName FROM Post_tbl, User_tbl WHERE CreatorID = UserID ORDER BY PostDate"
     db.query(sqlSelectPost, (err, result) => {
         if (err){
             console.log(err);
@@ -59,6 +59,20 @@ app.get('/post-comment/select/:id', (req, res) => {
     const id = req.params.id;
     // TODO: delete posttitle after testing
     const sqlSelectComment = "SELECT PostTitle, Comment, CommentID, CommentDate, CommentVotes, CommentTags, UserName FROM Post_tbl, Comment_tbl, User_tbl WHERE PostID = PostID_Comment AND PostID = ? AND CommenterID = UserID"
+    db.query(sqlSelectComment, [id], (err, result) => {
+        if (err){
+            console.log(err);
+        }
+        console.log(result);
+        res.send(result);
+    });
+});
+
+//select comments by likes
+app.get('/post-comment/select/:id/popular', (req, res) => {
+    const id = req.params.id;
+    // TODO: delete posttitle after testing
+    const sqlSelectComment = "SELECT PostTitle, Comment, CommentID, CommentDate, CommentVotes, CommentTags, UserName FROM Post_tbl, Comment_tbl, User_tbl WHERE PostID = PostID_Comment AND PostID = ? AND CommenterID = UserID ORDER BY CommentVotes DESC"
     db.query(sqlSelectComment, [id], (err, result) => {
         if (err){
             console.log(err);
