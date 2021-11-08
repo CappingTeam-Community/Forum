@@ -28,6 +28,8 @@ For more info: https://mui.com/
 `mysql.server start`
 
 `brew services start mariadb`
+`source ./SQL_files/Community.sql`
+`source ./SQL_files/InsertData.sql`
 
 New Terminal
 `npm run devStart`
