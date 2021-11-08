@@ -29,6 +29,9 @@ For more info: https://mui.com/
 
 `brew services start mariadb`
 
+New Terminal
+`npm run devStart`
+
 log in as root user
 
 `mysql -u root -p`
