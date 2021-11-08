@@ -2,11 +2,13 @@ import styles from './PostDashboard.module.css';
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import { Button, Paper } from '@mui/material';
-
+import {Button, FormControl, InputLabel, MenuItem, Paper, Select} from '@mui/material';
+import {useEffect, useState} from "react";
+import Axios from "axios";
 
 function PostDashboard() {
-    //Logic
+    const [allTags, setAllTags] = useState<any>([]);
+    const [tag, setTag] = React.useState('');
 
     function sendToDB() {
         //make appi call here
@@ -14,6 +16,13 @@ function PostDashboard() {
 
 
     }
+    useEffect(() => {
+        Axios.get(`http://localhost:3001/category/select/`)
+            .then(res => {
+                const data = res.data;
+                setAllTags(data);
+            });
+    },[]);
 
     //title
     const [title, setTitle] = React.useState('');
@@ -30,9 +39,8 @@ function PostDashboard() {
     };
 
     //tags
-    const [tags, setTags] = React.useState('');
-    const tagsChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setTags(event.target.value);
+    const tagChange = (event: { target: { value: React.SetStateAction<string>; }; }) => {
+        setTag(event.target.value);
     };
 
     //Template
@@ -73,21 +81,23 @@ function PostDashboard() {
                     </Paper>
             </Box>
 
-                <Box sx={{ display: 'flex', flexWrap: 'wrap', alignContent: "center", justifyContent: "left", px: 8, m: 2 }}>
-                <Paper sx={{ boxShadow: '4', backgroundColor: 'transparent' }} elevation={3}>
-                <TextField
-                        sx={{ m: 2, width: '50ch', backgroundColor: 'white' }}
-                    id="tags"
-                    label="Tags"
-                    size="small"
-                    multiline
-                    maxRows={2}
-                    minRows={1}
-                    value={tags}
-                    onChange={tagsChange}
-                    variant="filled"
-                    />
-                    </Paper>
+            <Box sx={{ display: 'flex', flexWrap: 'wrap', alignContent: "center", justifyContent: "left", px: 8, m: 2 }}>
+                <Paper sx={{ width: 200, boxShadow: '4', backgroundColor: 'transparent' }} elevation={3}>
+                    <FormControl fullWidth>
+                        <InputLabel id="demo-simple-select-label">Category</InputLabel>
+                        <Select
+                            labelId="demo-simple-select-label"
+                            id="demo-simple-select"
+                            value={tag}
+                            label="Category"
+                            onChange={tagChange}
+                        >
+                            {allTags.map((data:any,id:any)=>{
+                                return <MenuItem value={data}>{data.CategoryName}</MenuItem>
+                            })}
+                        </Select>
+                    </FormControl>
+                </Paper>
             </Box>
 
             <Box sx={{ display: 'flex', flexWrap: 'wrap', alignContent: "center", justifyContent: "left", px: 8 }}>
