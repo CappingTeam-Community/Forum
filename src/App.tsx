@@ -13,6 +13,8 @@ import { Container, createTheme } from "@mui/material";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import DiscoverPage from "./components/pages/DiscoveryPage/DiscoveryPage";
 import ForumPage from './components/pages/ForumPage/ForumPage';
+import Settings from './components/pages/SettingsPage/SettingsPage';
+import SettingsPage from './components/pages/SettingsPage/SettingsPage';
 
 
 // Theme
@@ -59,6 +61,10 @@ function App() {
                     <Route exact path='/signup'>
                         <Signup />
                     </Route>
+                    <Route exact path='/settings'>
+                        <SettingsPage />
+                    </Route>
+
                     <Route exact path='/forum/:PostID' render={(props) => <ForumPage {...props} />} />
                 </Switch>
 
