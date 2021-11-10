@@ -1,15 +1,16 @@
 {
   "ExpandedNodes": [
     "",
-    "\\public",
+    "\\SQL_files",
     "\\src",
     "\\src\\components",
     "\\src\\components\\pages",
+    "\\src\\components\\pages\\DiscoveryPage",
     "\\src\\components\\shared",
     "\\src\\components\\shared\\Footer",
     "\\src\\components\\shared\\Header",
     "\\src\\components\\shared\\PostComponent"
   ],
-  "SelectedNode": "\\src\\components\\shared",
+  "SelectedNode": "\\src\\components\\shared\\Footer\\Footer.tsx",
   "PreviewInSolutionExplorer": false
 }

@@ -17,9 +17,6 @@ import ForumPagePopular from './components/pages/ForumPage/ForumPagePopular';
 import ForumPageOldest from './components/pages/ForumPage/ForumPageOldest';
 import ForumPageTags from './components/pages/ForumPage/ForumPageTags';
 
-
-
-
 // Theme
 export const theme = createTheme({
     palette: {
@@ -64,6 +61,10 @@ function App() {
                     <Route exact path='/signup'>
                         <Signup />
                     </Route>
+                    <Route exact path='/settings'>
+                        <SettingsPage />
+                    </Route>
+
                     <Route exact path='/forum/:PostID' render={(props) => <ForumPage {...props} />} />
                     <Route exact path='/forum/:PostID/popular' render={(props) => <ForumPagePopular {...props} />} />
                     <Route exact path='/forum/:PostID/oldest' render={(props) => <ForumPageOldest {...props} />} />

@@ -198,7 +198,6 @@ app.post('/comment/insert', (req, res) => {
     });
 });
 
-
 app.listen(3001, ()=>{
     console.log("Running");
 }); 

@@ -10,11 +10,9 @@
 USE community_db;
 DROP DATABASE community_db;
 
---Creates and switches active database to 'community_db'
 CREATE DATABASE community_db;
 USE community_db;
 
---Creates all tables with appropriate attribues for database
 CREATE TABLE Category_tbl(
     CategoryID INT NOT NULL AUTO_INCREMENT,
     CategoryName VARCHAR(100) NOT NULL,

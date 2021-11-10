@@ -28,6 +28,11 @@ For more info: https://mui.com/
 `mysql.server start`
 
 `brew services start mariadb`
+`source ./SQL_files/Community.sql`
+`source ./SQL_files/InsertData.sql`
+
+New Terminal
+`npm run devStart`
 
 log in as root user
 
@@ -129,6 +134,10 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 ## Theming
 ## Database
 
+### The steps taken are slightly different for Mac and Windows Users. 
+
+### Mac Commands:
+
 ### To run the database it is suggested to use two terminals. In the first terminal do:
 
 `mysql -u root -p`
@@ -145,7 +154,7 @@ enter local sorce path to community.sql
 
 enter local sorce path to insertdata.sql
 
-`ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'root';`
+`ALTER USER 'root'@'localhost' IDENTIFIED BY 'password';`
 
 `flush privileges;`
 
@@ -160,6 +169,8 @@ cd to ../forum/
 `npm run devStart`
 
 This will keep the database server running, and auto update whenever a new change is made.
+
+### Windows Commands:
 
 
 
