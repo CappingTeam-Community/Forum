@@ -47,9 +47,9 @@ app.get('/post-category/select/:id', (req, res) => {
     const sqlSelectPost = "SELECT CategoryName, PostTitle, PostVotes, PostDate, PostID, PostBody, PostImage, UserName FROM Category_tbl, Post_tbl, User_tbl WHERE CategoryID = CategoryID_Post AND CategoryID = ? AND CreatorID = UserID"
     db.query(sqlSelectPost, [id], (err, result)=> {
         if (err){
-            console.log(err);
+            console.log("pc error", err);
         }
-        console.log(result);
+        console.log('result', result);
         res.send(result);
     });
 });
@@ -120,17 +120,6 @@ app.get('/user/select/:id', (req, res) => {
     });
 });
 
-//insert into comment page
-/*
-app.post('/comment/insert' (req, res) => {
-    const FirstName = req.body.FirstName;
-    const LastName = req.body.LastName;
-    const UserName = req.body.UserName;
-    const Password = req.body.Password;
-    const Email = req.body.Email;
-
-});*/
-
 //insert insto user page
 app.post('/signup/insert', (req, res) => {
     const FirstName = req.body.FirstName;
@@ -156,18 +145,31 @@ app.post('/category/insert', (req, res) => {
     });
 });
 
-//insert into users
-
-
-/*
-app.get('/', (req, res) => {
-    const sqlSelect = "INSERT INTO Category_tbl (CategoryID, CategoryName, CategoryVotes) VALUES(3, 'Automobiles', 200000)"
-    db.query(sqlSelect, (err, result) => {
+//insert post
+app.post('/post/insert', (req, res) => {
+    const PostTitle = req.body.PostTitle;
+    const PostBody = req.body.PostBody;
+    const CategoryID_Post = req.body.CategoryID_Post;
+    const PostDate = req.body.PostDate;
+    const PostImage = req.body.PostImage;
+    const CreatorID = req.body.CreatorID
+    const sqlInsert = "INSERT INTO Post_tbl (PostTitle, PostBody, CategoryID_Post, PostDate, PostImage, CreatorID) VALUES (?, ?, ?, ?, ?, ?)"
+    db.query(sqlInsert, [PostTitle, PostBody, CategoryID_Post, PostDate, PostImage, CreatorID], (err, result)=> {
         console.log(result);
-        res.send("Hello");
     });
-;})
-*/
+});
+
+app.post('/comment/insert', (req, res) => {
+    const Comment = req.body.Comment;
+    const CommentDate = req.body.CommentDate;
+    const CommentTags = req.body.CommentTags;
+    const sqlInsert = "INSERT INTO Comment_tbl (Comment, CommentDate, CommentTags) VALUES (?, ?, ?)"
+    db.query(sqlInsert, [Comment, CommentDate, CommentTags], (err, result)=> {
+        console.log(result);
+    });
+});
+
+
 
 app.listen(3001, ()=>{
     console.log("Running");
