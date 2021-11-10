@@ -25,7 +25,7 @@ CREATE TABLE Category_tbl(
 CREATE TABLE Post_tbl(
     PostID INT NOT NULL AUTO_INCREMENT,
     CategoryID_Post INT,
-    PostTitle VARCHAR(10000) NOT NULL,
+    PostTitle VARCHAR(10000),
     PostBody TEXT(100000),
     PostImage VARCHAR(1000),
     PostDate DATE,

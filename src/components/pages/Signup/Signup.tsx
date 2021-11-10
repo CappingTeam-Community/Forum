@@ -61,7 +61,15 @@ class Signup extends React.Component<{} , MyState > {
     }
     private onComplete (event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
-        // TODO: @Devin make post request to database.
+        Axios.post(`http://localhost:3001/signup/insert`,{
+            FirstName: this.state.user.firstName,
+            LastName: this.state.user.lastName,
+            UserName: this.state.user.username,
+            Password: this.state.user.password,
+            Email: this.state.user.email
+        }).then(() =>{
+            alert("Inserted")
+        });
 
         this.setState({ redirect: true })
     }

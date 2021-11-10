@@ -47,9 +47,9 @@ app.get('/post-category/select/:id', (req, res) => {
     const sqlSelectPost = "SELECT CategoryName, PostTitle, PostVotes, PostDate, PostID, PostBody, PostImage, UserName FROM Category_tbl, Post_tbl, User_tbl WHERE CategoryID = CategoryID_Post AND CategoryID = ? AND CreatorID = UserID"
     db.query(sqlSelectPost, [id], (err, result)=> {
         if (err){
-            console.log(err);
+            console.log("pc error", err);
         }
-        console.log(result);
+        console.log('result', result);
         res.send(result);
     });
 });
@@ -58,7 +58,7 @@ app.get('/post-category/select/:id', (req, res) => {
 app.get('/post-comment/select/:id', (req, res) => {
     const id = req.params.id;
     // TODO: delete posttitle after testing
-    const sqlSelectComment = "SELECT PostTitle, Comment, CommentID, CommentDate, CommentVotes, CommentTags, UserName FROM Post_tbl, Comment_tbl, User_tbl WHERE PostID = PostID_Comment AND PostID = ? AND CommenterID = UserID"
+    const sqlSelectComment = "SELECT PostTitle, Comment, CommentID, CommentDate, CommentVotes, CommentTags, UserName FROM Post_tbl, Comment_tbl, User_tbl WHERE PostID = PostID_Comment AND PostID = ? AND CommenterID = UserID ORDER BY CommentID DESC"
     db.query(sqlSelectComment, [id], (err, result) => {
         if (err){
             console.log(err);
@@ -68,11 +68,38 @@ app.get('/post-comment/select/:id', (req, res) => {
     });
 });
 
-//select comments by likes
+//select comments by popular
 app.get('/post-comment/select/:id/popular', (req, res) => {
     const id = req.params.id;
     // TODO: delete posttitle after testing
     const sqlSelectComment = "SELECT PostTitle, Comment, CommentID, CommentDate, CommentVotes, CommentTags, UserName FROM Post_tbl, Comment_tbl, User_tbl WHERE PostID = PostID_Comment AND PostID = ? AND CommenterID = UserID ORDER BY CommentVotes DESC"
+    db.query(sqlSelectComment, [id], (err, result) => {
+        if (err){
+            console.log(err);
+        }
+        console.log(result);
+        res.send(result);
+    });
+});
+
+//select comments by oldest
+app.get('/post-comment/select/:id/oldest', (req, res) => {
+    const id = req.params.id;
+    // TODO: delete posttitle after testing
+    const sqlSelectComment = "SELECT PostTitle, Comment, CommentID, CommentDate, CommentVotes, CommentTags, UserName FROM Post_tbl, Comment_tbl, User_tbl WHERE PostID = PostID_Comment AND PostID = ? AND CommenterID = UserID ORDER BY CommentID"
+    db.query(sqlSelectComment, [id], (err, result) => {
+        if (err){
+            console.log(err);
+        }
+        console.log(result);
+        res.send(result);
+    });
+});
+
+app.get('/post-comment/select/:id/tags', (req, res) => {
+    const id = req.params.id;
+    // TODO: delete posttitle after testing
+    const sqlSelectComment = "SELECT PostTitle, Comment, CommentID, CommentDate, CommentVotes, CommentTags, UserName FROM Post_tbl, Comment_tbl, User_tbl WHERE PostID = PostID_Comment AND PostID = ? AND CommenterID = UserID ORDER BY CommentTags DESC"
     db.query(sqlSelectComment, [id], (err, result) => {
         if (err){
             console.log(err);
@@ -120,17 +147,6 @@ app.get('/user/select/:id', (req, res) => {
     });
 });
 
-//insert into comment page
-/*
-app.post('/comment/insert' (req, res) => {
-    const FirstName = req.body.FirstName;
-    const LastName = req.body.LastName;
-    const UserName = req.body.UserName;
-    const Password = req.body.Password;
-    const Email = req.body.Email;
-
-});*/
-
 //insert insto user page
 app.post('/signup/insert', (req, res) => {
     const FirstName = req.body.FirstName;
@@ -156,18 +172,31 @@ app.post('/category/insert', (req, res) => {
     });
 });
 
-//insert into users
-
-
-/*
-app.get('/', (req, res) => {
-    const sqlSelect = "INSERT INTO Category_tbl (CategoryID, CategoryName, CategoryVotes) VALUES(3, 'Automobiles', 200000)"
-    db.query(sqlSelect, (err, result) => {
+//insert post
+app.post('/post/insert', (req, res) => {
+    const PostTitle = req.body.PostTitle;
+    const PostBody = req.body.PostBody;
+    const CategoryID_Post = req.body.CategoryID_Post;
+    const PostDate = req.body.PostDate;
+    const PostImage = req.body.PostImage;
+    const CreatorID = req.body.CreatorID
+    const sqlInsert = "INSERT INTO Post_tbl (PostTitle, PostBody, CategoryID_Post, PostDate, PostImage, CreatorID) VALUES (?, ?, ?, ?, ?, ?)"
+    db.query(sqlInsert, [PostTitle, PostBody, CategoryID_Post, PostDate, PostImage, CreatorID], (err, result)=> {
         console.log(result);
-        res.send("Hello");
     });
-;})
-*/
+});
+
+app.post('/comment/insert', (req, res) => {
+    const Comment = req.body.Comment;
+    const CommentDate = req.body.CommentDate;
+    const CommentTags = req.body.CommentTags;
+    const PostID_Comment = req.body.PostID_Comment
+    const CommenterID = req.body.CommenterID
+    const sqlInsert = "INSERT INTO Comment_tbl (Comment, CommentDate, CommentTags, PostID_Comment, CommenterID) VALUES (?, ?, ?, ?, ?)"
+    db.query(sqlInsert, [Comment, CommentDate, CommentTags, PostID_Comment, CommenterID], (err, result)=> {
+        console.log(result);
+    });
+});
 
 app.listen(3001, ()=>{
     console.log("Running");
