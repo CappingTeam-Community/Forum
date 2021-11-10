@@ -13,9 +13,9 @@ import { Container, createTheme } from "@mui/material";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import DiscoverPage from "./components/pages/DiscoveryPage/DiscoveryPage";
 import ForumPage from './components/pages/ForumPage/ForumPage';
-import Settings from './components/pages/SettingsPage/SettingsPage';
-import SettingsPage from './components/pages/SettingsPage/SettingsPage';
-
+import ForumPagePopular from './components/pages/ForumPage/ForumPagePopular';
+import ForumPageOldest from './components/pages/ForumPage/ForumPageOldest';
+import ForumPageTags from './components/pages/ForumPage/ForumPageTags';
 
 // Theme
 export const theme = createTheme({
@@ -66,6 +66,9 @@ function App() {
                     </Route>
 
                     <Route exact path='/forum/:PostID' render={(props) => <ForumPage {...props} />} />
+                    <Route exact path='/forum/:PostID/popular' render={(props) => <ForumPagePopular {...props} />} />
+                    <Route exact path='/forum/:PostID/oldest' render={(props) => <ForumPageOldest {...props} />} />
+                    <Route exact path='/forum/:PostID/tags' render={(props) => <ForumPageTags {...props} />} />
                 </Switch>
 
             </BrowserRouter>

@@ -13,6 +13,9 @@ import {
 import {orange, red} from "@mui/material/colors";
 import FavoriteIcon from "@mui/icons-material/Favorite"
 import {Component} from "react";
+import {styled} from "@mui/system";
+
+import styles from "./PostComponent.module.css";
 
 interface Props {
     id: number,
@@ -29,8 +32,6 @@ interface State {
     isLiked: boolean;
 }
 
-
-
 class PostComponent extends Component<Props, State> {
     private id: number;
     private author: any;
@@ -42,7 +43,6 @@ class PostComponent extends Component<Props, State> {
     private postBody: string;
     private route:string;
     private avatarColor: string;
-    
 
     constructor(props: any) {
         super(props);
@@ -84,9 +84,21 @@ class PostComponent extends Component<Props, State> {
         }
         return color;
     }
-    
 
     render() {
+
+
+        const PostBody = styled('div') ({
+            overflowY: 'scroll',
+            width:'500px',
+            float: 'left',
+            maxHeight:'148px',
+            position:'relative',
+            color:'green'
+
+        });
+
+
         return (
             <Container sx={{ display: 'flex'}}>
                 <Box sx={{ m:'auto' }}>
@@ -97,7 +109,7 @@ class PostComponent extends Component<Props, State> {
                         {this.voteCount}
                     </Typography>
                 </Box>
-                <Card sx={{width: 900, height: ""}}>
+                <Card sx={{width: 900, height: 260}}>
                     {/* TODO: Replace test with card forum page */}
                     <CardActionArea href={this.route}>
                         <CardHeader
@@ -107,24 +119,21 @@ class PostComponent extends Component<Props, State> {
                             }
                             subheader={this.date}
                         />
-                        <Box sx={{
-                            display:'flex',
-                            mb:0
-                        }}  whiteSpace="pre-line">
+                        <Box sx={{ display:'flex', mb:0, pb:0}}
+							whiteSpace="pre-line">
                             <CardMedia
                                 component="img"
                                 width="100"
                                 height="150"
                                 src={this.image}
                                 alt="image not "
-                                sx={{width:'200px'}}
-
+                                sx={{width:'200px', mr:0.5}}
                             />
-                            <CardContent sx={{pl:4}}>
-                                <Typography paragraph variant='body2' color='text.secondary'>
-                                    {this.postBody}
-                                </Typography>
-                            </CardContent>
+                                <PostBody>
+                                    <Typography paragraph variant='body2' color='text.secondary' sx={{pl:1,pr:1}}>
+                                        {this.postBody}
+                                    </Typography>
+                                </PostBody>
                         </Box>
                     </CardActionArea>
                 </Card>

@@ -27,7 +27,7 @@ function PostDashboard() {
             CategoryID_Post: tag.CategoryID,
             PostDate: date,
             PostImage: image,
-            CreatorID: 14
+            CreatorID: 1
 
         }).then((res) => {
             console.log("res", res.data);

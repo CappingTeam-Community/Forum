@@ -24,7 +24,7 @@ interface State {
     newComment: any
 }
 
-class ForumPage extends React.Component<{}, State> {
+class ForumPageOldest extends React.Component<{}, State> {
     static i = 0;
     private PostID: number;
     constructor(props: any) {
@@ -63,14 +63,14 @@ class ForumPage extends React.Component<{}, State> {
             })
     }
     async getComments() {
-        await Axios.get(`http://localhost:3001/post-comment/select/${this.PostID}`)
+        await Axios.get(`http://localhost:3001/post-comment/select/${this.PostID}/oldest`)
             .then(res => {
                 const data = res.data;
                 this.setState({ commentData: data });
             })
     }
 
-    async getCommentsPopular() {
+   /* async getCommentsPopular() {
         window.location.reload();
         await Axios.get(`http://localhost:3001/post-comment/select/${this.PostID}/popular`)
             .then(res => {
@@ -79,7 +79,7 @@ class ForumPage extends React.Component<{}, State> {
             })
             console.log("ran commentsPopular")
             this.runPopular()
-    }
+    }*/
 
 
     private sendToDBComment (event: React.FormEvent<HTMLFormElement>) {
@@ -226,4 +226,4 @@ class ForumPage extends React.Component<{}, State> {
     }
 }
 
-export default ForumPage;
+export default ForumPageOldest;

@@ -16,12 +16,14 @@ import {orange, red} from "@mui/material/colors";
 import FavoriteIcon from "@mui/icons-material/Favorite"
 import {Component} from "react";
 import Button from "@mui/material/Button";
+import {styled} from "@mui/system";
+
 
 interface Props {
     id: number,
     author: string,
     date: string,
-    tags: Array<any>,
+    tags: string,
     voteCount: number,
     commentBody: string,
 }
@@ -34,7 +36,7 @@ class CommentComponent extends Component<Props, State> {
     private id: number;
     private author: any;
     private date: string;
-    private tags: Array<any>;
+    private tags: string;
     private voteCount: number;
     private commentBody: string;
 
@@ -66,6 +68,15 @@ class CommentComponent extends Component<Props, State> {
         }
     }
     render() {
+        const CommentBody = styled('div') ({
+            overflowY: 'scroll',
+            width:'500px',
+            float: 'left',
+            maxHeight:'148px',
+            position:'relative',
+            color:'green'
+
+        });
         return (
             <Container sx={{ display: 'flex'}}>
                 <Box sx={{ m:'auto' }}>
@@ -76,7 +87,7 @@ class CommentComponent extends Component<Props, State> {
                         {this.voteCount}
                     </Typography>
                 </Box>
-                <Card sx={{width: 650, height: 200}}>
+                <Card sx={{width: 650, height: 300}}>
                     {/* TODO: Replace test with card forum page */}
                         <CardHeader
                             avatar={<Avatar sx={{bgcolor: orange[500]}}>{this.author.charAt(0)}</Avatar>}
@@ -85,9 +96,14 @@ class CommentComponent extends Component<Props, State> {
                         <Container sx={{ display:'block', pb:3}}>
                         <List style={{maxHeight: '100%', overflow: 'auto'}} >
                             <CardContent>
-                                <Typography variant='body2' color='text.secondary' >
+                                <CommentBody>
+                                <Typography variant='body2' color='text.secondary' sx={{pl:1,pr:1}}>
                                     {this.commentBody}
                                 </Typography>
+                                <Typography color='text.secondary' sx={{pl:1,pr:1}}>
+                                    #{this.tags}
+                                </Typography>
+                                </CommentBody>
                             </CardContent>
                             <CardActions>
                                 <Button href='commenttest' size='small'sx={{ml:'auto', mr:0}} >Reply</Button>
