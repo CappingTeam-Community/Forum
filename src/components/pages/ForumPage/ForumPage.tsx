@@ -10,6 +10,7 @@ import { AccountCircle } from '@mui/icons-material';
 import PostComponent from '../../shared/PostComponent/PostComponent';
 import CommentComponent from "../../shared/CommentComponent/CommentComponent";
 import Axios from "axios";
+import { NavLink } from 'react-router-dom';
 
 interface State {
     comment: {
@@ -24,10 +25,8 @@ interface State {
 }
 
 class ForumPage extends React.Component<{}, State> {
+    static i = 0;
     private PostID: number;
-
-
-
     constructor(props: any) {
         super(props);
 
@@ -71,7 +70,19 @@ class ForumPage extends React.Component<{}, State> {
             })
     }
 
-    sendToDBComment = (event: { preventDefault: () => void; }) => {
+    async getCommentsPopular() {
+        window.location.reload();
+        await Axios.get(`http://localhost:3001/post-comment/select/${this.PostID}/popular`)
+            .then(res => {
+                const data = res.data;
+                this.setState({ commentData: data });
+            })
+            console.log("ran commentsPopular")
+            this.runPopular()
+    }
+
+
+    private sendToDBComment (event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
         
         let date = new Date().toJSON().slice(0, 10);
@@ -80,7 +91,8 @@ class ForumPage extends React.Component<{}, State> {
                 Comment: this.state.comment.comment,
                 CommentDate: date,
                 CommentTags: this.state.comment.tag,
-                PostID_Comment: this.PostID
+                PostID_Comment: this.PostID,
+                CommenterID: 17
     
             }).then(() =>{
                 alert("Inserted")
@@ -88,11 +100,12 @@ class ForumPage extends React.Component<{}, State> {
             console.log('clicked');
             console.log(this.state.comment.comment);
             console.log(date);
+            console.log(this.PostID);
     }
 
-    private getData (event: React.ChangeEvent<HTMLInputElement>) {
+    private getData (event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();        
-        const data: any = event.target.value;
+        const data = new FormData(event.currentTarget);        
         this.setState({
             comment: {
                 comment: data.get('comment'),
@@ -105,9 +118,16 @@ class ForumPage extends React.Component<{}, State> {
         console.log(this.PostID);
     }
 
+    
+
     componentDidMount() {
-        this.getPost()
-        this.getComments()
+            this.getPost()
+            this.getComments()
+        
+    };
+
+    runPopular() {
+
     }
 
     //Template
@@ -129,7 +149,7 @@ class ForumPage extends React.Component<{}, State> {
                 })}
 
                
-                <Box component='form' onSubmit={this.sendToDBComment} sx={{ display: 'flex', alignItems: 'center' }}>
+                <Box component='form' onSubmit={this.getData} sx={{ display: 'flex', alignItems: 'center' }}>
                     <AccountCircle sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
                     <TextField 
                         sx={{ m: 2, width: '55ch', }}
@@ -150,15 +170,14 @@ class ForumPage extends React.Component<{}, State> {
                         label="Tag"
                         variant="standard"
                         size="small"
-                        onChange={this.getData}
                     />
                     <Button 
                         type='submit'
-                        sx={{ m: 1, width: '20ch', height: '40px', }}
+                        sx={{ m: 1, width: '10ch', height: '40px', }}
                         variant="outlined"
                         onClick={() => this.sendToDBComment}
                         >
-                        Post Comment
+                        Confirm
                     </Button>
                     <FormControl sx={{ m: 0, minWidth: 90 }}>
                         <InputLabel id="demo-simple-select-label">SortBy</InputLabel>
@@ -172,11 +191,21 @@ class ForumPage extends React.Component<{}, State> {
                             <MenuItem value="">
                                 <em>None</em>
                             </MenuItem>
-                            <MenuItem value={10}>Recent</MenuItem>
-                            <MenuItem value={20}>Popular</MenuItem>
-                            <MenuItem value={30}>Thirty</MenuItem>
+                            <MenuItem value={10}><NavLink exact to={`/forum/${this.PostID}`}>Recent</NavLink></MenuItem>
+                            <MenuItem value={20}><NavLink exact to={`/forum/${this.PostID}/popular`}>Popular</NavLink></MenuItem>
+                            <MenuItem value={30}><NavLink exact to={`/forum/${this.PostID}/oldest`}>Oldest</NavLink></MenuItem>
+                            <MenuItem value={40}><NavLink exact to={`/forum/${this.PostID}/tags`}>Tags</NavLink></MenuItem>
                         </Select>
                     </FormControl>
+                </Box>
+                <Box component='form' onSubmit={this.sendToDBComment}>
+                    <Button 
+                        type='submit'
+                        sx={{ m: 1, width: '20ch', height: '40px', }}
+                        variant="outlined"
+                        >
+                        Post Comment
+                    </Button>
                 </Box>
 
                 {this.state.commentData.map((data: any, index: number) => {
@@ -185,7 +214,7 @@ class ForumPage extends React.Component<{}, State> {
                             <CommentComponent id={data.CommentID}
                                 author={data.UserName}
                                 date={data.CommentDate}
-                                tags={[]}
+                                tags={data.CommentTags}
                                 voteCount={data.CommentVotes}
                                 commentBody={data.Comment}
                             />

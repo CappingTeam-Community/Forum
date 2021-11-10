@@ -23,7 +23,7 @@ interface Props {
     id: number,
     author: string,
     date: string,
-    tags: Array<any>,
+    tags: string,
     voteCount: number,
     commentBody: string,
 }
@@ -36,7 +36,7 @@ class CommentComponent extends Component<Props, State> {
     private id: number;
     private author: any;
     private date: string;
-    private tags: Array<any>;
+    private tags: string;
     private voteCount: number;
     private commentBody: string;
 
@@ -99,6 +99,9 @@ class CommentComponent extends Component<Props, State> {
                                 <CommentBody>
                                 <Typography variant='body2' color='text.secondary' sx={{pl:1,pr:1}}>
                                     {this.commentBody}
+                                </Typography>
+                                <Typography color='text.secondary' sx={{pl:1,pr:1}}>
+                                    #{this.tags}
                                 </Typography>
                                 </CommentBody>
                             </CardContent>

@@ -58,7 +58,7 @@ app.get('/post-category/select/:id', (req, res) => {
 app.get('/post-comment/select/:id', (req, res) => {
     const id = req.params.id;
     // TODO: delete posttitle after testing
-    const sqlSelectComment = "SELECT PostTitle, Comment, CommentID, CommentDate, CommentVotes, CommentTags, UserName FROM Post_tbl, Comment_tbl, User_tbl WHERE PostID = PostID_Comment AND PostID = ? AND CommenterID = UserID"
+    const sqlSelectComment = "SELECT PostTitle, Comment, CommentID, CommentDate, CommentVotes, CommentTags, UserName FROM Post_tbl, Comment_tbl, User_tbl WHERE PostID = PostID_Comment AND PostID = ? AND CommenterID = UserID ORDER BY CommentID DESC"
     db.query(sqlSelectComment, [id], (err, result) => {
         if (err){
             console.log(err);
@@ -68,11 +68,38 @@ app.get('/post-comment/select/:id', (req, res) => {
     });
 });
 
-//select comments by likes
+//select comments by popular
 app.get('/post-comment/select/:id/popular', (req, res) => {
     const id = req.params.id;
     // TODO: delete posttitle after testing
     const sqlSelectComment = "SELECT PostTitle, Comment, CommentID, CommentDate, CommentVotes, CommentTags, UserName FROM Post_tbl, Comment_tbl, User_tbl WHERE PostID = PostID_Comment AND PostID = ? AND CommenterID = UserID ORDER BY CommentVotes DESC"
+    db.query(sqlSelectComment, [id], (err, result) => {
+        if (err){
+            console.log(err);
+        }
+        console.log(result);
+        res.send(result);
+    });
+});
+
+//select comments by oldest
+app.get('/post-comment/select/:id/oldest', (req, res) => {
+    const id = req.params.id;
+    // TODO: delete posttitle after testing
+    const sqlSelectComment = "SELECT PostTitle, Comment, CommentID, CommentDate, CommentVotes, CommentTags, UserName FROM Post_tbl, Comment_tbl, User_tbl WHERE PostID = PostID_Comment AND PostID = ? AND CommenterID = UserID ORDER BY CommentID"
+    db.query(sqlSelectComment, [id], (err, result) => {
+        if (err){
+            console.log(err);
+        }
+        console.log(result);
+        res.send(result);
+    });
+});
+
+app.get('/post-comment/select/:id/tags', (req, res) => {
+    const id = req.params.id;
+    // TODO: delete posttitle after testing
+    const sqlSelectComment = "SELECT PostTitle, Comment, CommentID, CommentDate, CommentVotes, CommentTags, UserName FROM Post_tbl, Comment_tbl, User_tbl WHERE PostID = PostID_Comment AND PostID = ? AND CommenterID = UserID ORDER BY CommentTags DESC"
     db.query(sqlSelectComment, [id], (err, result) => {
         if (err){
             console.log(err);
@@ -163,12 +190,13 @@ app.post('/comment/insert', (req, res) => {
     const Comment = req.body.Comment;
     const CommentDate = req.body.CommentDate;
     const CommentTags = req.body.CommentTags;
-    const sqlInsert = "INSERT INTO Comment_tbl (Comment, CommentDate, CommentTags) VALUES (?, ?, ?)"
-    db.query(sqlInsert, [Comment, CommentDate, CommentTags], (err, result)=> {
+    const PostID_Comment = req.body.PostID_Comment
+    const CommenterID = req.body.CommenterID
+    const sqlInsert = "INSERT INTO Comment_tbl (Comment, CommentDate, CommentTags, PostID_Comment, CommenterID) VALUES (?, ?, ?, ?, ?)"
+    db.query(sqlInsert, [Comment, CommentDate, CommentTags, PostID_Comment, CommenterID], (err, result)=> {
         console.log(result);
     });
 });
-
 
 
 app.listen(3001, ()=>{
