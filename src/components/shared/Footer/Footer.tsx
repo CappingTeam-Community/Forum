@@ -13,8 +13,8 @@ function Footer() {
     return (
         <footer>
 
-            <Box px={{ xs: 3, sm: 10 }}
-                py={{ xs: 3, sm: 10 }}
+            <Box px={{ xs: 3, sm: 5 }}
+                py={{ xs: 3, sm: 8}}
                 bgcolor="text.secondary"
                 color="white">
                 <Container maxWidth='lg'>
@@ -87,7 +87,7 @@ function Footer() {
 
                     </Grid>
                     <Box textAlign="center"
-                        pt={{ xs: 3, sm: 8 }}
+                        pt={{ xs: 3, sm: 5 }}
                         pb={{ xs: 3, sm: 5 }}>
                         Team Community &rig; {new Date().getFullYear()}
                         </Box>

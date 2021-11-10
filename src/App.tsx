@@ -13,6 +13,11 @@ import { Container, createTheme } from "@mui/material";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import DiscoverPage from "./components/pages/DiscoveryPage/DiscoveryPage";
 import ForumPage from './components/pages/ForumPage/ForumPage';
+
+import Settings from './components/pages/SettingsPage/SettingsPage';
+import SettingsPage from './components/pages/SettingsPage/SettingsPage';
+import BreadCrumbs from './components/shared/BreadCrumbs/BreadCrumbs';
+
 import ForumPagePopular from './components/pages/ForumPage/ForumPagePopular';
 import ForumPageOldest from './components/pages/ForumPage/ForumPageOldest';
 import ForumPageTags from './components/pages/ForumPage/ForumPageTags';
@@ -43,6 +48,7 @@ function App() {
         <div className='App'>
             <BrowserRouter>
                 <Header />
+                <BreadCrumbs/>
                 <Switch>
                     <Route exact path='/'>
                         <DiscoverPage />
@@ -70,7 +76,7 @@ function App() {
                     <Route exact path='/forum/:PostID/oldest' render={(props) => <ForumPageOldest {...props} />} />
                     <Route exact path='/forum/:PostID/tags' render={(props) => <ForumPageTags {...props} />} />
                 </Switch>
-
+                <Footer/>
             </BrowserRouter>
         </div>
     );
