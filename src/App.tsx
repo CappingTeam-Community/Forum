@@ -15,6 +15,7 @@ import DiscoverPage from "./components/pages/DiscoveryPage/DiscoveryPage";
 import ForumPage from './components/pages/ForumPage/ForumPage';
 import Settings from './components/pages/SettingsPage/SettingsPage';
 import SettingsPage from './components/pages/SettingsPage/SettingsPage';
+import BreadCrumbs from './components/shared/BreadCrumbs/BreadCrumbs';
 
 
 // Theme
@@ -43,6 +44,7 @@ function App() {
         <div className='App'>
             <BrowserRouter>
                 <Header />
+                <BreadCrumbs/>
                 <Switch>
                     <Route exact path='/'>
                         <DiscoverPage />
@@ -67,7 +69,7 @@ function App() {
 
                     <Route exact path='/forum/:PostID' render={(props) => <ForumPage {...props} />} />
                 </Switch>
-
+                <Footer/>
             </BrowserRouter>
         </div>
     );
