@@ -12,20 +12,19 @@ import CommentComponent from "../../shared/CommentComponent/CommentComponent";
 import Axios from "axios";
 
 interface State {
+    comment: {
+        comment: any
+        tag: any
+
+    },
     age: any,
     postData: any,
     commentData: any,
     newComment: any
 }
 
-function sendToDBComment() {
-    console.log("clieckd");
-}
-
-
 class ForumPage extends React.Component<{}, State> {
     private PostID: number;
-
 
 
 
@@ -33,6 +32,10 @@ class ForumPage extends React.Component<{}, State> {
         super(props);
 
         this.state = {
+            comment: {
+                comment: '',
+                tag: ''
+            },
             age: '',
             postData: [],
             commentData: [],
@@ -42,6 +45,8 @@ class ForumPage extends React.Component<{}, State> {
         this.PostID = props.match.params.PostID;
 
         this.handleChange = this.handleChange.bind(this);
+        this.sendToDBComment = this.sendToDBComment.bind(this);
+        this.getData = this.getData.bind(this);
 
     }
 
@@ -64,6 +69,40 @@ class ForumPage extends React.Component<{}, State> {
                 const data = res.data;
                 this.setState({ commentData: data });
             })
+    }
+
+    sendToDBComment = (event: { preventDefault: () => void; }) => {
+        event.preventDefault();
+        
+        let date = new Date().toJSON().slice(0, 10);
+            //make appi call here
+            Axios.post(`http://localhost:3001/comment/insert`,{
+                Comment: this.state.comment.comment,
+                CommentDate: date,
+                CommentTags: this.state.comment.tag,
+                PostID_Comment: this.PostID
+    
+            }).then(() =>{
+                alert("Inserted")
+            });
+            console.log('clicked');
+            console.log(this.state.comment.comment);
+            console.log(date);
+    }
+
+    private getData (event: React.ChangeEvent<HTMLInputElement>) {
+        event.preventDefault();        
+        const data: any = event.target.value;
+        this.setState({
+            comment: {
+                comment: data.get('comment'),
+                tag: data.get('tag')
+            },
+        });
+        console.log("getData ran");
+        console.log(this.state.comment.comment);
+        console.log(this.state.comment.tag);
+        console.log(this.PostID);
     }
 
     componentDidMount() {
@@ -89,34 +128,38 @@ class ForumPage extends React.Component<{}, State> {
                     )
                 })}
 
-                <Box sx={{ display: 'flex', }}>
-                    <AccountCircle sx={{ color: 'action.active', mr: 0.5, mt: 3 }} />
-                    <TextField
-                        sx={{ m: 2, width: '70ch', }}
-                        id="input-with-sx"
+               
+                <Box component='form' onSubmit={this.sendToDBComment} sx={{ display: 'flex', alignItems: 'center' }}>
+                    <AccountCircle sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
+                    <TextField 
+                        sx={{ m: 2, width: '55ch', }}
+                        id="comment"
+                        name='comment' 
                         label="Comment"
                         variant="standard"
                         size="small"
                         multiline
                         maxRows={10}
-                        minRows={1}
-
+                        minRows={1} 
+                        
                     />
-
-                    <Button
+                    <TextField 
+                        sx={{ m: 2, width: '15ch', }}
+                        id="tag"
+                        name='tag' 
+                        label="Tag"
+                        variant="standard"
+                        size="small"
+                        onChange={this.getData}
+                    />
+                    <Button 
+                        type='submit'
                         sx={{ m: 1, width: '20ch', height: '40px', }}
                         variant="outlined"
-                        onClick={sendToDBComment}
-
-                    >
+                        onClick={() => this.sendToDBComment}
+                        >
                         Post Comment
                     </Button>
-
-                </Box>
-                <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                    <AccountCircle sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
-                    <TextField id="input-with-sx" label="Comment" variant="standard" />
-                    <Button variant="outlined">Post Comment</Button>
                     <FormControl sx={{ m: 0, minWidth: 90 }}>
                         <InputLabel id="demo-simple-select-label">SortBy</InputLabel>
                         <Select

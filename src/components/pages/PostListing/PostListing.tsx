@@ -3,6 +3,7 @@ import React from "react";
 import PostComponent from "../../shared/PostComponent/PostComponent";
 import CancelIcon from '@mui/icons-material/Cancel';
 import {red} from "@mui/material/colors";
+import { useState, useEffect } from "react";
 
 import Axios from 'axios';
 
@@ -11,47 +12,40 @@ interface State {
     categoryName: string
 }
 
-class PostListing extends React.Component<{}, State> {
-    private CategoryID: number;
-    private CategoryName: string;
+function PostListing (props:any) {
+    const [data, setData] = useState<any>([]);
+    const [categoryName, setCategoryName] = useState('');
+    const CategoryID = props.match.params.CategoryID;
 
-    constructor(props:any) {
-        super(props)
-        this.state = {
-            data: [],
-            categoryName: ''
-        }
-        this.CategoryID = props.match.params.CategoryID;
-        this.CategoryName = '';
-    }
-
-    componentDidMount() {
+    useEffect(() => {
 
         // Demo purposes
-        if (!this.CategoryID) {
-            Axios.get(`http://localhost:3001/post/select/`)
-                .then(res => {
-                    const data = res.data;
-                    this.setState({data:data, categoryName:'Recent'})
-                })
+
+        if (!CategoryID) {
+            // Axios.get(`http://localhost:3001/post/select/`)
+            //     .then(res => {
+            //         const data = res.data;
+            //         setData(data)
+            //         setCategoryName('Recent')
+            //     })
         } else {
-            Axios.get(`http://localhost:3001/post-category/select/${this.CategoryID}`)
+            console.log("categoryID", CategoryID);
+            Axios.get(`http://localhost:3001/post-category/select/${CategoryID}`)
                 .then(res => {
+                    console.log("CID", CategoryID);
                     const data = res.data;
-                    this.setState({data:data})
+                    console.log('postlisting.data', data);
+                    setData(data)
                 })
                 .then(res => {
-                    this.setState({categoryName: this.state.data[0].CategoryName});
+                    // console.log('DATA', data);
+                    // setCategoryName(data[0].categoryName);
                 })
         }
 
-    }
+    }, []);
 
-    removeFilter() {
-
-    }
-
-    render() { return (
+    return (
         <Container sx={{display:'block'}}>
             <Box sx={{display:'flex', mt:1}}>
                 <Typography variant='h5' color='text.primary' sx={{ textAlign: 'left'}}>
@@ -60,10 +54,10 @@ class PostListing extends React.Component<{}, State> {
                 <Paper square elevation={3} sx={{ml:2, pl:1, height:30, width:'inherit', justifyContent:'center'}}>
                     <Box sx={{ display:'flex', m:'auto' }}>
                         <Typography noWrap variant='body2' color='text.primary' sx={{ m:'auto', textAlign: 'left'}}>
-                            {this.state.categoryName}
+                            {categoryName}
                         </Typography>
 
-                        <IconButton sx={{color:red[100]}} size='small' aria-label="cancel" onClick={this.removeFilter}>
+                        <IconButton sx={{color:red[100]}} size='small' aria-label="cancel">
                             <CancelIcon />
                         </IconButton>
                     </Box>
@@ -71,7 +65,7 @@ class PostListing extends React.Component<{}, State> {
             </Box>
 
             <Container sx={{marginTop: 8, display: "flex", flexDirection: "column", alignItems: "center"}}>
-                {this.state.data.map((data: any, index: number) => {
+                {data.map((data: any, index: number) => {
                     return (
                         <Grid item md={10} key={index} sx={{pb: 3}}>
                             <PostComponent id={data.PostID}
@@ -88,6 +82,6 @@ class PostListing extends React.Component<{}, State> {
                 })};
             </Container>
         </Container>
-    )}
+    )
 }
 export default PostListing;
