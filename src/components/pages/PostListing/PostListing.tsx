@@ -33,9 +33,12 @@ function PostListing (props:any) {
             Axios.get(`http://localhost:3001/post-category/select/${CategoryID}`)
                 .then(res => {
                     console.log("CID", CategoryID);
-                    const data = res.data;
-                    console.log('postlisting.data', data);
-                    setData(data)
+                    const data:any = res.data;
+                    if (data.length > 0) {
+                        console.log('d',data);
+                        setData(data)
+                        setCategoryName(data[0].CategoryName)
+                    }
                 })
                 .then(res => {
                     // console.log('DATA', data);

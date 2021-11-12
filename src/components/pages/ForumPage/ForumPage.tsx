@@ -1,4 +1,3 @@
-import styles from './ForumPage.module.css';
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';

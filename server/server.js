@@ -4,6 +4,7 @@ var mysql = require('mysql');
 var bodyParser = require('body-parser');
 var cors = require('cors');
 
+
 var db = mysql.createConnection({
     host: 'localhost',
     user: 'root',
@@ -44,7 +45,7 @@ app.get('/post/select/:id', (req, res) => {
 app.get('/post-category/select/:id', (req, res) => {
     const id = req.params.id;
     // TODO: delete categoryname after testing
-    const sqlSelectPost = "SELECT CategoryName, PostTitle, PostVotes, PostDate, PostID, PostBody, PostImage, UserName FROM Category_tbl, Post_tbl, User_tbl WHERE CategoryID = CategoryID_Post AND CategoryID = ? AND CreatorID = UserID"
+    const sqlSelectPost = "SELECT CategoryName, PostTitle, PostVotes, PostDate, PostID, PostBody, PostImage, UserName FROM Category_tbl, Post_tbl, User_tbl WHERE CategoryID = CategoryID_Post AND CategoryId = ? AND CreatorID = UserID"
     db.query(sqlSelectPost, [id], (err, result)=> {
         if (err){
             console.log("pc error", err);
@@ -123,9 +124,22 @@ app.get('/comment/select/:id', (req, res) => {
 });
 
 // Select all categories
-app.get('/category/select', (req, res) => {
+app.get('/category/select/', (req, res) => {
+    const id = req.params.id;
     const sqlSelectCategory = "SELECT CategoryID, CategoryName, CategoryDescription, CategoryImage FROM Category_tbl"
-    db.query(sqlSelectCategory, (err, result)=> {
+    db.query(sqlSelectCategory, [id], (err, result)=> {
+        if (err){
+            console.log(err);
+        }
+        console.log(result);
+        res.send(result);
+    });
+});
+
+app.get('/category/select/:id', (req, res) => {
+    const id = req.params.id;
+    const sqlSelectCategory = "SELECT CategoryID, CategoryName, CategoryDescription, CategoryImage FROM Category_tbl WHERE CATEGORYID = ?"
+    db.query(sqlSelectCategory, [id], (err, result)=> {
         if (err){
             console.log(err);
         }
@@ -137,6 +151,7 @@ app.get('/category/select', (req, res) => {
 // Select Individual User
 app.get('/user/select/:id', (req, res) => {
     const id = req.params.id;
+    console.log("id", id);
     const sqlSelect = "SELECT * FROM User_tbl WHERE UserID = ?"
     db.query(sqlSelect, [id], (err, result)=> {
         if (err){
@@ -146,6 +161,30 @@ app.get('/user/select/:id', (req, res) => {
         res.send(result);
     });
 });
+
+app.get('/user/select/email/:email', (req, res) => {
+    const email = req.params.email;
+    console.log("email", email);
+    const sqlSelect = "SELECT * FROM User_tbl WHERE Email = ?"
+    db.query(sqlSelect, [email], (err, result)=> {
+        if (err){
+            console.log(err);
+        }
+        console.log(result);
+        res.send(result);
+    });
+});
+
+//insert into comment page
+/*
+app.post('/comment/insert' (req, res) => {
+    const FirstName = req.body.FirstName;
+    const LastName = req.body.LastName;
+    const UserName = req.body.UserName;
+    const Password = req.body.Password;
+    const Email = req.body.Email;
+
+});*/
 
 //insert insto user page
 app.post('/signup/insert', (req, res) => {
@@ -157,7 +196,7 @@ app.post('/signup/insert', (req, res) => {
 
     const sqlInsertUsers = "INSERT INTO User_tbl (FirstName, LastName, UserName, Password, Email) VALUES  (?, ?, ?, ?, ?)"
 
-    db.query(sqlInsertUsers, [FirstName, LastName, UserName, Password, Email], (err, result)=> {
+    db.query(sqlInsertUsers, [FirstName, LastName, UserName, Password, Email, Interests], (err, result)=> {
         console.log(result);
     });
 ;})
@@ -186,6 +225,7 @@ app.post('/post/insert', (req, res) => {
     });
 });
 
+
 app.post('/comment/insert', (req, res) => {
     const Comment = req.body.Comment;
     const CommentDate = req.body.CommentDate;
@@ -198,6 +238,8 @@ app.post('/comment/insert', (req, res) => {
     });
 });
 
+
 app.listen(3001, ()=>{
     console.log("Running");
 }); 
+

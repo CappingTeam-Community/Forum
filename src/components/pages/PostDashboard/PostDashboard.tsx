@@ -2,25 +2,35 @@ import styles from './PostDashboard.module.css';
 import React from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import {Button, FormControl, InputLabel, MenuItem, Paper, Select} from '@mui/material';
-import {useEffect, useState} from "react";
+import {
+    Button,
+    Dialog,
+    DialogActions, DialogContent,
+    DialogTitle,
+    FormControl,
+    InputLabel,
+    MenuItem,
+    Paper,
+    Select,
+    Typography
+} from '@mui/material';
+import {ReactChild, RefObject, useEffect, useLayoutEffect, useState} from "react";
 import Axios from "axios";
-import { Link } from 'react-router-dom';
-import { useDropzone } from "react-dropzone";
+import {Link, Redirect} from 'react-router-dom';
 
-function PostDashboard() {
+function PostDashboard(props:any) {
+    const [allTags, setAllTags] = useState<any>([]);
+    const [tag, setTag] = React.useState<any>();
+    const [dialog, setDialog] = React.useState(false);
+    const [title, setTitle] = React.useState('');
+    const [content, setContent] = React.useState('');
+    const [image, setImage] = React.useState('');
+    const [redirect, setRedirect] = React.useState(false);
+    const [string, setString] = React.useState('');
 
-    /*const Dropzone = ({ onDrop:any, accept:any }) => {
-        // Initializing useDropzone hooks with options
-        const { getRootProps, getInputProps, isDragActive } = useDropzone({
-          onDrop,
-          accept
-        });*/
-
-//document.write(today);
     function sendToDB() {
         let date = new Date().toJSON().slice(0, 10);
-        //make appi call here
+        console.log("data", title,content,tag.CategoryID,date,image);
         Axios.post(`http://localhost:3001/post/insert`,{
             PostTitle: title,
             PostBody: content,
@@ -33,6 +43,8 @@ function PostDashboard() {
             console.log("res", res.data);
             alert("Inserted")
         });
+        setRedirect(true);
+        setString("/category/" + tag.CategoryID.toString());
     }
 
     useEffect(() => {
@@ -45,121 +57,213 @@ function PostDashboard() {
     },[]);
 
     //title
-    const [title, setTitle] = React.useState('');
 
     const titleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setTitle(event.target.value);
     };
 
-    //content
-    const [content, setContent] = React.useState('');
-
     const contentChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setContent(event.target.value);
     };
 
-    //tags
-    const [allTags, setAllTags] = useState<any>([]);
-    const [tag, setTag] = React.useState<any>(null);
-
     const tagChange = (event: { target: { value: React.SetStateAction<string>; }; }) => {
-        console.log('tag',event.target.value);
         setTag(event.target.value);
     };
-
-    //image
-    const [image, setImage] = React.useState('');
-
+    const handleDialog = () => {
+        setDialog(!dialog);
+    }
+    const handleSubmitDialog = () => {
+        // Save media to database
+        handleDialog();
+    }
     const imageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setImage(event.target.value);
     };
+    const ComboBox = () => (
+        <Paper sx={{ width: '50%', boxShadow: '4' }} elevation={3}>
+            <FormControl fullWidth>
+                <InputLabel id="demo-simple-select-label">Category</InputLabel>
+                <Select
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    value={tag}
+                    label="Category"
+                    onChange={tagChange}
+                >
+                    {allTags.map((data:any,id:any)=>{
+                        return <MenuItem value={data}>{data.CategoryName}</MenuItem>
+                    })}
+                </Select>
+            </FormControl>
+        </Paper>
+    )
+    function DragDrop(props:any) {
+        const [drag, setDrag] = useState(false);
+        let dragCount = 0;
 
-    
+        let dropRef:RefObject<any> = React.createRef();
+
+        const handleDragEnter = (e:any) => {
+            e.preventDefault();
+            e.stopPropagation();
+            dragCount++;
+            if (e.dataTransfer.items && e.dataTranswer.items.length > 0) {
+                setDrag(true);
+            }
+        }
+        const handleDragLeave = (e:any) => {
+            e.preventDefault();
+            e.stopPropagation();
+            dragCount--;
+            if (dragCount > 0) return
+            setDrag(false)
+        }
+        const handleDragOver = (e:any) => {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+        const handleDrop = (e:any) => {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+
+        useEffect(() => {
+            dragCount = 0;
+            let div:any = dropRef.current;
+            if (div) {
+                div.addEventListener('dragenter',handleDragEnter)
+                div.addEventListener('dragleave',handleDragLeave)
+                div.addEventListener('dragover',handleDragOver)
+                div.addEventListener('drop',handleDrop)
+            }
+        }, []);
+        useLayoutEffect(() => {
+            let div:any = dropRef.current;
+            if (div) {
+                div.addEventListener('dragenter',handleDragEnter)
+                div.addEventListener('dragleave',handleDragLeave)
+                div.addEventListener('dragover',handleDragOver)
+                div.addEventListener('drop',handleDrop)
+            }
+        },[]);
+
+        return (
+            <Dialog
+                open={dialog}
+                onClose={handleDialog}
+            >
+                <DialogTitle id="alert-dialog-title">
+                   Drag Media to Import
+                </DialogTitle>
+                <DialogContent>
+                    <div
+                        ref={dropRef}
+                        style={{display: 'inline-block', position: 'relative'}}
+                    >
+                        HERE
+                        {drag &&
+                            <div
+                                style={{
+                                    border: 'dashed grey 4px',
+                                    backgroundColor: 'rgba(255,255,255,.8)',
+                                    position: 'absolute',
+                                    top: 0,
+                                    bottom: 0,
+                                    left: 0,
+                                    right: 0,
+                                    zIndex: 9999
+                                }}
+                            >
+                                <div
+                                    style={{
+                                        position: 'absolute',
+                                        top: '50%',
+                                        right: 0,
+                                        left: 0,
+                                        textAlign: 'center',
+                                        color: 'grey',
+                                        fontSize: 36
+                                    }}
+                                >
+                                    <div>drop here :)</div>
+                                </div>
+                            </div>
+                        }
+                        {props.children}
+                    </div>
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={handleSubmitDialog} autoFocus>
+                        Add
+                    </Button>
+                </DialogActions>
+            </Dialog>
+        )
+    }
     //Template
     return (
-        <div className={styles.PostDashboard}>
-            <h1> Create a new post</h1>
+        <div className={styles.PostDashboard} style={{marginLeft:'25vw', marginTop:'5vh'}}>
+            <Box sx={{display: 'block', justifyContent: "left",width:'50vw',m: 2}}>
+                <Paper elevation={6} sx={{boxShadow: '4', backgroundColor: 'rgba(255,255,255,.6)', py:2, px: 4}}>
+                    <Typography fontSize={25} color={"black"} sx={{textAlign: "center"}}>New Post</Typography>
+                    <TextField
+                            sx={{boxShadow: '2', my: 2, width: '100%', backgroundColor: 'white' }}
+                        id="title"
+                        label="Title"
+                        multiline
+                        maxRows={3}
+                        minRows={1}
+                        value={title}
+                        onChange={titleChange}
+                        variant="filled"
+                        />
+                    <TextField
 
-            <Box sx={{ display: 'flex', flexWrap: 'wrap', alignContent: "center", justifyContent: "left", px: 8, m: 2 }}>
-                <Paper sx={{ boxShadow: '4', backgroundColor: 'transparent' }} elevation={3}>
-                <TextField
-                        sx={{ m: 2, width: '50ch', backgroundColor: 'white' }}
-                    id="title"
-                    label="Title"
-                    multiline
-                    maxRows={3}
-                    minRows={1}
-                    value={title}
-                    onChange={titleChange}
-                    variant="filled"
-                    />
-                    </Paper>
-            </Box>
+                        sx={{ boxShadow: '2', my: 2, width: '100%', backgroundColor: 'white' }}
+                        id="PostContent"
+                        label="Post Content"
+                        multiline
+                        maxRows={25}
+                        minRows={10}
+                        value={content}
+                        onChange={contentChange}
+                        variant="filled"
 
-            <Box sx={{ display: 'flex', flexWrap: 'wrap', alignContent: "center", justifyContent: "left", px: 8, m: 2 }}>
-                <Paper sx={{ boxShadow: '4', backgroundColor: 'transparent' }} elevation={3}>
-                <TextField
-                        sx={{ m: 2, width: '100ch', backgroundColor: 'white' }}
-
-                    id="PostContent"
-                    label="Post Content"
-                    multiline
-                    maxRows={25}
-                    minRows={10}
-                    value={content}
-                    onChange={contentChange}
-                    variant="filled"
-                    />
-                    </Paper>
-            </Box>
-
-            <Box sx={{ display: 'flex', flexWrap: 'wrap', alignContent: "center", justifyContent: "left", px: 8, m: 2 }}>
-                <Paper sx={{ width: 200, boxShadow: '4', backgroundColor: 'transparent' }} elevation={3}>
-                    <FormControl fullWidth>
-                        <InputLabel id="demo-simple-select-label">Category</InputLabel>
-                        <Select
-                            labelId="demo-simple-select-label"
-                            id="demo-simple-select"
-                            value={tag}
-                            label="Category"
-                            onChange={tagChange}
-                        >
-                            {allTags.map((data:any,id:any)=>{
-                                return <MenuItem value={data}>{data.CategoryName}</MenuItem>
-                            })}
-                        </Select>
-                    </FormControl>
+                        />
+                    <Box display={'flex'}>
+                        <ComboBox />
+                        <Paper sx={{ boxShadow: '4', backgroundColor: 'white' , ml:1, width:'50%'}} elevation={3}>
+                            <TextField
+                                id="image"
+                                label="Image URL"
+                                multiline
+                                maxRows={3}
+                                minRows={1}
+                                value={image}
+                                onChange={imageChange}
+                                variant="filled"
+                            />
+                        </Paper>
+                    </Box>
                 </Paper>
+                <Box sx={{ mt:2, display: 'flex', flexWrap: 'wrap', justifyContent: "right"}}>
+                    <Button
+                        sx={{ mr: 2, width: "15ch", justifyContent: "center" }}
+                        variant="contained"
+                        color="warning">
+                        Cancel
+                    </Button>
+                    <Button
+                        sx={{ width: "15ch", justifyContent: "center" }}
+                        onClick={sendToDB}
+                        variant="contained"
+                        color="success">
+                        Create
+                    </Button>
+                </Box>
             </Box>
-
-            <Box sx={{ display: 'flex', flexWrap: 'wrap', alignContent: "center", justifyContent: "left", px: 8, m: 2 }}>
-                <Paper sx={{ boxShadow: '4', backgroundColor: 'transparent' }} elevation={3}>
-                <TextField
-                        sx={{ m: 2, width: '50ch', backgroundColor: 'white' }}
-                    id="image"
-                    label="Image URL"
-                    multiline
-                    maxRows={3}
-                    minRows={1}
-                    value={image}
-                    onChange={imageChange}
-                    variant="filled"
-                    />
-                    </Paper>
-            </Box>
-
-
-            <Box sx={{ display: 'flex', flexWrap: 'wrap', alignContent: "center", justifyContent: "left", px: 8 }}>
-                <Button
-                    component={Link} to="/"
-                    sx={{ m: 2, width: "15ch", justifyContent: "left" }}
-                    onClick={sendToDB}
-                    variant="contained"
-                    color="success">
-                    Post:
-                </Button>
-            </Box>
-
+            {DragDrop(props)}
+            {redirect ? <Redirect to={string}/> : null}
         </div>
     )
 };
