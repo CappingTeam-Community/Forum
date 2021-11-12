@@ -1,4 +1,4 @@
-import { BoxProps, Button } from '@mui/material';
+import {BoxProps, Button, Paper} from '@mui/material';
 import { Card } from '@mui/material';
 import { CardContent } from '@mui/material';
 import { CardActions } from '@mui/material';
@@ -36,7 +36,7 @@ class DiscoveryComponet extends Component<PropsCat, {}>{
     }
     render() {
         return (
-            <Container >
+            <Container>
                 <Card sx={{ mb:2, height:300, width: 250 }}>
                     <CardActionArea href={this.route}>
                         <CardMedia

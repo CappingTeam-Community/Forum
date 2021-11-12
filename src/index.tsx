@@ -5,10 +5,14 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+// Support for .env file, if we decide to use Auth0
+import * as dotenv from 'dotenv';
+dotenv.config();
+
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+        <App />
   </React.StrictMode>,
   document.getElementById('root'),
 );

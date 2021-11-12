@@ -16,7 +16,7 @@ Install Node.js at https://nodejs.org/en/download/
 ### Material UI
 Material UI is the UI component Library of choice.
 
-`npm install @mui/material @mui/styles @mui/icons-material @emotion/react @emotion/styled`
+`npm install @mui/material @mui/styles @mui/icons-material @emotion/react @emotion/styled cors @types/node dotenv`
 
 
 For more info: https://mui.com/
@@ -73,7 +73,14 @@ Clone the Repo (Main Devs)
 4. `git clone COPIED_URL`
 5. Enter Github Username
 6. Enter Personal Access Token
-   7. Settings -> Developer Settings -> Personal Access Token -> Generate New Token
+   7. Account -> Developer Account -> Personal Access Token -> Generate New Token
+
+### Auth0
+1. For Developers: Auth0 credentials make public under .env files. To get access to Auth0 application information, 
+email developer at 'blynch1751@gmail.com'
+   1. Note: any change to .env files require an `npm start`
+2. For Users: 
+
 
 #### Fixing Issues
 1. Make sure NOT to make changes directly on master. Create a new branch, name the branch FIRSTNAME-LASTNAME-ISSUENUMBER

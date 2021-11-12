@@ -1,7 +1,6 @@
 import * as React from 'react';
 import styles from './Header.module.css';
 import { AppBar, Box, Toolbar, IconButton, Typography, InputBase, Badge, MenuItem, Menu, styled, Button, ButtonProps} from '@mui/material';
-import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import HomeIcon from '@mui/icons-material/Home';
@@ -9,6 +8,7 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import { NavLink } from "react-router-dom";
 import { purple } from '@mui/material/colors';
 import {common} from '@mui/material/colors'
+import {Dispatch, FC} from "react";
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
     color: 'inherit',
@@ -21,19 +21,28 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 const ColorButton = styled(Button)<ButtonProps>(({ theme }) => ({
-    color: theme.palette.getContrastText(purple[500]),
-    backgroundColor: purple[500],
+    color: 'rgb(255,255,255)',
+    backgroundColor: theme.palette.secondary.main,
     '&:hover': {
         backgroundColor: purple[700],
     },
+    textDecoration: 'none'
 }));
 
-function Header() {
+type Props = {
+    auth: any,
+    setAuth: Dispatch<boolean>
+}
+
+const Header: FC<Props> = (props): JSX.Element => {
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
     const isMenuOpen = Boolean(anchorEl);
     const menuId = 'navBar';
     const notificationCount = 0;
-    var loggedIn = false;
+    
+    function handleLogout() {
+        props.setAuth(false);
+    }
 
     const accountMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorEl(event.currentTarget);
@@ -53,46 +62,27 @@ function Header() {
             open={isMenuOpen}
             onClose={accountMenuClose}
         >
-            <MenuItem><NavLink exact to='/setting' style={{textDecoration:'none'}}>Account</NavLink></MenuItem>
-            <MenuItem><NavLink exact to='/login' style={{textDecoration:'none'}}>Login</NavLink></MenuItem>
-            <MenuItem><NavLink exact to='/signup'style={{textDecoration:'none'}}>Signup</NavLink></MenuItem>
-        </Menu>
-    );
+            {props.auth ? (
+                <>
+                    <MenuItem><Button href={'/account'}>Account</Button></MenuItem>
+                    <MenuItem><Button onClick={handleLogout}>Logout</Button></MenuItem>
+                </>
+            ) : (
+                <>
+                    <MenuItem><Button href={'/login'}>Login</Button></MenuItem>
+                    <MenuItem><Button href={'/signup'}>Signup</Button></MenuItem>
+                </>
+            )
+            }
 
-    const [anchorE2, setAnchorE2] = React.useState<null | HTMLElement>(null);
-    const isToolbarOpen = Boolean(anchorE2);
-    const toolId = 'navBar';
 
-    const toolbarOpen = (event: React.MouseEvent<HTMLElement>) => {
-        setAnchorE2(event.currentTarget);
-    };
-    const toolbarClose = () => {
-        setAnchorE2(null);
-    };
-    const renderToolbar = (
-        <Menu
-            anchorEl={anchorE2}
-            anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'left',
-            }}
-            id={toolId}
-            keepMounted
-            open={isToolbarOpen}
-            onClose={toolbarClose}
-        >
-            <MenuItem><NavLink exact to='/post'><ColorButton variant="contained">+ New Post </ColorButton></NavLink></MenuItem>
         </Menu>
     );
 
     return (
         <Box sx={{ flexGrow: 1 }}>
-            <AppBar position="static">
+            <AppBar sx={{backgroundColor:"rgb(70,100,100,0.9)", position:"static"}}>
                 <Toolbar>
-                    <IconButton size="large" edge="start" color="inherit" aria-controls={toolId} onClick={toolbarOpen} sx={{ mr: 2 }}>
-                        <MenuIcon/>
-                        
-                    </IconButton>
                     <NavLink exact to='/'>
                         <IconButton size="large" edge="start" sx={{ color:common["white"], mr:2}}>
                             <HomeIcon />
@@ -103,6 +93,7 @@ function Header() {
                         Community Forum
                     </Typography>
                     <Box sx={{ flexGrow: 1 }} />
+                    <ColorButton href={`./post`} sx={{mr:2}} variant="contained">+ New Post </ColorButton>
                     <div className={styles.search}>
                         <div className={ styles.search_icon_wrapper }>
                             <SearchIcon />
@@ -123,7 +114,6 @@ function Header() {
                 </Toolbar>
             </AppBar>
             {renderMenu}
-            {renderToolbar}
         </Box>
     );
 }
