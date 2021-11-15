@@ -21,13 +21,16 @@ function PostDashboard() {
     function sendToDB() {
         let date = new Date().toJSON().slice(0, 10);
         //make appi call here
+        if (image == "") {
+            image = "https://upload.wikimedia.org/wikipedia/commons/6/6c/No_image_3x4.svg";
+          } 
         Axios.post(`http://localhost:3001/post/insert`,{
             PostTitle: title,
             PostBody: content,
             CategoryID_Post: tag.CategoryID,
             PostDate: date,
             PostImage: image,
-            CreatorID: 1
+            CreatorID: 14
 
         }).then((res) => {
             console.log("res", res.data);
@@ -68,11 +71,11 @@ function PostDashboard() {
     };
 
     //image
-    const [image, setImage] = React.useState('');
-
+    var [image, setImage] = React.useState('');
     const imageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setImage(event.target.value);
     };
+
 
     
     //Template
@@ -144,10 +147,9 @@ function PostDashboard() {
                     value={image}
                     onChange={imageChange}
                     variant="filled"
-                    />
+                    />     
                     </Paper>
             </Box>
-
 
             <Box sx={{ display: 'flex', flexWrap: 'wrap', alignContent: "center", justifyContent: "left", px: 8 }}>
                 <Button
