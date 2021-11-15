@@ -3,7 +3,6 @@ import {Box, Container, CssBaseline, Grid, TextField, Typography} from "@mui/mat
 import Button from "@mui/material/Button";
 import React, {useEffect, useState} from "react";
 import PropTypes from 'prop-types';
-import { useAuth0 } from "@auth0/auth0-react"
 import Axios from "axios";
 import {useHistory} from 'react-router-dom'
 
@@ -13,8 +12,6 @@ function Login() {
     const [password, setPassword] = useState('');
     const history = useHistory();
 
-
-    const { loginWithRedirect } = useAuth0();
 
     // useEffect(() => {
     //     if (email && password) {
@@ -60,9 +57,6 @@ function Login() {
                     </Grid>
                     <Button type='submit' variant='contained' fullWidth sx={{ mt:3, mb:2}}>Continue</Button>
                 </Box>
-                <Button
-                    onClick={() => { loginWithRedirect().then(r => console.log("R",r))}}
-                    id="qsLoginBtn">Auth0 Login</Button>
             </Box>
         </Container>
     )};
