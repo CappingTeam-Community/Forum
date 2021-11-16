@@ -70,18 +70,6 @@ class ForumPage extends React.Component<{}, State> {
             })
     }
 
-    async getCommentsPopular() {
-        window.location.reload();
-        await Axios.get(`http://localhost:3001/post-comment/select/${this.PostID}/popular`)
-            .then(res => {
-                const data = res.data;
-                this.setState({ commentData: data });
-            })
-            console.log("ran commentsPopular")
-            this.runPopular()
-    }
-
-
     private sendToDBComment (event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
         
@@ -127,9 +115,9 @@ class ForumPage extends React.Component<{}, State> {
     };
 
     runPopular() {
-
     }
 
+    
     //Template
     render() {
         return (

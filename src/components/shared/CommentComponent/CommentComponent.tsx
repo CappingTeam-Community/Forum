@@ -10,7 +10,8 @@ import {
     IconButton,
     Typography,
     TabScrollButton,
-    List
+    List,
+    Divider
 } from "@mui/material";
 import {orange, red} from "@mui/material/colors";
 import FavoriteIcon from "@mui/icons-material/Favorite"
@@ -44,7 +45,7 @@ class CommentComponent extends Component<Props, State> {
         super(props);
         this.id = this.props.id;
         this.author = this.props.author;
-        this.date = this.props.date;
+        this.date = new Date(Date.parse(this.props.date)).toDateString();;
         this.tags = this.props.tags;
         this.voteCount = this.props.voteCount;
         this.commentBody = this.props.commentBody;
@@ -79,19 +80,12 @@ class CommentComponent extends Component<Props, State> {
         });
         return (
             <Container sx={{ display: 'flex'}}>
-                <Box sx={{ m:'auto' }}>
-                    <IconButton aria-label="add to favorites" onClick={this.onLikeClick} sx={ this.state.isLiked ? {color: red[500]}: {color:null} }>
-                        <FavoriteIcon />
-                    </IconButton>
-                    <Typography variant='body1' color='text.primary' sx={{ textAlign: 'center'}}>
-                        {this.voteCount}
-                    </Typography>
-                </Box>
-                <Card sx={{width: 650, height: 300}}>
+               
+                <Card sx={{width: 650, height: ""}}>
                     {/* TODO: Replace test with card forum page */}
                         <CardHeader
                             avatar={<Avatar sx={{bgcolor: orange[500]}}>{this.author.charAt(0)}</Avatar>}
-                            subheader={this.author.username}
+                            subheader={this.date}
                         />
                         <Container sx={{ display:'block', pb:3}}>
                         <List style={{maxHeight: '100%', overflow: 'auto'}} >
@@ -109,6 +103,15 @@ class CommentComponent extends Component<Props, State> {
                                 <Button href='commenttest' size='small'sx={{ml:'auto', mr:0}} >Reply</Button>
                             </CardActions>
                             </List>
+                            <Divider />
+                            <Box sx={{ m:'auto' }}>
+                                <IconButton aria-label="add to favorites" onClick={this.onLikeClick} sx={ this.state.isLiked ? {color: red[500]}: {color:null} }>
+                                    <FavoriteIcon />
+                                    <Typography variant='body1' color='text.primary' sx={{ ml: 1, textAlign: 'center'}}>
+                                    {this.voteCount}
+                                </Typography>
+                                </IconButton>
+                            </Box>
                         </Container>
                     </Card>
             </Container>

@@ -8,7 +8,8 @@ import {
     CardMedia,
     Container, Grid,
     IconButton,
-    Typography
+    Typography,
+    Divider
 } from "@mui/material";
 import {orange, red} from "@mui/material/colors";
 import FavoriteIcon from "@mui/icons-material/Favorite"
@@ -101,15 +102,7 @@ class PostComponent extends Component<Props, State> {
 
         return (
             <Container sx={{ display: 'flex'}}>
-                <Box sx={{ m:'auto' }}>
-                    <IconButton aria-label="add to favorites" onClick={this.onLikeClick} sx={ this.state.isLiked ? {color: red[500]}: {color:null} }>
-                        <FavoriteIcon />
-                    </IconButton>
-                    <Typography variant='body1' color='text.primary' sx={{ textAlign: 'center'}}>
-                        {this.voteCount}
-                    </Typography>
-                </Box>
-                <Card sx={{width: 900, height: 260}}>
+                <Card sx={{width: 900, height:""}}>
                     {/* TODO: Replace test with card forum page */}
                     <CardActionArea href={this.route}>
                         <CardHeader
@@ -119,7 +112,7 @@ class PostComponent extends Component<Props, State> {
                             }
                             subheader={this.date}
                         />
-                        <Box sx={{ display:'flex', mb:0, pb:0}}
+                        <Box sx={{ ml: 1.5, display:'flex', mb:0, pb:2}}
 							whiteSpace="pre-line">
                             <CardMedia
                                 component="img"
@@ -135,7 +128,17 @@ class PostComponent extends Component<Props, State> {
                                     </Typography>
                                 </PostBody>
                         </Box>
-                    </CardActionArea>
+                        <Divider />
+                        </CardActionArea>
+                    <Box sx={{ m:'auto' }}>
+                    <IconButton aria-label="add to favorites" onClick={this.onLikeClick} sx={ this.state.isLiked ? {color: red[500]}: {color:null} }>
+                        <FavoriteIcon />
+                        <Typography variant='body1' color='text.primary' sx={{ ml: 1, textAlign: 'center'}}>
+                        {this.voteCount}
+                    </Typography>
+                    </IconButton>
+                    
+                </Box>
                 </Card>
             </Container>
         )};

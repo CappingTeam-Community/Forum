@@ -43,8 +43,33 @@ app.get('/post/select/:id', (req, res) => {
 // Select Posts under a given category
 app.get('/post-category/select/:id', (req, res) => {
     const id = req.params.id;
-    // TODO: delete categoryname after testing
     const sqlSelectPost = "SELECT CategoryName, PostTitle, PostVotes, PostDate, PostID, PostBody, PostImage, UserName FROM Category_tbl, Post_tbl, User_tbl WHERE CategoryID = CategoryID_Post AND CategoryID = ? AND CreatorID = UserID"
+    db.query(sqlSelectPost, [id], (err, result)=> {
+        if (err){
+            console.log("pc error", err);
+        }
+        console.log('result', result);
+        res.send(result);
+    });
+});
+
+//select posts under a given category by likes
+app.get('/post-category/select/:id/popular', (req, res) => {
+    const id = req.params.id;
+    const sqlSelectPost = "SELECT CategoryName, PostTitle, PostVotes, PostDate, PostID, PostBody, PostImage, UserName FROM Category_tbl, Post_tbl, User_tbl WHERE CategoryID = CategoryID_Post AND CategoryID = ? AND CreatorID = UserID ORDER BY PostVotes DESC"
+    db.query(sqlSelectPost, [id], (err, result)=> {
+        if (err){
+            console.log("pc error", err);
+        }
+        console.log('result', result);
+        res.send(result);
+    });
+});
+
+//select posts under a given category by date
+app.get('/post-category/select/:id/recent', (req, res) => {
+    const id = req.params.id;
+    const sqlSelectPost = "SELECT CategoryName, PostTitle, PostVotes, PostDate, PostID, PostBody, PostImage, UserName FROM Category_tbl, Post_tbl, User_tbl WHERE CategoryID = CategoryID_Post AND CategoryID = ? AND CreatorID = UserID ORDER BY PostDate"
     db.query(sqlSelectPost, [id], (err, result)=> {
         if (err){
             console.log("pc error", err);
@@ -86,7 +111,7 @@ app.get('/post-comment/select/:id/popular', (req, res) => {
 app.get('/post-comment/select/:id/oldest', (req, res) => {
     const id = req.params.id;
     // TODO: delete posttitle after testing
-    const sqlSelectComment = "SELECT PostTitle, Comment, CommentID, CommentDate, CommentVotes, CommentTags, UserName FROM Post_tbl, Comment_tbl, User_tbl WHERE PostID = PostID_Comment AND PostID = ? AND CommenterID = UserID ORDER BY CommentID"
+    const sqlSelectComment = "SELECT PostTitle, Comment, CommentID, CommentDate, CommentVotes, CommentTags, UserName FROM Post_tbl, Comment_tbl, User_tbl WHERE PostID = PostID_Comment AND PostID = ? AND CommenterID = UserID ORDER BY PostDate"
     db.query(sqlSelectComment, [id], (err, result) => {
         if (err){
             console.log(err);
@@ -96,6 +121,7 @@ app.get('/post-comment/select/:id/oldest', (req, res) => {
     });
 });
 
+//select comments by tags
 app.get('/post-comment/select/:id/tags', (req, res) => {
     const id = req.params.id;
     // TODO: delete posttitle after testing
@@ -162,7 +188,7 @@ app.post('/signup/insert', (req, res) => {
     });
 ;})
 
-//insert
+//insert category
 app.post('/category/insert', (req, res) => {
     const CategoryName = req.body.CategoryName;
     const CategoryDescription = req.body.CategoryDescription;
@@ -186,6 +212,7 @@ app.post('/post/insert', (req, res) => {
     });
 });
 
+//insert comment
 app.post('/comment/insert', (req, res) => {
     const Comment = req.body.Comment;
     const CommentDate = req.body.CommentDate;
