@@ -90,14 +90,16 @@ function App() {
                                     <Signup auth={auth} setAuth={setAuth} userData={userData} setUserData={setUserData}/>
                                 </Route>
                                 <Route exact path='/settings'>
-                                    <SettingsPage />
+                                     <SettingsPage auth={auth} setAuth={setAuth} userData={userData} setUserData={setUserData} />
                                 </Route>
                                 <Route exact path='/forum/:PostID' render={(props) => <ForumPage {...props} />} />
                                 <Route exact path='/forum/:PostID/popular' render={(props) => <ForumPagePopular {...props} />} />
                                 <Route exact path='/forum/:PostID/oldest' render={(props) => <ForumPageOldest {...props} />} />
                                 <Route exact path='/forum/:PostID/tags' render={(props) => <ForumPageTags {...props} />} />
-                            </Switch>
+                    </Switch>
+
                         </BrowserRouter>
+                <Footer/>
                 </div>
             </ThemeProvider>
     );
