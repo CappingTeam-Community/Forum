@@ -16,7 +16,7 @@ Install Node.js at https://nodejs.org/en/download/
 ### Material UI
 Material UI is the UI component Library of choice.
 
-`npm install @mui/material @mui/styles @mui/icons-material @emotion/react @emotion/styled cors @types/node dotenv`
+`npm install @mui/material @mui/styles @mui/icons-material @emotion/react @emotion/styled cors @types/node dotenv react-icons`
 
 
 For more info: https://mui.com/
