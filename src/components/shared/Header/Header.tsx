@@ -1,14 +1,14 @@
 import * as React from 'react';
 import styles from './Header.module.css';
-import { AppBar, Box, Toolbar, IconButton, Typography, InputBase, Badge, MenuItem, Menu, styled, Button, ButtonProps} from '@mui/material';
+import { AppBar, Box, Toolbar, IconButton, Typography, InputBase, Badge, MenuItem, Menu, styled, Button, ButtonProps } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import HomeIcon from '@mui/icons-material/Home';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import { NavLink } from "react-router-dom";
 import { purple } from '@mui/material/colors';
-import {common} from '@mui/material/colors'
-import {Dispatch, FC} from "react";
+import { common } from '@mui/material/colors'
+import { Dispatch, FC } from "react";
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
     color: 'inherit',
@@ -39,7 +39,7 @@ const Header: FC<Props> = (props): JSX.Element => {
     const isMenuOpen = Boolean(anchorEl);
     const menuId = 'navBar';
     const notificationCount = 0;
-    
+
     function handleLogout() {
         props.setAuth(false);
     }
@@ -71,6 +71,7 @@ const Header: FC<Props> = (props): JSX.Element => {
                 <>
                     <MenuItem><Button href={'/login'}>Login</Button></MenuItem>
                     <MenuItem><Button href={'/signup'}>Signup</Button></MenuItem>
+                    <MenuItem><Button href={'/settings'}>Settings</Button></MenuItem>
                 </>
             )
             }
@@ -81,10 +82,10 @@ const Header: FC<Props> = (props): JSX.Element => {
 
     return (
         <Box sx={{ flexGrow: 1 }}>
-            <AppBar sx={{backgroundColor:"rgb(70,100,100,0.9)", position:"static"}}>
+            <AppBar sx={{ backgroundColor: "rgb(70,100,100,0.9)", position: "static" }}>
                 <Toolbar>
                     <NavLink exact to='/'>
-                        <IconButton size="large" edge="start" sx={{ color:common["white"], mr:2}}>
+                        <IconButton size="large" edge="start" sx={{ color: common["white"], mr: 2 }}>
                             <HomeIcon />
                         </IconButton>
                     </NavLink>
@@ -93,9 +94,9 @@ const Header: FC<Props> = (props): JSX.Element => {
                         Community Forum
                     </Typography>
                     <Box sx={{ flexGrow: 1 }} />
-                    <ColorButton href={`./post`} sx={{mr:2}} variant="contained">+ New Post </ColorButton>
+                    <ColorButton href={`./post`} sx={{ mr: 2 }} variant="contained">+ New Post </ColorButton>
                     <div className={styles.search}>
-                        <div className={ styles.search_icon_wrapper }>
+                        <div className={styles.search_icon_wrapper}>
                             <SearchIcon />
                         </div>
                         <StyledInputBase placeholder="Search Forum"></StyledInputBase>
