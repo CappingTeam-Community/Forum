@@ -1,6 +1,5 @@
 import { Avatar, Box, Button, Card, CardActionArea, CardActions, CardContent, Checkbox, Container, CssBaseline, FormControlLabel, FormGroup, Grid, IconButton, Paper, Popover, TextField, Typography } from '@mui/material';
 import React, { Dispatch, FC, useEffect, useState } from 'react';
-import styles from './SettingsPage.module.css';
 import { styled } from '@mui/material/styles';
 import Axios from 'axios';
 import { UserState } from '../../App';
@@ -160,8 +159,7 @@ const Settings: FC<UserProps> = (props): JSX.Element => {
 
     //Template
     return (
-        <div className={styles.SettingsPage}>
-
+        <div>
             <Box sx={{ display: 'flex', flexWrap: 'wrap', alignContent: "center", justifyContent: "left", px: 8, m: 2 }}>
 
                 <label htmlFor="icon-button-file">
