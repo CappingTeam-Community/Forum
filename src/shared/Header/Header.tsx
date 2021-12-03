@@ -55,7 +55,7 @@ const Header: FC<Props> = (props): JSX.Element => {
     const isMenuOpen = Boolean(anchorEl);
     const menuId = 'navBar';
     const notificationCount = 0;
-    
+
     function handleLogout() {
         props.setAuth(false);
     }
@@ -87,6 +87,7 @@ const Header: FC<Props> = (props): JSX.Element => {
                 <>
                     <MenuItem><Button href={'/login'}>Login</Button></MenuItem>
                     <MenuItem><Button href={'/signup'}>Signup</Button></MenuItem>
+                    <MenuItem><Button href={'/settings'}>Settings</Button></MenuItem>
                 </>
             )
             }
@@ -97,10 +98,10 @@ const Header: FC<Props> = (props): JSX.Element => {
 
     return (
         <Box sx={{ flexGrow: 1 }}>
-            <AppBar sx={{backgroundColor:"rgb(70,100,100,0.9)", position:"static"}}>
+            <AppBar sx={{ backgroundColor: "rgb(70,100,100,0.9)", position: "static" }}>
                 <Toolbar>
                     <NavLink exact to='/'>
-                        <IconButton size="large" edge="start" sx={{ color:common["white"], mr:2}}>
+                        <IconButton size="large" edge="start" sx={{ color: common["white"], mr: 2 }}>
                             <HomeIcon />
                         </IconButton>
                     </NavLink>
@@ -118,7 +119,7 @@ const Header: FC<Props> = (props): JSX.Element => {
                         <Typography sx={{ml:.5}}>Post</Typography>
                     </ColorButton>
                     <div className={styles.search}>
-                        <div className={ styles.search_icon_wrapper }>
+                        <div className={styles.search_icon_wrapper}>
                             <SearchIcon />
                         </div>
                         <StyledInputBase placeholder="Search Forum"></StyledInputBase>

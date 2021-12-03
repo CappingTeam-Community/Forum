@@ -12,6 +12,7 @@ import {ThemeProvider, createTheme} from "@mui/material"
 import { useState} from "react";
 import Settings from './pages/Settings/Settings';
 import BreadCrumbs from './shared/BreadCrumbs/BreadCrumbs';
+import Footer from "./shared/Footer/Footer";
 
 export interface UserState {
     firstName: any,
@@ -67,10 +68,10 @@ function App() {
                                     <CreatePost />
                                 </Route>
                                 <Route exact path='/user'>
-                                    <Settings />
+                                    <Settings auth={auth} setAuth={setAuth} userData={userData} setUserData={setUserData}/>
                                 </Route>
                                 <Route exact path='/settings'>
-                                    <Settings />
+                                    <Settings auth={auth} setAuth={setAuth} userData={userData} setUserData={setUserData} />
                                 </Route>
                                 <Route exact path='/login'>
                                     <Login auth={auth} setAuth={setAuth} userData={userData} setUserData={setUserData} />
@@ -80,6 +81,7 @@ function App() {
                                 </Route>
                                 <Route exact path='/forum/:PostID' render={(props) => <Forum {...props} />} />
                             </Switch>
+                            <Footer/>
                         </BrowserRouter>
                 </div>
             </ThemeProvider>
