@@ -4,7 +4,6 @@ var mysql = require('mysql');
 var bodyParser = require('body-parser');
 var cors = require('cors');
 
-
 var db = mysql.createConnection({
     host: 'localhost',
     user: 'root',
@@ -56,7 +55,7 @@ app.get('/post-category/select/:id', (req, res) => {
 });
 
 // Select Comments under a given post
-app.get('/post-comment/select/:id', (req, res) => {
+app.get('/post-comment/select/:id/recent', (req, res) => {
     const id = req.params.id;
     // TODO: delete posttitle after testing
     const sqlSelectComment = "SELECT PostTitle, Comment, CommentID, CommentDate, CommentVotes, CommentTags, UserName FROM Post_tbl, Comment_tbl, User_tbl WHERE PostID = PostID_Comment AND PostID = ? AND CommenterID = UserID ORDER BY CommentID DESC"
@@ -225,7 +224,6 @@ app.post('/post/insert', (req, res) => {
     });
 });
 
-
 app.post('/comment/insert', (req, res) => {
     const Comment = req.body.Comment;
     const CommentDate = req.body.CommentDate;
@@ -238,8 +236,6 @@ app.post('/comment/insert', (req, res) => {
     });
 });
 
-
 app.listen(3001, ()=>{
     console.log("Running");
-}); 
-
+});

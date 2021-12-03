@@ -1,25 +1,17 @@
 import * as React from 'react';
 import './App.css';
-
-import Home from './components/pages/HomeDashboard/HomeDashboard';
-import PostDashboard from "./components/pages/PostDashboard/PostDashboard";
-import UserDashboard from "./components/pages/UserDashboard/UserDashboard";
-import Footer from './components/shared/Footer/Footer';
-import Header from './components/shared/Header/Header';
-import Login from './components/pages/Login/Login';
-import PostListing from './components/pages/PostListing/PostListing';
-import Signup from './components/pages/Signup/Signup';
+import CreatePost from "./pages/CreatePost/CreatePost";
+import Header from './shared/Header/Header';
+import Login from './pages/Login/Login';
+import PostListing from './pages/PostListings/PostListing';
+import Signup from './pages/Signup/Signup';
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import DiscoveryPage from "./components/pages/DiscoveryPage/DiscoveryPage";
-import ForumPage from './components/pages/ForumPage/ForumPage';
-import {ThemeProvider, createTheme, MenuItem, Button} from "@mui/material"
-import {useEffect, useState} from "react";
-import SettingsPage from './components/pages/SettingsPage/SettingsPage';
-import BreadCrumbs from './components/shared/BreadCrumbs/BreadCrumbs';
-
-import ForumPagePopular from './components/pages/ForumPage/ForumPagePopular';
-import ForumPageOldest from './components/pages/ForumPage/ForumPageOldest';
-import ForumPageTags from './components/pages/ForumPage/ForumPageTags';
+import Discover from "./pages/Discover/Discover";
+import Forum from './pages/Forum/Forum';
+import {ThemeProvider, createTheme} from "@mui/material"
+import { useState} from "react";
+import Settings from './pages/Settings/Settings';
+import BreadCrumbs from './shared/BreadCrumbs/BreadCrumbs';
 
 export interface UserState {
     firstName: any,
@@ -58,13 +50,7 @@ function App() {
     });
     const [auth, setAuth] = useState(false);
 
-    useEffect(() => {
-        console.log("userData", userData);
-    }, [userData]);
-    useEffect(() => {
-        console.log("auth", auth);
-    }, [auth]);
-
+    // TODO: 2 settings routes
     return (
             <ThemeProvider theme={theme}>
                 <div className='App'>
@@ -73,29 +59,26 @@ function App() {
                             <BreadCrumbs/>
                             <Switch>
                                 <Route exact path='/'>
-                                        <DiscoveryPage />
+                                        <Discover />
                                 </Route>
                                 <Route exact path='/category/:CategoryID' render={(props) => <PostListing {...props} />} />
                                 <Route exact path='/category/' render={(props) => <PostListing {...props} />} />
                                 <Route exact path='/post'>
-                                    <PostDashboard />
+                                    <CreatePost />
                                 </Route>
                                 <Route exact path='/user'>
-                                    <UserDashboard />
+                                    <Settings />
+                                </Route>
+                                <Route exact path='/settings'>
+                                    <Settings />
                                 </Route>
                                 <Route exact path='/login'>
-                                    <Login />
+                                    <Login auth={auth} setAuth={setAuth} userData={userData} setUserData={setUserData} />
                                 </Route>
                                 <Route exact path='/signup'>
                                     <Signup auth={auth} setAuth={setAuth} userData={userData} setUserData={setUserData}/>
                                 </Route>
-                                <Route exact path='/settings'>
-                                    <SettingsPage />
-                                </Route>
-                                <Route exact path='/forum/:PostID' render={(props) => <ForumPage {...props} />} />
-                                <Route exact path='/forum/:PostID/popular' render={(props) => <ForumPagePopular {...props} />} />
-                                <Route exact path='/forum/:PostID/oldest' render={(props) => <ForumPageOldest {...props} />} />
-                                <Route exact path='/forum/:PostID/tags' render={(props) => <ForumPageTags {...props} />} />
+                                <Route exact path='/forum/:PostID' render={(props) => <Forum {...props} />} />
                             </Switch>
                         </BrowserRouter>
                 </div>
