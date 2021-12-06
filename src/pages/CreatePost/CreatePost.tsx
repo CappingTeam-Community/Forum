@@ -3,9 +3,6 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import {
     Button,
-    Dialog,
-    DialogActions, DialogContent,
-    DialogTitle,
     FormControl,
     InputLabel,
     MenuItem,
@@ -13,14 +10,13 @@ import {
     Select,
     Typography
 } from '@mui/material';
-import {RefObject, useEffect, useLayoutEffect, useState} from "react";
+import {useEffect, useState} from "react";
 import Axios from "axios";
 import {Redirect} from 'react-router-dom';
 
-function CreatePost(props:any) {
+function CreatePost() {
     const [allTags, setAllTags] = useState<any>([]);
     const [tag, setTag] = React.useState<any>();
-    const [dialog, setDialog] = React.useState(false);
     const [title, setTitle] = React.useState('');
     const [content, setContent] = React.useState('');
     const [image, setImage] = React.useState('');
@@ -48,7 +44,6 @@ function CreatePost(props:any) {
         Axios.get(`http://localhost:3001/category/select/`)
             .then(res => {
                 const data = res.data;
-                console.log("categoryData", data);
                 setAllTags(data);
             });
     },[]);
@@ -66,13 +61,6 @@ function CreatePost(props:any) {
     const tagChange = (event: { target: { value: React.SetStateAction<string>; }; }) => {
         setTag(event.target.value);
     };
-    const handleDialog = () => {
-        setDialog(!dialog);
-    }
-    const handleSubmitDialog = () => {
-        // Save media to database
-        handleDialog();
-    }
     const imageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setImage(event.target.value);
     };
@@ -87,116 +75,13 @@ function CreatePost(props:any) {
                     label="Category"
                     onChange={tagChange}
                 >
-                    {allTags.map((data:any,id:any)=>{
+                    {allTags.map((data:any)=>{
                         return <MenuItem value={data}>{data.CategoryName}</MenuItem>
                     })}
                 </Select>
             </FormControl>
         </Paper>
     )
-    function DragDrop(props:any) {
-        const [drag, setDrag] = useState(false);
-        let dragCount = 0;
-
-        let dropRef:RefObject<any> = React.createRef();
-
-        const handleDragEnter = (e:any) => {
-            e.preventDefault();
-            e.stopPropagation();
-            dragCount++;
-            if (e.dataTransfer.items && e.dataTranswer.items.length > 0) {
-                setDrag(true);
-            }
-        }
-        const handleDragLeave = (e:any) => {
-            e.preventDefault();
-            e.stopPropagation();
-            dragCount--;
-            if (dragCount > 0) return
-            setDrag(false)
-        }
-        const handleDragOver = (e:any) => {
-            e.preventDefault();
-            e.stopPropagation();
-        }
-        const handleDrop = (e:any) => {
-            e.preventDefault();
-            e.stopPropagation();
-        }
-
-        useEffect(() => {
-            dragCount = 0;
-            let div:any = dropRef.current;
-            if (div) {
-                div.addEventListener('dragenter',handleDragEnter)
-                div.addEventListener('dragleave',handleDragLeave)
-                div.addEventListener('dragover',handleDragOver)
-                div.addEventListener('drop',handleDrop)
-            }
-        }, []);
-        useLayoutEffect(() => {
-            let div:any = dropRef.current;
-            if (div) {
-                div.addEventListener('dragenter',handleDragEnter)
-                div.addEventListener('dragleave',handleDragLeave)
-                div.addEventListener('dragover',handleDragOver)
-                div.addEventListener('drop',handleDrop)
-            }
-        },[]);
-
-        return (
-            <Dialog
-                open={dialog}
-                onClose={handleDialog}
-            >
-                <DialogTitle id="alert-dialog-title">
-                   Drag Media to Import
-                </DialogTitle>
-                <DialogContent>
-                    <div
-                        ref={dropRef}
-                        style={{display: 'inline-block', position: 'relative'}}
-                    >
-                        HERE
-                        {drag &&
-                            <div
-                                style={{
-                                    border: 'dashed grey 4px',
-                                    backgroundColor: 'rgba(255,255,255,.8)',
-                                    position: 'absolute',
-                                    top: 0,
-                                    bottom: 0,
-                                    left: 0,
-                                    right: 0,
-                                    zIndex: 9999
-                                }}
-                            >
-                                <div
-                                    style={{
-                                        position: 'absolute',
-                                        top: '50%',
-                                        right: 0,
-                                        left: 0,
-                                        textAlign: 'center',
-                                        color: 'grey',
-                                        fontSize: 36
-                                    }}
-                                >
-                                    <div>drop here :)</div>
-                                </div>
-                            </div>
-                        }
-                        {props.children}
-                    </div>
-                </DialogContent>
-                <DialogActions>
-                    <Button onClick={handleSubmitDialog} autoFocus>
-                        Add
-                    </Button>
-                </DialogActions>
-            </Dialog>
-        )
-    }
     //Template
     return (
         <div style={{marginLeft:'25vw', marginTop:'5vh'}}>
@@ -259,7 +144,6 @@ function CreatePost(props:any) {
                     </Button>
                 </Box>
             </Box>
-            {DragDrop(props)}
             {redirect ? <Redirect to={string}/> : null}
         </div>
     )
