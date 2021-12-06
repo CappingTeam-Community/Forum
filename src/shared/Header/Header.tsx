@@ -12,8 +12,7 @@ import {
     Menu,
     styled,
     Button,
-    ButtonProps,
-    ListItem
+    ButtonProps
 } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import AccountCircle from '@mui/icons-material/AccountCircle';
@@ -66,35 +65,6 @@ const Header: FC<Props> = (props): JSX.Element => {
     const accountMenuClose = () => {
         setAnchorEl(null);
     };
-    const renderMenu = (
-        <Menu
-            anchorEl={anchorEl}
-            anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-            }}
-            id={menuId}
-            keepMounted
-            open={isMenuOpen}
-            onClose={accountMenuClose}
-        >
-            {props.auth ? (
-                <>
-                    <ListItem><Button href={'/account'}>Account</Button></ListItem>
-                    <ListItem><Button onClick={handleLogout}>Logout</Button></ListItem>
-                </>
-            ) : (
-                <>
-                    <MenuItem><Button href={'/login'}>Login</Button></MenuItem>
-                    <MenuItem><Button href={'/signup'}>Signup</Button></MenuItem>
-                    <MenuItem><Button href={'/settings'}>Settings</Button></MenuItem>
-                </>
-            )
-            }
-
-
-        </Menu>
-    );
 
     return (
         <Box sx={{ flexGrow: 1 }}>
@@ -137,7 +107,37 @@ const Header: FC<Props> = (props): JSX.Element => {
                     </Box>
                 </Toolbar>
             </AppBar>
-            {renderMenu}
+            { props.auth ? (
+                <Menu
+                    anchorEl={anchorEl}
+                    anchorOrigin={{
+                        vertical: 'top',
+                        horizontal: 'right',
+                    }}
+                    id={menuId}
+                    keepMounted
+                    open={isMenuOpen}
+                    onClose={accountMenuClose}
+                >
+                    <MenuItem><Button href={'/settings'}>Settings</Button></MenuItem>
+                    <MenuItem><Button href={'/discover'} onClick={handleLogout}>Logout</Button></MenuItem>
+                </Menu>
+            ) : (
+                <Menu
+                    anchorEl={anchorEl}
+                    anchorOrigin={{
+                        vertical: 'top',
+                        horizontal: 'right',
+                    }}
+                    id={menuId}
+                    keepMounted
+                    open={isMenuOpen}
+                    onClose={accountMenuClose}
+                >
+                    <MenuItem><Button href={'/login'}>Login</Button></MenuItem>
+                    <MenuItem><Button href={'/signup'}>Signup</Button></MenuItem>
+                </Menu>
+            )}
         </Box>
     );
 }

@@ -26,7 +26,6 @@ type UserProps = {
 const Signup: FC<UserProps> = (props): JSX.Element => {
     const [categories, setCategories] = useState<any>([]);
     const [redirect, setRedirect] = useState(false);
-    const [showUserInfo, setShowUserInfo] = useState(true);
     const [alert, setAlert] = useState(false);
 
     // TODO: Convert this to one state object
@@ -55,8 +54,6 @@ const Signup: FC<UserProps> = (props): JSX.Element => {
             UserName: props.userData.username,
             Password: props.userData.password,
             Email: props.userData.email
-        }).then(() => {
-            console.log("Inserted")
         });
         setRedirect(true);
     }
@@ -79,15 +76,15 @@ const Signup: FC<UserProps> = (props): JSX.Element => {
     }
     function handleInput(event: React.ChangeEvent<HTMLInputElement> ) {
         event.preventDefault()
-        if (event.currentTarget.id == 'firstName') {
+        if (event.currentTarget.id === 'firstName') {
             setFirstName('firstName')
-        } else if (event.currentTarget.id == 'lastName') {
+        } else if (event.currentTarget.id === 'lastName') {
             setLastName('lastName')
-        } else if (event.currentTarget.id == 'username') {
+        } else if (event.currentTarget.id === 'username') {
             setUsername('username')
-        } else if (event.currentTarget.id == 'email') {
+        } else if (event.currentTarget.id === 'email') {
             setEmail('email')
-        } else if (event.currentTarget.id == 'password') {
+        } else if (event.currentTarget.id === 'password') {
             setPassword('password')
         }
     }
@@ -106,12 +103,10 @@ const Signup: FC<UserProps> = (props): JSX.Element => {
                     temp.email = email
                     temp.password = password
                     props.setUserData(temp);
-                    setShowUserInfo(false);
                 }
             })
     }
     async function authenticate(data:any) {
-        console.log('authenicate', data.get('email'));
         Axios.get(`http://localhost:3001/user/select/email/${data.get('email')}`)
             .then(res => {
                 const data:any = res.data;

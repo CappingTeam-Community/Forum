@@ -19,7 +19,6 @@ function Forum (props:any) {
     const [post, setPost] = useState<any>([]);
     const [comments, setComments] = useState<any>([]);
 
-    const i = 0;
     const PostID = props.match.params.PostID;
 
     const handleChange = (event: SelectChangeEvent) => {
@@ -48,6 +47,7 @@ function Forum (props:any) {
         
         let date = new Date().toJSON().slice(0, 10);
             // TODO: Commenter ID should be current user
+            // TODO: is this right?
             Axios.post(`http://localhost:3001/comment/insert`,{
                 Comment: props.comment.comment,
                 CommentDate: date,
@@ -56,7 +56,7 @@ function Forum (props:any) {
                 CommenterID: 17
     
             }).then(() =>{
-                alert("Inserted")
+                alert(comment)
             });
     }
 
@@ -69,11 +69,11 @@ function Forum (props:any) {
 
     useEffect(() => {
         setBusy(true);
-        getPost();
+        getPost().then(() => {});
     }, []);
     useEffect(() => {
         setBusy(true);
-        getComments();
+        getComments().then(() => {});
     }, [sort, post]);
     useEffect(() => {
         setBusy(false);
