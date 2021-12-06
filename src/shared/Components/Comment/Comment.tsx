@@ -8,7 +8,8 @@ import {
     Container,
     IconButton,
     Typography,
-    List
+    List,
+    Divider
 } from "@mui/material";
 import {orange, red} from "@mui/material/colors";
 import FavoriteIcon from "@mui/icons-material/Favorite"
@@ -77,39 +78,41 @@ class Comment extends Component<Props, State> {
         });
         return (
             <Container sx={{ display: 'flex'}}>
-                <Box sx={{ m:'auto' }}>
-                    <IconButton aria-label="add to favorites" onClick={this.onLikeClick} sx={ this.state.isLiked ? {color: red[500]}: {color:null} }>
-                        <FavoriteIcon />
-                    </IconButton>
-                    <Typography variant='body1' color='text.primary' sx={{ textAlign: 'center'}}>
-                        {this.voteCount}
-                    </Typography>
-                </Box>
-                <Card sx={{width: 650, height: 300}}>
-                    {/* TODO: Replace test with card forum page */}
-                        <CardHeader
-                            avatar={<Avatar sx={{bgcolor: orange[500]}}>{this.author.charAt(0)}</Avatar>}
-                            subheader={this.author.username}
-                        />
-                        <Container sx={{ display:'block', pb:3}}>
-                        <List style={{maxHeight: '100%', overflow: 'auto'}} >
-                            <CardContent>
-                                <CommentBody>
-                                <Typography variant='body2' color='text.secondary' sx={{pl:1,pr:1}}>
-                                    {this.commentBody}
-                                </Typography>
-                                <Typography color='text.secondary' sx={{pl:1,pr:1}}>
-                                    #{this.tags}
-                                </Typography>
-                                </CommentBody>
-                            </CardContent>
-                            <CardActions>
-                                <Button href='commenttest' size='small'sx={{ml:'auto', mr:0}} >Reply</Button>
-                            </CardActions>
-                            </List>
-                        </Container>
-                    </Card>
-            </Container>
+               
+            <Card sx={{width: 650, height: ""}}>
+                {/* TODO: Replace test with card forum page */}
+                    <CardHeader
+                        avatar={<Avatar sx={{bgcolor: orange[500]}}>{this.author.charAt(0)}</Avatar>}
+                        subheader={this.date}
+                    />
+                    <Container sx={{ display:'block', pb:3}}>
+                    <List style={{maxHeight: '100%', overflow: 'auto'}} >
+                        <CardContent>
+                            <CommentBody>
+                            <Typography variant='body2' color='text.secondary' sx={{pl:1,pr:1}}>
+                                {this.commentBody}
+                            </Typography>
+                            <Typography color='text.secondary' sx={{pl:1,pr:1}}>
+                                #{this.tags}
+                            </Typography>
+                            </CommentBody>
+                        </CardContent>
+                        <CardActions>
+                            <Button href='commenttest' size='small'sx={{ml:'auto', mr:0}} >Reply</Button>
+                        </CardActions>
+                        </List>
+                        <Divider />
+                        <Box sx={{ m:'auto' }}>
+                            <IconButton aria-label="add to favorites" onClick={this.onLikeClick} sx={ this.state.isLiked ? {color: red[500]}: {color:null} }>
+                                <FavoriteIcon />
+                                <Typography variant='body1' color='text.primary' sx={{ ml: 1, textAlign: 'center'}}>
+                                {this.voteCount}
+                            </Typography>
+                            </IconButton>
+                        </Box>
+                    </Container>
+                </Card>
+        </Container>
         )};
 }
 export default Comment;
