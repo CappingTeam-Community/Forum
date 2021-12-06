@@ -19,12 +19,15 @@ function CreatePost() {
     const [tag, setTag] = React.useState<any>();
     const [title, setTitle] = React.useState('');
     const [content, setContent] = React.useState('');
-    const [image, setImage] = React.useState('');
+    var [image, setImage] = React.useState('');
     const [redirect, setRedirect] = React.useState(false);
     const [string, setString] = React.useState('');
 
     function sendToDB() {
         let date = new Date().toJSON().slice(0, 10);
+        if (image == "") {
+            image = "https://upload.wikimedia.org/wikipedia/commons/6/6c/No_image_3x4.svg";
+          } 
         Axios.post(`http://localhost:3001/post/insert`,{
             PostTitle: title,
             PostBody: content,
