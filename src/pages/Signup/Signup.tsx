@@ -191,7 +191,7 @@ const Signup: FC<UserProps> = (props): JSX.Element => {
                         <Typography sx={{fontSize: 25, color: 'black'}}>
                             Sign Up
                         </Typography>
-                        <Grid item sx={{display: 'flex'}}>
+                        <Grid item sx={{display: 'flex', ml: 2, mr: 2}}>
                             <TextField
                                 margin="normal"
                                 required
@@ -211,7 +211,7 @@ const Signup: FC<UserProps> = (props): JSX.Element => {
                                 sx={{bgcolor:'rgba(255,255,255,.8)', borderRadius:'7px', ml:.5}}
                             />
                         </Grid>
-                        <Grid item sx={{width:'100%'}}>
+                        <Grid item sx={{width:'90%'}}>
                             <TextField
                                 margin="normal"
                                 required
@@ -222,7 +222,18 @@ const Signup: FC<UserProps> = (props): JSX.Element => {
                                 sx={{bgcolor:'rgba(255,255,255,.8)', borderRadius:'7px'}}
                             />
                         </Grid>
-                        <Grid item>
+                        <Grid item sx={{width:'90%'}}>
+                            <TextField
+                                margin="normal"
+                                required
+                                fullWidth
+                                id="username"
+                                label="Username"
+                                onChange={handleInput}
+                                sx={{bgcolor:'rgba(255,255,255,.8)', borderRadius:'7px'}}
+                            />
+                        </Grid>
+                        <Grid item sx={{width:'90%'}}>
                             <TextField
                                 margin="normal"
                                 required
@@ -234,7 +245,7 @@ const Signup: FC<UserProps> = (props): JSX.Element => {
                                 sx={{bgcolor:'rgba(255,255,255,.8)', borderRadius:'7px'}}
                             />
                         </Grid>
-                        <Grid item>
+                        <Grid item sx={{width:'90%'}}>
                             <TextField
                                 margin="normal"
                                 required
@@ -247,7 +258,6 @@ const Signup: FC<UserProps> = (props): JSX.Element => {
                             />
                         </Grid>
                         <Button
-                            fullWidth
                             variant='contained'
                             onClick={onContinue}
                             sx={{
@@ -261,12 +271,12 @@ const Signup: FC<UserProps> = (props): JSX.Element => {
                         </Button>
                         <Grid container>
                             <Grid item xs>
-                                <Link href="#" variant="body2" sx={{textDecoration:'none'}}>
+                                <Link href="#" variant="body2" sx={{textDecoration:'none', ml: 3}}>
                                     {"Forgot password?"}
                                 </Link>
                             </Grid>
                             <Grid item>
-                                <Link href="#" variant="body2" sx={{textDecoration:'none'}}>
+                                <Link href="#" variant="body2" sx={{textDecoration:'none', mr: 3}}>
                                     {"Login"}
                                 </Link>
                             </Grid>
