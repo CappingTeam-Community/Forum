@@ -11,8 +11,8 @@ Install Node.js at https://nodejs.org/en/download/
 ### Git
 Make sure git is properly installed, following this tutorial: https://github.com/git-guides/install-git\
 
-### CLone the repository
-`git clone ...`
+### Clone the repository
+`git clone https://github.com/CappingTeam-Community/Forum.git`
 
 ### React
 `npm install react react-router-dom`
