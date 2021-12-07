@@ -14,8 +14,9 @@ import {IconContext} from "react-icons";
 
 function Forum (props:any) {
     const [busy, setBusy] = useState(true);
-    const [sort, setSort] = useState('Recent')
-    const [comment, setComment] = useState<any>({body:'', tag:''})
+    const [sort, setSort] = useState('Recent');
+    const [comment, setComment] = useState('');
+    const [tag, setTag] = useState('');
     const [post, setPost] = useState<any>([]);
     const [comments, setComments] = useState<any>([]);
 
@@ -43,28 +44,37 @@ function Forum (props:any) {
             })
     };
 
-    function sendToDBComment (event: React.FormEvent<HTMLFormElement>) {
-        event.preventDefault();
+    function sendToDBComment() {
         
         let date = new Date().toJSON().slice(0, 10);
             // TODO: Commenter ID should be current user
             Axios.post(`http://localhost:3001/comment/insert`,{
-                Comment: props.comment.comment,
+                Comment: comment,
                 CommentDate: date,
-                CommentTags: props.comment.tag,
+                CommentTags: tag,
                 PostID_Comment: PostID,
                 CommenterID: 17
     
             }).then(() =>{
                 alert("Inserted")
+                console.log("send DB clicked");
             });
+            console.log('clicked');
     }
 
     function handleComment (event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();        
         const data = new FormData(event.currentTarget);
         const temp = {body:data.get('comment'), tag:data.get('tag')};
-        setComment(temp);
+        //setComment(temp);
+    }
+
+    const commentChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setComment(event.target.value);
+        console.log(comment);
+    }
+    const tagChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setTag(event.target.value);
     }
 
     useEffect(() => {
@@ -96,7 +106,7 @@ function Forum (props:any) {
                             />
                         )
                     })}
-                    <Paper elevation={6} component='form' onSubmit={handleComment} sx={{ display: 'flex', boxShadow: '4', width:900, mt:1, py:.5}}>
+                    <Paper elevation={6} component='form' sx={{ display: 'flex', boxShadow: '4', width:900, mt:1, py:.5}}>
                             <AccountCircle sx={{alignContent:'center', color: 'action.active', mx:1}}/>
                             <TextField
                                 sx={{width: '80%'}}
@@ -106,7 +116,7 @@ function Forum (props:any) {
                                 size="small"
                                 multiline
                                 rows={4}
-
+                                onChange={commentChange}
                             />
                             <Box sx={{flexDirection:'column', width:'20%'}}>
                                 <TextField
@@ -116,12 +126,14 @@ function Forum (props:any) {
                                     label="Tags"
                                     variant="filled"
                                     size="small"
+                                    onChange = {tagChange}
                                 />
-                                <Box component='form' onSubmit={sendToDBComment}>
+                                <Box component='form'>
                                     <Button
                                         type='submit'
                                         sx={{m: 1, width: '90%', height: '40px'}}
                                         variant="contained"
+                                        onClick={sendToDBComment} 
                                     >
                                         <IconContext.Provider value={{ size: '25', color: "white"}}>
                                             <Box sx={{marginTop:.5}}>
