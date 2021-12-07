@@ -41,10 +41,36 @@ app.get('/post/select/:id', (req, res) => {
 });
 
 // Select Posts under a given category
-app.get('/post-category/select/:id', (req, res) => {
+app.get('/post-category/select/:id/recent', (req, res) => {
     const id = req.params.id;
     // TODO: delete categoryname after testing
-    const sqlSelectPost = "SELECT CategoryName, PostTitle, PostVotes, PostDate, PostID, PostBody, PostImage, UserName FROM Category_tbl, Post_tbl, User_tbl WHERE CategoryID = CategoryID_Post AND CategoryId = ? AND CreatorID = UserID"
+    const sqlSelectPost = "SELECT CategoryName, PostTitle, PostVotes, PostDate, PostID, PostBody, PostImage, UserName FROM Category_tbl, Post_tbl, User_tbl WHERE CategoryID = CategoryID_Post AND CategoryId = ? AND CreatorID = UserID ORDER BY PostDate DESC"
+    db.query(sqlSelectPost, [id], (err, result)=> {
+        if (err){
+            console.log("pc error", err);
+        }
+        console.log('result', result);
+        res.send(result);
+    });
+});
+
+app.get('/post-category/select/:id/popular', (req, res) => {
+    const id = req.params.id;
+    // TODO: delete categoryname after testing
+    const sqlSelectPost = "SELECT CategoryName, PostTitle, PostVotes, PostDate, PostID, PostBody, PostImage, UserName FROM Category_tbl, Post_tbl, User_tbl WHERE CategoryID = CategoryID_Post AND CategoryId = ? AND CreatorID = UserID ORDER BY PostVotes DESC"
+    db.query(sqlSelectPost, [id], (err, result)=> {
+        if (err){
+            console.log("pc error", err);
+        }
+        console.log('result', result);
+        res.send(result);
+    });
+});
+
+app.get('/post-category/select/:id/oldest', (req, res) => {
+    const id = req.params.id;
+    // TODO: delete categoryname after testing
+    const sqlSelectPost = "SELECT CategoryName, PostTitle, PostVotes, PostDate, PostID, PostBody, PostImage, UserName FROM Category_tbl, Post_tbl, User_tbl WHERE CategoryID = CategoryID_Post AND CategoryId = ? AND CreatorID = UserID ORDER BY PostDate"
     db.query(sqlSelectPost, [id], (err, result)=> {
         if (err){
             console.log("pc error", err);
@@ -58,7 +84,7 @@ app.get('/post-category/select/:id', (req, res) => {
 app.get('/post-comment/select/:id/recent', (req, res) => {
     const id = req.params.id;
     // TODO: delete posttitle after testing
-    const sqlSelectComment = "SELECT PostTitle, Comment, CommentID, CommentDate, CommentVotes, CommentTags, UserName FROM Post_tbl, Comment_tbl, User_tbl WHERE PostID = PostID_Comment AND PostID = ? AND CommenterID = UserID ORDER BY CommentID DESC"
+    const sqlSelectComment = "SELECT PostTitle, Comment, CommentID, CommentDate, CommentVotes, CommentTags, UserName FROM Post_tbl, Comment_tbl, User_tbl WHERE PostID = PostID_Comment AND PostID = ? AND CommenterID = UserID ORDER BY CommentDate DESC"
     db.query(sqlSelectComment, [id], (err, result) => {
         if (err){
             console.log(err);
@@ -299,6 +325,40 @@ app.post('/comment/unliked/update', (req, res) => {
         console.log(result);
     });
 });
+
+// Select posts under all categories in users interests
+/*
+app.get('/post/select/interests/:uid', (req, res) => {
+    const uid = req.params.uid;
+    const sqlSelectPosts = "SELECT PostTitle, PostVotes, PostID, PostDate, PostVotes, PostBody, PostImage, UserName, UserID FROM Post_tbl, User_tbl, UserCategory WHERE IDUser = ? AND IDCategory = CategoryID_Post AND CreatorID = UserID ORDER BY PostDate DESC"
+    db.query(sqlSelectPosts, [uid], (err, result) => {
+        if (err) {
+            console.log(err);
+        }
+        res.send(result)
+    });
+});*/
+
+// Select posts under all categories in users interests
+app.get('/post-category/select/interests/:uid/:sort', (req, res) => {
+    const uid = req.params.uid;
+    const sort = req.params.sort;
+    let mySort = "";
+    if (sort == "Recent") {
+        mySort = "PostDate DESC";
+    } else if (sort == "Popular") {
+        mySort = "PostVotes DESC";
+    } else if (sort == "oldest") {
+        mySort = "PostDate"
+    }
+    const sqlSelectPosts = "SELECT PostTitle, PostVotes, PostID, PostDate, PostVotes, PostBody, PostImage, UserName, UserID FROM Post_tbl, User_tbl, UserCategory WHERE IDUser = ? AND IDCategory = CategoryID_Post AND CreatorID = UserID ORDER BY " + mySort
+    db.query(sqlSelectPosts, [uid, sort], (err, result) => {
+        if (err) {
+            console.log(err);
+        }
+    res.send(result)
+    });
+    });
 
 app.listen(3001, ()=>{
     console.log("Running");

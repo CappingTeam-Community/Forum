@@ -114,9 +114,8 @@ class Comment extends Component<Props, State> {
                             <Typography variant='body2' color='text.secondary' sx={{pl:1,pr:1}}>
                                 {this.commentBody}
                             </Typography>
-                            <Typography color='text.secondary' sx={{pl:1,pr:1}}>
-                                #{this.tags}
-                            </Typography>
+
+                            {this.tags ? (<Typography color='gray' sx={{pl:1,pr:1}}>#{this.tags}</Typography>) : null}
                             </CommentBody>
                         </CardContent>
                         <CardActions>

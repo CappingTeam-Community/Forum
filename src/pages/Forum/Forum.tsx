@@ -81,10 +81,12 @@ function Forum (props:any) {
         setBusy(true);
         getPost();
     }, []);
+
     useEffect(() => {
         setBusy(true);
         getComments();
     }, [sort, post]);
+
     useEffect(() => {
         setBusy(false);
     }, [comments]);
@@ -95,7 +97,8 @@ function Forum (props:any) {
                 <Container sx={{marginTop: 8, display: "flex", flexDirection: "column", alignItems: "center"}}>
                     {post.map((data: any) => {
                         return (
-                            <Post id={data.PostID}
+                            <Post 
+                                  id={data.PostID}
                                   author={data.UserName}
                                   title={data.PostTitle}
                                   date={data.PostDate}
@@ -145,8 +148,8 @@ function Forum (props:any) {
                                 </Box>
                             </Box>
                         </Paper>
-                    <Paper elevation={6} sx={{ display: 'flex', flexDirection:'column', boxShadow: '4', width:900, mt:1, backgroundColor:`rgba(255,255,255,.6)`}}>
-                        <FormControl sx={{m: 0, width: 90, ml:2, my:1}}>
+                    <Paper elevation={6} sx={{ display: 'flex', flexDirection:'column', boxShadow: '4', mb: 10, width:900, mt:1, backgroundColor:`rgba(255,255,255,.6)`}}>
+                        <FormControl sx={{m: 0, width: 90, mt: 3, ml:2, my:1}}>
                             <Select
                                 value={sort}
                                 onChange={handleChange}
