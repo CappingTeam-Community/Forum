@@ -236,6 +236,70 @@ app.post('/comment/insert', (req, res) => {
     });
 });
 
+app.post('/post/liked', (req, res) => {
+    const PostID = req.body.PostID;
+    const sqlInsert = "INSERT INTO UserPost (IDUser, IDPost) VALUES (2, ?)"
+    db.query(sqlInsert, [PostID], (err, result)=> {
+        console.log(result);
+    });
+});
+
+app.post('/post/unliked', (req, res) => {
+    const PostID = req.body.PostID;
+    const sqlInsert = "DELETE UserPost FROM Post_tbl JOIN UserPost ON Post_tbl.PostID = UserPost.IDPost WHERE UserPost.IDUser = 2 AND UserPost.IDPost = ?"
+    db.query(sqlInsert, [PostID], (err, result)=> {
+        console.log(result);
+    });
+});
+
+app.post('/post/liked/update', (req, res) => {
+    const PostID = req.body.PostID;
+    const sqlInsert = "UPDATE Post_tbl SET PostVotes = PostVotes + 1 WHERE PostID = ?"
+    db.query(sqlInsert, [PostID], (err, result)=> {
+        console.log(result);
+    });
+});
+
+app.post('/post/unliked/update', (req, res) => {
+    const PostID = req.body.PostID;
+    const sqlInsert = "UPDATE Post_tbl SET PostVotes = PostVotes - 1 WHERE PostID = ?"
+    db.query(sqlInsert, [PostID], (err, result)=> {
+        console.log(result);
+    });
+});
+
+app.post('/comment/liked', (req, res) => {
+    const CommentID = req.body.CommentID;
+    const sqlInsert = "INSERT INTO UserComment (IDUser, IDComment) VALUES (2, ?)"
+    db.query(sqlInsert, [CommentID], (err, result)=> {
+        console.log(result);
+    });
+});
+
+app.post('/comment/unliked', (req, res) => {
+    const CommentID = req.body.CommentID;
+    const sqlInsert = "DELETE UserComment FROM Comment_tbl JOIN UserComment ON Comment_tbl.CommentID = UserComment.IDComment WHERE UserComment.IDUser = 2 AND UserComment.IDComment = ?"
+    db.query(sqlInsert, [CommentID], (err, result)=> {
+        console.log(result);
+    });
+});
+
+app.post('/comment/liked/update', (req, res) => {
+    const CommentID = req.body.CommentID;
+    const sqlInsert = "UPDATE Comment_tbl SET CommentVotes = CommentVotes + 1 WHERE CommentID = ?"
+    db.query(sqlInsert, [CommentID], (err, result)=> {
+        console.log(result);
+    });
+});
+
+app.post('/comment/unliked/update', (req, res) => {
+    const CommentID = req.body.CommentID;
+    const sqlInsert = "UPDATE Comment_tbl SET CommentVotes = CommentVotes - 1 WHERE CommentID = ?"
+    db.query(sqlInsert, [CommentID], (err, result)=> {
+        console.log(result);
+    });
+});
+
 app.listen(3001, ()=>{
     console.log("Running");
 });

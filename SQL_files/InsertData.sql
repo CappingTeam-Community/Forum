@@ -50,7 +50,6 @@ VALUES('Marvel', 'A community dedicated to Marvel Studios and the Marvel Cinemat
       ('Football', 'Community for those who love the classic American Sport', 'https://www.wkbn.com/wp-content/uploads/sites/48/2021/06/football-and-football-field-2.jpg?w=1280', 6);
 SELECT * FROM Category_tbl;
 
---insert posts into category 'marvel'
 INSERT INTO Post_tbl
 (CategoryID_Post, PostTitle, PostBody, PostDate, PostImage, PostVotes, CreatorID)
 VALUES  (1, 'Why is Shang Chi Disney Plus release date November 11th, when they said only 45 Days of Exclusivity?',
@@ -103,7 +102,6 @@ Feel free to make your top 5, top 10, top 23, etc. list if you dont want to do a
 Also, we are comparing to their final Endgame versions: Thor with only Stormbreaker, Endgame Hulk, etc.
 Good luck', "2021-10-14", 'https://filmdaily.co/wp-content/uploads/2021/01/mcu-lede-1300x731.jpg', 1, 19);
 
---insert posts into category 'League of Legends'
 INSERT INTO Post_tbl
 (CategoryID_Post, PostTitle, PostBody, PostDate, PostImage, PostVotes, CreatorID)
 VALUES  (2, 'League Esports Funny Joke', 'Hey guys I was watching worlds and I came up with this joke
@@ -117,7 +115,6 @@ Does anybody know if there's a solution? (I'm logging on lolesports with the sam
 Thanks in advance.", "2021-10-20", "https://www.dexerto.com/wp-content/uploads/thumbnails/_thumbnailLarge/na-lcs-roster-moves-hub.jpg", 3, 2),
         (2, 'Why didnt I get my chest?', 'So i wanted to get s chest by playing sivir with a premade teammate. The game has ended and i got an S+ but the chest is nowhere to be found. Yes i did have avalible chests Yes i do have sivir No i havent earned a chest yet for her The name of the profile is ezazoli EUNE Can u please report this bug if it is one?', "2021-10-20", "https://i.ytimg.com/vi/BetIkC8WDrw/maxresdefault.jpg", 9, 15);
         
---insert posts into category 'Politics'
 INSERT INTO Post_tbl
 (CategoryID_Post, PostTitle, PostBody, PostDate, PostImage, PostVotes, CreatorID)
 VALUES  (3, 'Biden admin calls on SCOTUS to let police enter homes, confiscate guns without a warrant', 'https://saraacarter.com/biden-admin-calls-on-scotus-to-let-police-enter-homes-confiscate-guns-without-a-warrant/', "2021-10-20", "https://media-cldnry.s-nbcnews.com/image/upload/newscms/2021_41/3512243/211013-biden-mb-1036.jpg", 12, 2),
@@ -127,7 +124,6 @@ VALUES  (3, 'Biden admin calls on SCOTUS to let police enter homes, confiscate g
         (3, "Aaron Rodgers has a big problem with 'woke cancel culture", 'https://nypost.com/2021/10/19/aaron-rodgers-has-a-big-problem-with-woke-cancel-culture/?utm_source=reddit.com', "2021-10-20", "https://cdn.vox-cdn.com/thumbor/_sJEM10TSI59oT24IpNiNUfO7mQ=/0x0:4800x3200/1200x800/filters:focal(2016x1216:2784x1984)/cdn.vox-cdn.com/uploads/chorus_image/image/70008055/rodgers__3_.0.jpg", 3, 4),
         (3, "Kamala Harris' AG office illegally colluded with abortion providers during investigation, attorneys allege", 'https://www.foxnews.com/politics/kamala-harris-colluded-abortion-providers', "2021-10-20", "https://thehill.com/sites/default/files/harriskamalatwo_10152019getty.jpg", 1, 6);
         
---insert posts into category 'cars'
 INSERT INTO Post_tbl
 (CategoryID_Post, PostTitle, PostBody, PostDate, PostImage, PostVotes, CreatorID)
 VALUES  (4, 'New 2022 Range Rover teased ahead of reveal next week - pictures', 'https://www.autoexpress.co.uk/land-rover/range-rover/108912/new-2022-range-rover-teased-ahead-reveal-next-week-pictures', "2021-10-20", "https://images.hgmsites.net/hug/land-rover-range-rover_100809988_h.jpg", 10, 14),
@@ -149,7 +145,6 @@ VALUES  (5, 'Study: Fossil fuel plans would far overshoot climate goals', 'https
         (5, 'Wearable Microphone Jamming', 'http://sandlab.cs.uchicago.edu/jammer/', "2021-10-20", "https://m.media-amazon.com/images/I/71OkWZr+U-L._AC_SX355_.jpg", 37, 3),
         (5, 'Teen Girls Are Developing Tics. Doctors Say TikTok Could Be a Factor.', 'https://www.wsj.com/articles/teen-girls-are-developing-tics-doctors-say-tiktok-could-be-a-factor-11634389201?mod=e2tw', "2021-10-20", "https://www.trustedreviews.com/wp-content/uploads/sites/54/2020/02/how-to-delete-tiktok-920x515.jpg", 21, 2);
         
---insert posts into category 'fashion'
 INSERT INTO Post_tbl
 (CategoryID_Post, PostTitle, PostBody, PostDate, PostImage, PostVotes, CreatorID)
 VALUES  (6, 'The hot new Aussie designers to know from Australian Fashion Week', 'https://www.standard.co.uk/insider/fashion/australian-fashion-week-designers-resortwear-collections-b938549.html', "2021-10-20", "https://static.standard.co.uk/2021/06/03/10/newFile-4.jpg?width=990&auto=webp&quality=75&crop=968%3A645%2Csmart", 9, 7),
@@ -159,7 +154,6 @@ VALUES  (6, 'The hot new Aussie designers to know from Australian Fashion Week',
         (6, 'Balenciaga Will Introduce Couture for Men', 'https://www.gq.com/story/balenciaga-mens-couture', "2021-01-20", "https://image-cdn.hypb.st/https%3A%2F%2Fhypebeast.com%2Fwp-content%2Fblogs.dir%2F6%2Ffiles%2F2020%2F09%2Fbalenciaga-mens-couture-collection-show-demna-gvasalia-announcement-1.jpg?q=90&w=1400&cbr=1&fit=max", 37, 3),
         (6, 'New York Fashion Week Is Still Happening, Says Cuomo', 'https://www.thecut.com/2020/08/new-york-fashion-week-spring-2021-confirmed.html', "2020-10-20", "https://assets.vogue.com/photos/5e45a97db5eb1f0009e55a46/master/w_2560%2Cc_limit/00_nicole_story.jpg", 21, 2);
         
---insert posts into category 'Olympics'
 INSERT INTO Post_tbl
 (CategoryID_Post, PostTitle, PostBody, PostDate, PostImage, PostVotes, CreatorID)
 VALUES  (7, "An Olympian came to my school today", "Idk I just thought it was cool. It was Taliqua Clancy of Beach Volleyball fame. We got to see her silver medal and do a small interview of some questions we submitted earlier in the week. Was pretty cool.", "2020-10-20", "https://pbs.twimg.com/profile_images/765069538467512320/ZJSdr6Gb.jpg", 21, 26),
@@ -171,7 +165,6 @@ Is there any other website out there (apart from the Olympic website) that has s
 is there a list i can find somewhere? it would help out.", "2020-10-20", "https://www.kreedon.com/wp-content/uploads/2021/08/n4qxv7qvpeur6hfdvfyw-1024x576-1.jpg", 26, 23),
         (7, "Agnes Tirop's Husband has been arrested in connection with her death.", "According to Kenyan officials, the husband of Olympic runner Agnes Tirop has been apprehended and will be charged with her murder after a nationwide manhunt was started and he was apprehended in the costal city of Mombasa while attempting to exit the country. https://knowafrika.com/agnes-tirops-husband-has-been-arrested-in-connection-with-her-death/", "2020-10-20", "https://s.yimg.com/ny/api/res/1.2/V6rF40HndFvEgQAVodzoOg--/YXBwaWQ9aGlnaGxhbmRlcjt3PTY0MA--/https://s.yimg.com/os/creatr-uploaded-images/2021-10/1a00a3c0-33a6-11ec-bee3-dd850e2f90c6", 2, 22);
         
---insert posts into category 'Soccer'
 INSERT INTO Post_tbl
 (CategoryID_Post, PostTitle, PostBody, PostDate, PostImage, PostVotes, CreatorID)
 VALUES  (8, "According to Kenyan officials, the husband of Olympic runner Agnes Tirop has been apprehended and will be charged with her murder after a nationwide manhunt was started and he was apprehended in the costal city of Mombasa while attempting to exit the country. ", "https://knowafrika.com/agnes-tirops-husband-has-been-arrested-in-connection-with-her-death/", "2021-02-12", "https://s.yimg.com/ny/api/res/1.2/V6rF40HndFvEgQAVodzoOg--/YXBwaWQ9aGlnaGxhbmRlcjt3PTY0MA--/https://s.yimg.com/os/creatr-uploaded-images/2021-10/1a00a3c0-33a6-11ec-bee3-dd850e2f90c6", 21, 21),
@@ -188,7 +181,6 @@ Team News: Goretzka and Davies out for the game, Diogo Gonçalves back by the lo
 Possible SL Benfica starting XI: Odysseas, Diogo Gonçalves, Lucas Veríssimo, Otamendi, Verthoghen, Grimaldo, Weigl, João Mário, Rafa, Darwin and Yaremchuk
 Possible Bayern München starting XI: Neuer, Pavard, Süle, Upamecano, Lucas, Sabitzer, Kimmich, Coman, Muller, Sane, Lewandowski", "2021-07-13", "https://cdn.vox-cdn.com/thumbor/BKt18xrXoXWDBIBpV_xRvD7BoJM=/0x0:4500x3000/1200x800/filters:focal(1020x388:1740x1108)/cdn.vox-cdn.com/uploads/chorus_image/image/70023413/1347743550.0.jpg", 21, 16);
         
---insert posts into category 'football'
 INSERT INTO Post_tbl
 (CategoryID_Post, PostTitle, PostBody, PostDate, PostImage, PostVotes, CreatorID)
 VALUES  (9, "How soon after a new FM release do the download for leagues down to tier 10 appear?", "Really enjoying starting with a low team recently, but wondering if that is an option when fm22 releases or it takes a while for the download to appear.", "2021-08-18", "", 37, 16),
@@ -204,7 +196,6 @@ I know it's vague, but any help would be appreciated", "2021-08-18", "", 37, 18)
 
 SELECT * FROM Post_tbl;
 
---insert comments into postid 1
 INSERT INTO Comment_tbl
 (PostID_Comment, Comment, CommentDate, CommentVotes, CommenterID, CommentTags)
 VALUES  (1, "Just cause it has a 45 day exclusive window doesnt mean they will release the movie right away on digital, it just means tfter 45 days they now are allowed to release it digitally, but if they want to hold if off for another month or 2, they can do it.
@@ -219,7 +210,6 @@ Then, after that sales channel, it comes to subscription streaming services.", "
         (1, "I think so that it matches with the release of the Eternals. More HYPE and more marketing so people are more likely to watch it then", "2021-10-11", 0, 2, null),
         (1, "45 day minimum. They are holding off because it has been successful in theaters. It hasn’t even come to theaters in some areas yet", "2021-10-11", 0, 5, null);
         
---insert comments into postid 2
 INSERT INTO Comment_tbl
 (PostID_Comment, Comment, CommentDate, CommentVotes, CommenterID, CommentTags)
 VALUES  (2, "I think that’s pretty accurate. I think the MCU not having access to hardly any of your A listers was a good thing for them. They laid down a solid foundation for the MCU with a B list appetizer Now we get our A list main course.", "2021-10-13", 10, 6, null),
@@ -233,7 +223,6 @@ VALUES  (2, "I think that’s pretty accurate. I think the MCU not having access
         (2, "how do you measure iconicness? it has be put down in numbers somehow and sales are a good barometer", "2021-10-13", 1, 2, 'iconicness'),
         (2, "My list is your list.", "2021-10-13", 1, 3, null);
         
---insert comments into postid 3
 INSERT INTO Comment_tbl
 (PostID_Comment, Comment, CommentDate, CommentVotes, CommenterID, CommentTags)
 VALUES  (3, "Natasha is dead as of End Game as well. Steve isn't dead just retired", "2021-10-13", 2, 4, null),
@@ -246,14 +235,12 @@ VALUES  (3, "Natasha is dead as of End Game as well. Steve isn't dead just retir
         (3, "His portrait appeared in Agents of SHIELD.", "2021-10-13", 0, 6, null),
         (3, "Widow, died for the soul stone. Iron man,dead, died from snapping. Steve Rogers, retired. Loki, dead, strangled by thanos. Gamora from Guardians1-2, dead, also died for the soul stone. quicksilver, dead, shot by ultron. Tchalla, written out. Vision, dead? Maria Rambeau,dead.", "2021-10-13", 6, 8, 'helpful');
         
---insert comments into postid 4
 INSERT INTO Comment_tbl
 (PostID_Comment, Comment, CommentDate, CommentVotes, CommenterID, CommentTags)
 VALUES  (4, "Honestly for the MCU only it’ll probably be a stalemate", "2021-10-13", 0, 4, null),
         (4, "See at this point they should keep the original premises of Adams origin, but not before they introduce the FF and the High Evolutionary. They really need to bring on the Fantastic Four!", "2021-10-13", 0, 1, null),
         (4, "Adam Warlock is a much much more powerful character than Captain Marvel.", "2021-10-14", 1, 8, null);
         
---insert comments into postid 5
 INSERT INTO Comment_tbl
 (PostID_Comment, Comment, CommentDate, CommentVotes, CommenterID, CommentTags)
 VALUES  (5, "He says it in Infinity War right after Loki unveils he took the Tesseract. This was before he got metal gagged by Ebony Maw.", "2021-10-14", 0, 5, null),
@@ -261,7 +248,6 @@ VALUES  (5, "He says it in Infinity War right after Loki unveils he took the Tes
         (5, "You're really the worst, brother", "2021-10-14", 1, 6, null),
         (5, "let me YouTube that for you", "2021-10-14", 0, 7, null);
         
---insert comments into postid 6
 INSERT INTO Comment_tbl
 (PostID_Comment, Comment, CommentDate, CommentVotes, CommenterID, CommentTags)
 VALUES  (6, "If we’re just picking one then I would say Captain Marvel", "2021-10-14", 7, 10, 'CaptianMarvel'),
@@ -341,7 +327,6 @@ Falcon - No superpowers to speak of, and all he has is carbon-fiber wings and sp
         (6, "And none of those died lol.... Stark is extremely weak. One of my favorite characters still but so weak. Cap destroyed him (which hurt to see but)", "2021-10-14", 0, 3, "ironman");
 
 
---Default sort by newest
 SELECT * FROM Comment_tbl;
 
 SELECT * FROM User_tbl;
@@ -349,3 +334,15 @@ SELECT * FROM User_tbl;
 INSERT INTO UserCategory
 (IDUser, IDCategory)
 VALUES(6, 1), (2, 1), (5,1), (11, 1);
+
+SELECT * FROM UserCategory;
+
+INSERT INTO UserPost
+(IDUser, IDPost)
+VALUES(2, 1), (2, 13), (2,3), (2, 16);
+
+INSERT INTO UserComment
+(IDUser, IDComment)
+VALUES(2, 1), (2, 13), (2,3), (2, 16);
+
+SELECT * FROM UserPost;

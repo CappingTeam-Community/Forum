@@ -16,6 +16,7 @@ import FavoriteIcon from "@mui/icons-material/Favorite"
 import {Component} from "react";
 import Button from "@mui/material/Button";
 import {styled} from "@mui/system";
+import Axios from "axios";
 
 
 interface Props {
@@ -59,11 +60,32 @@ class Comment extends Component<Props, State> {
                 isLiked: true
             });
             this.voteCount ++;
-        } else {
+            Axios.post(`http://localhost:3001/comment/liked/update`,{
+                CommentID: this.props.id   
+            }).then(() =>{
+                alert("Inserted")
+            });
+            Axios.post(`http://localhost:3001/comment/liked`,{
+                CommentID: this.props.id   
+            }).then(() =>{
+                alert("Inserted")
+            });
+        } 
+        else if(this.state.isLiked) {
             this.setState( {
                 isLiked: false
             });
             this.voteCount --;
+            Axios.post(`http://localhost:3001/comment/unliked/update`,{
+                CommentID: this.props.id   
+            }).then(() =>{
+                alert("Inserted")
+            });
+            Axios.post(`http://localhost:3001/comment/unliked`,{
+                CommentID: this.props.id   
+            }).then(() =>{
+                alert("Inserted")
+            });
         }
     }
     render() {

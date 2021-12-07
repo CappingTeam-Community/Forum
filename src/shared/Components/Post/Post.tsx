@@ -15,6 +15,8 @@ import {red} from "@mui/material/colors";
 import FavoriteIcon from "@mui/icons-material/Favorite"
 import {Component} from "react";
 import {styled} from "@mui/system";
+import Axios from "axios";
+
 
 interface Props {
     id: number,
@@ -68,11 +70,32 @@ class Post extends Component<Props, State> {
                 isLiked: true
             });
             this.voteCount ++;
-        } else {
+            Axios.post(`http://localhost:3001/post/liked/update`,{
+                PostID: this.props.id   
+            }).then(() =>{
+                alert("Inserted")
+            });
+            Axios.post(`http://localhost:3001/post/liked`,{
+                PostID: this.props.id   
+            }).then(() =>{
+                alert("Inserted")
+            });
+        } 
+        else if(this.state.isLiked){
             this.setState( {
                 isLiked: false
             });
             this.voteCount --;
+            Axios.post(`http://localhost:3001/post/unliked/update`,{
+                PostID: this.props.id   
+            }).then(() =>{
+                alert("Inserted")
+            });
+            Axios.post(`http://localhost:3001/post/unliked`,{
+                PostID: this.props.id   
+            }).then(() =>{
+                alert("Inserted")
+            });
         }
     }
     private getRandomColor() {

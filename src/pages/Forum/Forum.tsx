@@ -149,7 +149,7 @@ function Forum (props:any) {
 
                         {comments.map((data: any, index: number) => {
                             return (
-                                <Grid item md={10} key={index} sx={{pb: 3}}>
+                                <Grid alignItems="center" justifyContent="center" item md={10} key={index} sx={{pb: 3}}>
                                     <Comment id={data.CommentID}
                                              author={data.UserName}
                                              date={data.CommentDate}
