@@ -10,18 +10,15 @@ import {Box,
     Paper, 
     Typography}
     from '@mui/material';
+import {Box, Container, Grid, IconButton, Paper, Typography} from '@mui/material';
 import React from "react";
 import Post from "../../shared/Components/Post/Post";
 import CancelIcon from '@mui/icons-material/Cancel';
 import {red} from "@mui/material/colors";
 import { useState, useEffect } from "react";
 import Select, { SelectChangeEvent } from '@mui/material/Select';
-import Axios from 'axios';
 
-interface State {
-    data: any,
-    categoryName: string
-}
+import Axios from 'axios';
 
 function PostListing (props:any) {
     const [busy, setBusy] = useState(true);
@@ -51,16 +48,15 @@ function PostListing (props:any) {
         } else {
             console.log("categoryID", CategoryID);
             Axios.get(`http://localhost:3001/post-category/select/${CategoryID}/${sort}`)
+            Axios.get(`http://localhost:3001/post-category/select/${CategoryID}`)
                 .then(res => {
                     const data:any = res.data;
                     if (data.length > 0) {
-                        console.log('d',data);
                         setData(data)
                         setCategoryName(data[0].CategoryName)
                     }
                 })
                 .then(res => {
-                    // console.log('DATA', data);
                     // setCategoryName(data[0].categoryName);
                 })
         }
@@ -103,6 +99,7 @@ function PostListing (props:any) {
     useEffect(() => {
         setBusy(false);
     }, [posts]);
+    }, [CategoryID]);
 
     return (
         <Container sx={{display:'block'}}>

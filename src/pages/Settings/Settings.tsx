@@ -1,4 +1,4 @@
-import { Avatar, Box, Button, Card, CardActionArea, CardActions, CardContent, Checkbox, Container, CssBaseline, FormControlLabel, FormGroup, Grid, IconButton, Paper, Popover, TextField, Typography } from '@mui/material';
+import { Avatar, Box, Button, Checkbox, Container, CssBaseline, FormControlLabel, FormGroup, Grid, IconButton, Paper, Popover, TextField, Typography } from '@mui/material';
 import React, { Dispatch, FC, useEffect, useState } from 'react';
 import { styled } from '@mui/material/styles';
 import Axios from 'axios';
@@ -33,10 +33,6 @@ type UserProps = {
 
 const Settings: FC<UserProps> = (props): JSX.Element => {
     const [categories, setCategories] = useState<any>([]);
-    const [redirect, setRedirect] = useState(false);
-    const [showUserInfo, setShowUserInfo] = useState(true);
-
-
 
     useEffect(() => {
         Axios.get(`http://localhost:3001/category/select/`)
@@ -63,10 +59,7 @@ const Settings: FC<UserProps> = (props): JSX.Element => {
             UserName: props.userData.username,
             Password: props.userData.password,
             Email: props.userData.email
-        }).then(() => {
-            console.log("Inserted")
         });
-        setRedirect(true);
     }
 
     function onSelectInterest(event: React.ChangeEvent<HTMLInputElement>) {
@@ -86,27 +79,6 @@ const Settings: FC<UserProps> = (props): JSX.Element => {
             }
         }
     }
-
-    async function onContinue(event: React.FormEvent<HTMLFormElement>) {
-        event.preventDefault();
-        const data = new FormData(event.currentTarget);
-        //await authenticate(data)
-        //.then(() => {
-        if (props.auth) {
-            let temp = Object.assign({}, props.userData);
-            temp.firstName = data.get('firstName');
-            temp.lastName = data.get('lastName');
-            temp.username = data.get('username');
-            temp.email = data.get('email');
-            temp.password = data.get('password');
-            props.setUserData(temp);
-            setShowUserInfo(false);
-        }
-        //})
-    }
-
-    //function SettingsPage() {
-    //Logic
 
     const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null);
 

@@ -12,7 +12,6 @@ import {ThemeProvider, createTheme} from "@mui/material"
 import { useState} from "react";
 import Settings from './pages/Settings/Settings';
 import BreadCrumbs from './shared/BreadCrumbs/BreadCrumbs';
-import Footer from "./shared/Footer/Footer";
 
 export interface UserState {
     firstName: any,
@@ -81,7 +80,6 @@ function App() {
                                 </Route>
                                 <Route exact path='/forum/:PostID' render={(props) => <Forum {...props} />} />
                             </Switch>
-                            <Footer/>
                         </BrowserRouter>
                 </div>
             </ThemeProvider>

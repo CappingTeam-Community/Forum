@@ -2,11 +2,10 @@ import {
     Avatar,
     Box,
     Card,
-    CardActionArea, CardActions,
-    CardContent,
+    CardActionArea,
     CardHeader,
     CardMedia,
-    Container, Grid,
+    Container,
     IconButton,
     Typography,
     Divider

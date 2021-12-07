@@ -1,6 +1,6 @@
 import {Box, Container, CssBaseline, FormGroup, Grid, Link, Paper, TextField, Typography} from "@mui/material";
 import Button from "@mui/material/Button";
-import React, {Dispatch, FC, useState} from "react";
+import React, {Dispatch, FC} from "react";
 import Axios from "axios";
 import {UserState} from "../../App";
 import {IconContext} from "react-icons";
@@ -14,21 +14,14 @@ type UserProps = {
 }
 
 const Login: FC<UserProps> = (props): JSX.Element => {
-    const [categories, setCategories] = useState<any>([]);
-    const [redirect, setRedirect] = useState(false);
-    const [showUserInfo, setShowUserInfo] = useState(true);
-    const [alert, setAlert] = useState(false);
-
 
     function onSubmit(event: React.FormEvent<HTMLFormElement>) {
-        console.log('event',event);
         event.preventDefault();
         const data = new FormData(event.currentTarget);
-        console.log('data', data);
         Axios.get(`http://localhost:3001/user/select/email/${data.get('email')}`)
             .then(res => {
                 const resData:any = res.data;
-                console.log('resData', resData);
+                console.log(resData);
             })
     }
 
