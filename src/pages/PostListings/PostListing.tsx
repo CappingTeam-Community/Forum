@@ -1,16 +1,10 @@
-import {Box, Button, Card, Checkbox, Container, Grid, IconButton, Paper, Typography} from '@mui/material';
+import {Box, Container, Grid, IconButton, Paper, Typography} from '@mui/material';
 import React from "react";
 import Post from "../../shared/Components/Post/Post";
 import CancelIcon from '@mui/icons-material/Cancel';
 import {red} from "@mui/material/colors";
 import { useState, useEffect } from "react";
-
 import Axios from 'axios';
-
-interface State {
-    data: any,
-    categoryName: string
-}
 
 function PostListing (props:any) {
     const [data, setData] = useState<any>([]);
@@ -29,24 +23,20 @@ function PostListing (props:any) {
             //         setCategoryName('Recent')
             //     })
         } else {
-            console.log("categoryID", CategoryID);
             Axios.get(`http://localhost:3001/post-category/select/${CategoryID}`)
                 .then(res => {
-                    console.log("CID", CategoryID);
                     const data:any = res.data;
                     if (data.length > 0) {
-                        console.log('d',data);
                         setData(data)
                         setCategoryName(data[0].CategoryName)
                     }
                 })
                 .then(res => {
-                    // console.log('DATA', data);
                     // setCategoryName(data[0].categoryName);
                 })
         }
 
-    }, []);
+    }, [CategoryID]);
 
     return (
         <Container sx={{display:'block'}}>
