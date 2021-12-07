@@ -8,10 +8,14 @@ Includes Webpack, Babel, ESLint.
 ### Node.js
 Install Node.js at https://nodejs.org/en/download/
 
-### React
-`npm install react`
+### Git
+Make sure git is properly installed, following this tutorial: https://github.com/git-guides/install-git\
 
-`npm install --save react-router-dom`
+### CLone the repository
+`git clone ...`
+
+### React
+`npm install react react-router-dom`
 
 ### Material UI
 Material UI is the UI component Library of choice.
