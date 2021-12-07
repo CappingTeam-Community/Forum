@@ -1,7 +1,7 @@
 .DiscoveryPage {}
 
 .centerGrid {
-    height: 30vh;
+    height: 350vh;
     display: flex;
     justify-content: center;
     align-items: flex-start;

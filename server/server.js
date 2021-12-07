@@ -151,7 +151,7 @@ app.get('/comment/select/:id', (req, res) => {
 // Select all categories
 app.get('/category/select/', (req, res) => {
     const id = req.params.id;
-    const sqlSelectCategory = "SELECT CategoryID, CategoryName, CategoryDescription, CategoryImage FROM Category_tbl"
+    const sqlSelectCategory = "SELECT CategoryID, CategoryName, CategoryDescription, CategoryImage, CategoryVotes FROM Category_tbl"
     db.query(sqlSelectCategory, [id], (err, result)=> {
         if (err){
             console.log(err);
@@ -163,7 +163,7 @@ app.get('/category/select/', (req, res) => {
 
 app.get('/category/select/:id', (req, res) => {
     const id = req.params.id;
-    const sqlSelectCategory = "SELECT CategoryID, CategoryName, CategoryDescription, CategoryImage FROM Category_tbl WHERE CATEGORYID = ?"
+    const sqlSelectCategory = "SELECT CategoryID, CategoryName, CategoryDescription, CategoryImage, CategoryVotes FROM Category_tbl WHERE CATEGORYID = ?"
     db.query(sqlSelectCategory, [id], (err, result)=> {
         if (err){
             console.log(err);

@@ -89,7 +89,7 @@ function CreatePost() {
     return (
         <div style={{marginLeft:'25vw', marginTop:'5vh'}}>
             <Box sx={{display: 'block', justifyContent: "left",width:'50vw',m: 2}}>
-                <Paper elevation={6} sx={{boxShadow: '4', backgroundColor: 'rgba(255,255,255,.6)', py:2, px: 4}}>
+                <Paper elevation={6} sx={{boxShadow: '4', backgroundColor: 'white', py:2, px: 4}}>
                     <Typography fontSize={25} color={"black"} sx={{textAlign: "center"}}>New Post</Typography>
                     <TextField
                             sx={{boxShadow: '2', my: 2, width: '100%', backgroundColor: 'white' }}
@@ -117,7 +117,7 @@ function CreatePost() {
                         />
                     <Box display={'flex'}>
                         <ComboBox />
-                        <Paper sx={{ boxShadow: '4', backgroundColor: 'white' , ml:1, width:'50%'}} elevation={3}>
+                        <Paper sx={{ boxShadow: '4', backgroundColor: 'white' , ml:1, width:'60%'}} elevation={3}>
                             <TextField
                                 id="image"
                                 label="Image URL"
@@ -126,26 +126,27 @@ function CreatePost() {
                                 minRows={1}
                                 value={image}
                                 onChange={imageChange}
-                                variant="filled"
+                                fullWidth
                             />
                         </Paper>
                     </Box>
-                </Paper>
-                <Box sx={{ mt:2, display: 'flex', flexWrap: 'wrap', justifyContent: "right"}}>
+                    <Box sx={{ mt:2, display: 'flex', flexWrap: 'wrap', justifyContent: "center"}}>
                     <Button
                         sx={{ mr: 2, width: "15ch", justifyContent: "center" }}
                         variant="contained"
-                        color="warning">
+                        color="primary">
                         Cancel
                     </Button>
                     <Button
                         sx={{ width: "15ch", justifyContent: "center" }}
                         onClick={sendToDB}
                         variant="contained"
-                        color="success">
+                        color="inherit">
                         Create
                     </Button>
                 </Box>
+                </Paper>
+                
             </Box>
             {redirect ? <Redirect to={string}/> : null}
         </div>
