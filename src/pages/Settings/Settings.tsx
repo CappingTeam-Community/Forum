@@ -225,7 +225,7 @@ const Settings: FC<UserProps> = (props): JSX.Element => {
 
                         <Grid item sx={{ justifyContent: "center", alignContent: "center", mx: 'auto'}}>
                             <TextField
-                                sx={{ m:1, width: '80ch', alignContent: "center", justifyContent: "center"}}
+                                sx={{ m:1, width: '37ch', alignContent: "left", justifyContent: "center"}}
                                 id="firstName"
                                 label="First Name"
                                 multiline
@@ -234,11 +234,8 @@ const Settings: FC<UserProps> = (props): JSX.Element => {
                                 onChange={firstChange}
                                 variant="outlined"
                             />
-                        </Grid>
-
-                        <Grid item sx={{ justifyContent: "center", alignContent: "center", mx: 'auto' }}>
-                            <TextField
-                                sx={{m:1, width: '80ch', }}
+                             <TextField
+                                sx={{m:1, width: '37ch', alignContent: "right", justifyContent: "center"}}
                                 id="lastName"
                                 label="Last Name"
                                 multiline
@@ -250,16 +247,16 @@ const Settings: FC<UserProps> = (props): JSX.Element => {
                         </Grid>
 
                         <Grid item xs={6}>
-                            <Typography variant="overline" display="block" sx={{ m: 1, px: 3, pt: 8, fontWeight: 'bold', fontSize: 16 }}>
+                            <Typography variant="overline" display="block" sx={{ m: 0, px: 3, pt: 3, fontWeight: 'bold', fontSize: 16 }}>
                                 Change Username
                             </Typography>
                         </Grid>
 
                         <Grid item sx={{ justifyContent: "center", alignContent: "center", mx: 'auto' }}>
                             <TextField
-                                sx={{ m: 1, width: '80ch', }}
+                                sx={{ m: 1, width: '76ch', }}
                                 id="userName"
-                                label="Last Name"
+                                label="UserName"
                                 multiline
                                 maxRows={1}
                                 value={userName}
@@ -269,16 +266,16 @@ const Settings: FC<UserProps> = (props): JSX.Element => {
                         </Grid>
 
                         <Grid item xs={6} >
-                            <Typography variant="overline" display="block" sx={{ m: 1, px: 3, pt: 8, fontWeight: 'bold', fontSize: 16}}>
+                            <Typography variant="overline" display="block" sx={{ m: 0, px: 3, pt: 3, fontWeight: 'bold', fontSize: 16}}>
                                 Change email
                             </Typography>
                         </Grid>
 
                         <Grid item sx={{ justifyContent: "center", alignContent: "center", mx: 'auto'}}>
                             <TextField
-                                sx={{ m: 1, width: '80ch', }}
+                                sx={{ m: 1, width: '76ch', }}
                                 id="email"
-                                label="Old Email"
+                                label="New Email"
                                 multiline
                                 maxRows={1}
                                 value={newEmail}
@@ -288,14 +285,14 @@ const Settings: FC<UserProps> = (props): JSX.Element => {
                         </Grid>
 
                         <Grid item xs={6}>
-                            <Typography variant="overline" display="block" gutterBottom sx={{ m: 1, px: 3, pt: 8, fontWeight: 'bold', fontSize: 16}}>
+                            <Typography variant="overline" display="block" gutterBottom sx={{ m: 1, px: 3, pt: 3, fontWeight: 'bold', fontSize: 16}}>
                                 Change Password
                             </Typography>
                         </Grid>
 
                         <Grid item sx={{ justifyContent: "center", alignContent: "center", mx: 'auto', pb: 5 }}>
                             <TextField
-                                sx={{ m: 1, width: '80ch', }}
+                                sx={{ m: 1, width: '76ch', }}
                                 id="password"
                                 label="Old Password"
                                 multiline
@@ -304,6 +301,22 @@ const Settings: FC<UserProps> = (props): JSX.Element => {
                                 onChange={pwChange}
                                 variant="outlined"
                             />
+                            <TextField
+                                sx={{ m: 1, width: '76ch', }}
+                                id="password"
+                                label="New Password"
+                                multiline
+                                maxRows={1}
+                                value={newpw}
+                                onChange={pwChange}
+                                variant="outlined"
+                            />
+                            <Button
+                        sx={{ ml: 5, mt:3,  width: "25", justifyContent: "center", alignContent: "center" }}
+                        variant="contained"
+                        color="primary">
+                        Submit Changes
+                    </Button>
                         </Grid>
                     </Grid>
                 </Paper>

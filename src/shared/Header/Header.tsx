@@ -25,6 +25,8 @@ import {common} from '@mui/material/colors'
 import {Dispatch, FC} from "react";
 import {IconContext} from "react-icons";
 import {IoCreateOutline} from "react-icons/all";
+import { transform } from 'typescript';
+
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
     color: 'inherit',
@@ -38,9 +40,9 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 const ColorButton = styled(Button)<ButtonProps>(({ theme }) => ({
     color: 'rgb(255,255,255)',
-    backgroundColor: theme.palette.secondary.main,
+    backgroundColor: "#1976d2",
     '&:hover': {
-        backgroundColor: purple[700],
+        //backgroundColor: purple[700],
     },
     textDecoration: 'none'
 }));
@@ -98,20 +100,20 @@ const Header: FC<Props> = (props): JSX.Element => {
 
     return (
         <Box sx={{ flexGrow: 1 }}>
-            <AppBar sx={{ backgroundColor: "rgb(70,100,100,0.9)", position: "static" }}>
+            <AppBar sx={{ backgroundColor: "#212121", position: "static" }}>
                 <Toolbar>
                     <NavLink exact to='/'>
-                        <IconButton size="large" edge="start" sx={{ color: common["white"], mr: 2 }}>
-                            <HomeIcon />
+                        <IconButton size="large" edge="start" sx={{ color: common["white"], ml: 1, mr: 1 }}>
+                            <HomeIcon style={{fontSize: 40}}/>
                         </IconButton>
                     </NavLink>
 
-                    <Typography variant="h6" noWrap component="div" sx={{ display: { xs: 'none', sm: 'block' } }}>
-                        Community Forum
+                    <Typography variant="h3" noWrap component="div" sx={{ mt: 4, mb: 3, ml: 2, display: { xs: 'none', sm: 'block' } }}>
+                        Community
                     </Typography>
                     <Box sx={{ flexGrow: 1 }} />
                     <ColorButton href={`/post`} sx={{mr:2}} variant="contained">
-                        <IconContext.Provider value={{ size: '15', color: "white"}}>
+                        <IconContext.Provider value={{ size: '25', color: "white"}}>
                             <Box sx={{marginTop:.5}}>
                                 <IoCreateOutline/>
                             </Box>
@@ -128,11 +130,11 @@ const Header: FC<Props> = (props): JSX.Element => {
                     <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
                         <IconButton size="large" color="inherit">
                             <Badge badgeContent={notificationCount} color="error">
-                                <NotificationsIcon />
+                                <NotificationsIcon style={{fontSize: 40}}/>
                             </Badge>
                         </IconButton>
                         <IconButton size="large" edge="end" aria-controls={menuId} onClick={accountMenuOpen} color="inherit">
-                            <AccountCircle />
+                            <AccountCircle style={{fontSize: 40}}/>
                         </IconButton>
                     </Box>
                 </Toolbar>

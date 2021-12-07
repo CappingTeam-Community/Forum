@@ -10,19 +10,19 @@ const BreadCrumbs = (props: any) => {
     const pathnames = pathname.split("/").filter((x: any) => x);
     //Template
     return (
-        <Paper sx={{display:'flex', backgroundColor: `rgba(0, 186, 219, 0.5)`, mt:.1, color:'black', pr:2, width:'max-content'}}>
+        <Paper sx={{display:'flex', backgroundColor: "#1e88e5", mt:.1, color:'black', pr:2, width:'max-content'}}>
             <Breadcrumbs aria-label="breadcrumb">
                 <Typography sx={{ml:1}}>Path:</Typography>
                 {pathnames.length > 0 ? (
-                <Link underline="hover" color="white" onClick={() => history.push("/")}>
+                <Link underline="hover" color="black" onClick={() => history.push("/")}>
                     Home
                 </Link>
                 ) : ("")}
                 {pathnames.map((name: any, index: any) => {
                     const routeTo = `/${pathnames.slice(0, index + 1).join("/")}`;
                     const isLast = index === pathnames.length - 1;
-                    return isLast ? (<Typography sx={{color:'white'}}> {name} </Typography>) :
-                        (<Link underline="hover" color="white" onClick={() => history.push(routeTo)}>{name}</Link>);
+                    return isLast ? (<Typography sx={{color:'black'}}> {name} </Typography>) :
+                        (<Link underline="hover" color="black" onClick={() => history.push(routeTo)}>{name}</Link>);
                 })}
 
             </Breadcrumbs>

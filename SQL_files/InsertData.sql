@@ -39,15 +39,15 @@ VALUES  ('', '', 'root', 'Password', 'root@community.com'),
 
 INSERT INTO Category_tbl
 (CategoryName, CategoryDescription, CategoryImage, CategoryVotes)
-VALUES('Marvel', 'A community dedicated to Marvel Studios and the Marvel Cinematic Universe!', 'https://pbs.twimg.com/profile_images/573984336271122432/k8vEBoCW.jpeg', 2000000),
-      ('League of Legends', 'This is a community devoted to the game League of Legends.', 'https://cdn1.dotesports.com/wp-content/uploads/2019/09/12195522/league-of-legends.jpg', 5400000),
-      ('Politics', 'Politics community is for news and discussion about U.S. politics.', 'https://dynaimage.cdn.cnn.com/cnn/q_auto,w_1177,c_fill,g_auto,h_662,ar_16:9/http%3A%2F%2Fcdn.cnn.com%2Fcnnnext%2Fdam%2Fassets%2F181105112842-donkey-elephant-top.jpg', 5765),
-      ('Cars', "Cars is the largest automotive enthusiast community on the Internet. We serve as communities' central hub for vehicle-related discussion including industry news, reviews, projects, videos, DIY guides, advice, stories, and more.", 'https://previews.123rf.com/images/welcomia/welcomia1405/welcomia140500063/28416319-colorful-cars-stock-cars-for-sale-dealer-lot-cars-row-.jpg', 75432),
-      ('Technology', 'Community dedicated to the news and discussions about the creation and use of technology and its surrounding issues.', 'https://cdn.britannica.com/q:60/84/203584-050-57D326E5/speed-internet-technology-background.jpg', 83364),
-      ('Fashion', 'Community dedicated too fashion, fashion industry, fashion news, clothing, fashion design', 'https://static.standard.co.uk/2021/10/07/12/Fashion_digi_web.jpg?width=968&auto=webp&quality=75&crop=968%3A645%2Csmart', 1545),
-      ('Olympics', 'Community for links and discussion about the Olympics and Paralympics.', 'https://stillmed.olympics.com/media/Images/OlympicOrg/IOC/The_Organisation/The-Olympic-Rings/Olympic_rings_TM_c_IOC_All_rights_reserved_1.jpg', 6848),
-      ('Soccer', 'The futball Community. News, results and discussion about the beautiful game.', 'https://www.pe.com/wp-content/uploads/2021/05/xxxx_spo_ocr-l-soccer-generic-stock-001-8.jpg', 87538),
-      ('Football', 'Community for those who love the classic American Sport', 'https://www.wkbn.com/wp-content/uploads/sites/48/2021/06/football-and-football-field-2.jpg?w=1280', 6);
+VALUES('Marvel', 'A community dedicated to Marvel Studios and the Marvel Cinematic Universe!', 'https://pbs.twimg.com/profile_images/573984336271122432/k8vEBoCW.jpeg', 981),
+      ('League of Legends', 'This is a community devoted to the game League of Legends.', 'https://cdn1.dotesports.com/wp-content/uploads/2019/09/12195522/league-of-legends.jpg', 542),
+      ('Politics', 'Politics community is for news and discussion about U.S. politics.', 'https://dynaimage.cdn.cnn.com/cnn/q_auto,w_1177,c_fill,g_auto,h_662,ar_16:9/http%3A%2F%2Fcdn.cnn.com%2Fcnnnext%2Fdam%2Fassets%2F181105112842-donkey-elephant-top.jpg', 575),
+      ('Cars', "Cars is the largest automotive enthusiast community on the Internet. We serve as communities' central hub for vehicle-related discussion.", 'https://previews.123rf.com/images/welcomia/welcomia1405/welcomia140500063/28416319-colorful-cars-stock-cars-for-sale-dealer-lot-cars-row-.jpg', 432),
+      ('Technology', 'Community dedicated to the news and discussions about the creation and use of technology and its surrounding issues.', 'https://cdn.britannica.com/q:60/84/203584-050-57D326E5/speed-internet-technology-background.jpg', 364),
+      ('Fashion', 'Community dedicated too fashion, fashion industry, fashion news, clothing, fashion design', 'https://static.standard.co.uk/2021/10/07/12/Fashion_digi_web.jpg?width=968&auto=webp&quality=75&crop=968%3A645%2Csmart', 145),
+      ('Olympics', 'Community for links and discussion about the Olympics and Paralympics.', 'https://stillmed.olympics.com/media/Images/OlympicOrg/IOC/The_Organisation/The-Olympic-Rings/Olympic_rings_TM_c_IOC_All_rights_reserved_1.jpg', 648),
+      ('Soccer', 'The futball Community. News, results and discussion about the beautiful game.', 'https://www.pe.com/wp-content/uploads/2021/05/xxxx_spo_ocr-l-soccer-generic-stock-001-8.jpg', 192),
+      ('Football', 'Community for those who love the classic American Sport', 'https://www.wkbn.com/wp-content/uploads/sites/48/2021/06/football-and-football-field-2.jpg?w=1280', 63);
 SELECT * FROM Category_tbl;
 
 INSERT INTO Post_tbl

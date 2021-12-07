@@ -25,23 +25,23 @@ function Discover () {
             })
     }, []);
 
-
     return (
-        <Container className={styles.DiscoveryPage} sx={{display: 'block'}}>
-            <Typography sx={{color:'black', fontSize: 50, textAlign: 'center', p: 5}}>
+        <Container className={styles.DiscoveryPage} sx={{alignItems:"center", justifyContent:'center', display: 'block'}}>
+            <Typography sx={{color:'black', fontSize: 75, textAlign: 'center'}}>
                 Discover
             </Typography>
             <div className={styles.centerGrid}>
                 <Box sx={{width:'100%'}}>
-                    <Grid container>
+                    <Grid container sx={{ml: 4}}>
                         {data.map((category: any, index: number) => {
                             return (
-                                <Grid item md={4} key={index}>
+                                <Grid item md={6} sm={12} key={index}>
                                     <Category
                                         id={category.CategoryID}
                                         title={category.CategoryName}
-                                        description={category.Description}
+                                        description={category.CategoryDescription}
                                         image={category.CategoryImage}
+                                        votes={category.CategoryVotes}
                                     />
                                 </Grid>
                             );
@@ -58,32 +58,39 @@ interface PropsCategory {
     id: number;
     title: string,
     description: string,
-    image: string
+    image: string,
+    votes: string
 }
+
+
 function Category (props:PropsCategory) {
     const route = '/category/' + (props.id).toString()
     return (
-        <Container>
-            <Card sx={{ mb:2, height:300, width: 250 }}>
+        <Container sx={{alignItems:"center", justifyContent:'center'}}>
+            <Card sx={{alignItems:"center", justifyContent:'center', mb:2, height:520, width: 450, border: 1, borderColor: "grey.500" }}>
                 <CardActionArea href={route}>
                     <CardMedia
                         component="img"
-                        height="140"
+                        height="250"
                         image={props.image}
                     />
                     <CardContent>
-                        <Typography gutterBottom variant="h5" component="div">
+                        <Typography gutterBottom variant="h4" component="div">
                             {props.title}
                         </Typography>
-                        <Typography variant="body2" color="text.secondary">
-                            {props.description}
-                        </Typography>
+                        <Typography variant="h5" sx={{ mb: 1.5 }} color="text.secondary">
+                        {props.description}
+                         </Typography>
+                        
                     </CardContent>
                 </CardActionArea>
 
                 <CardActions>
-                    <Button size="medium">Explore Topic</Button>
+                <Typography variant="h6" sx={{ mb: 1.5 }} color="text.secondary">
+                        {props.votes} people in this community.
+                         </Typography>
                 </CardActions>
+               
             </Card>
         </Container>
     )

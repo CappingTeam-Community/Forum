@@ -10,10 +10,10 @@
 .search {
     position: relative;
     border-radius: 5px;
-    background-color: rgba(255,255,255, 0.15);
+    background-color: rgba(255,255,0, 0.15);
     margin-right: 2em;
     margin-left: 0;
-    width: auto;
+    width: 200;
 }
 
 .search:hover {

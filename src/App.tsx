@@ -34,8 +34,8 @@ const theme = createTheme({
         }
     },
     typography: {
-        fontFamily: ['Nanum Myeongjo', 'serif'].join(''),
-        fontWeightLight: 400
+        fontFamily: 'Raleway, copperplate',
+        fontWeightLight: 4
     }
 
 });
