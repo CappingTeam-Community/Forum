@@ -22,18 +22,27 @@ Material UI is the UI component Library of choice.
 
 `npm install @mui/material @mui/styles @mui/icons-material @emotion/react @emotion/styled cors @types/node dotenv react-icons`
 
-
 For more info: https://mui.com/
 
+
+### Server Dependencies 
+`npm install express body-parser mysql nodemon cors`
+
 ### Database instalation
-
-`brew install mariadb`
-
-`mysql.server start`
-
-`brew services start mariadb`
-`source ./SQL_files/Community.sql`
-`source ./SQL_files/InsertData.sql`
+#### MacOS
+   `brew install mariadb`
+   `mysql.server start`
+   `brew services start mariadb`
+   `source ./SQL_files/Community.sql`
+   `source ./SQL_files/InsertData.sql`
+#### Windows
+Install: https://mariadb.com/downloads/community/
+1. Accept terms
+2. Set folder name destination to cloned repository
+3. password: password
+4. Set port to 3001
+5. Open "MySQL Client (MariaDB)"
+`mysql.server start
 
 New Terminal
 `npm run devStart`
@@ -41,9 +50,6 @@ New Terminal
 log in as root user
 
 `mysql -u root -p`
-
-### Server Dependencies 
-`npm install express body-parser mysql nodemon cors`
 
 
 ## Template Generator
