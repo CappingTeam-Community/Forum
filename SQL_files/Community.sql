@@ -70,9 +70,27 @@ CREATE TABLE UserCategory(
     CONSTRAINT Constr_UserCategory_Category_fk FOREIGN KEY (IDCategory) REFERENCES Category_tbl (CategoryID)
 );
 
+CREATE TABLE UserPost(
+    IDUser INT NOT NULL,
+    IDPost INT NOT NULL,
+    PRIMARY KEY (IDUser, IDPost),
+    CONSTRAINT Constr_UserPost_User_fk FOREIGN KEY (IDUser) REFERENCES User_tbl (UserID),
+    CONSTRAINT Constr_UserPost_Post_fk FOREIGN KEY (IDPost) REFERENCES Post_tbl (PostID)
+);
+
+CREATE TABLE UserComment(
+    IDUser INT NOT NULL,
+    IDComment INT NOT NULL,
+    PRIMARY KEY (IDUser, IDComment),
+    CONSTRAINT Constr_UserComment_User_fk FOREIGN KEY (IDUser) REFERENCES User_tbl (UserID),
+    CONSTRAINT Constr_UserComment_Comment_fk FOREIGN KEY (IDComment) REFERENCES Comment_tbl (CommentID)
+);
+
 SHOW FULL TABLES;
 SHOW COLUMNS FROM User_tbl;
 SHOW COLUMNS FROM Category_tbl;
 SHOW COLUMNS FROM Post_tbl;
 SHOW COLUMNS FROM Comment_tbl;
 SHOW COLUMNS FROM UserCategory;
+SHOW COLUMNS FROM UserComment;
+SHOW COLUMNS FROM UserPost;
