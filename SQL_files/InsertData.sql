@@ -135,7 +135,7 @@ What other examples are out there?', "2021-10-20", "https://hips.hearstapps.com/
         (4, 'Red Honda badges.', 'Why are the red Honda badges found on Type R models acceptable to put on a civic Si, but not a “non type r” civic hatchback? Is it to do with speed class, putting respek on the red badge, or just people being gate keeping gremlins?', "2021-10-20", "https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/2022_Honda_Civic_Sport%2C_Front_Right%2C_06-20-2021.jpg/1200px-2022_Honda_Civic_Sport%2C_Front_Right%2C_06-20-2021.jpg", 6, 9),
         (4, 'Which cars have underrated power figures from the manufacturer?', "I've read about the SRT 4 and the MK VII GTI as having very underrated hp and torque figures. What other cars were / are underrated?", "2021-10-20", "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/cd12dn92e-1604609584.jpg?crop=0.867xw:0.760xh;0.0731xw,0.0561xh&resize=640:*", 7, 21);
         
---insert posts into category 'technology'
+/**insert posts into category 'technology'**/
 INSERT INTO Post_tbl
 (CategoryID_Post, PostTitle, PostBody, PostDate, PostImage, PostVotes, CreatorID)
 VALUES  (5, 'Study: Fossil fuel plans would far overshoot climate goals', 'https://apnews.com/article/climate-science-business-environment-europe-dcbcc6388b24c8b83476ddea14b92e21', "2021-10-20", "https://cdn2.opendemocracy.net/media/images/pxfuel.com.max-760x504.jpg", 9, 7),
