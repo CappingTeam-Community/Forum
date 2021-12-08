@@ -165,11 +165,11 @@ enter password 'password' to get access to your database.
 
 `Source /../forum/sql_files/community.sql`
 
-enter local sorce path to community.sql
+enter local source path to community.sql
 
 `Source /../forum/sql_files/insertdata.sql`
 
-enter local sorce path to insertdata.sql
+enter local source path to insertdata.sql
 
 `ALTER USER 'root'@'localhost' IDENTIFIED BY 'password';`
 
@@ -189,6 +189,30 @@ This will keep the database server running, and auto update whenever a new chang
 
 ### Windows Commands:
 
+`mysql -u root -p`
+
+enter password 'password' to get access to your database
+
+`Source /../forum/sql_files/community.sql`
+
+enter the exact local source path where the `/../` is displayed
+
+`Source /../forum/sql_files/insertdata.sql`
+
+enter the exact local source path where the `/../` is displayed
+
+`ALTER USER 'root'@'localhost' IDENTIFIED BY 'password';`
+
+`flush privileges;`
+
+alters privileges to use defalut root@localhost
+
+*Above commands only need to be ran first time*
+
+### In a seperate terminal:
+
+cd to ../forum/
+
+`npm run devStart`
 
 
-## AI
