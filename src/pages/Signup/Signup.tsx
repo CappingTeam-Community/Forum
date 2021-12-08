@@ -19,11 +19,11 @@ const Signup = (props:any): JSX.Element => {
     const [redirect, setRedirect] = useState(false);
     const [alert, setAlert] = useState(false);
 
-    const [firstName, setFirstName] = useState('kevin');
-    const [lastName, setLastName] = useState('lynch');
-    const [username, setUsername] = useState('klynch');
-    const [email, setEmail] = useState('klynch@gmail.com');
-    const [password, setPassword] = useState('password');
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
+    const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
     const [confirm, setConfirm] = useState('');
 
 
