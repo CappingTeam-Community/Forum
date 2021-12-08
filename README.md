@@ -35,12 +35,13 @@ For more info: https://mui.com/
    `brew services start mariadb`
    `source ./SQL_files/Community.sql`
    `source ./SQL_files/InsertData.sql`
+   
 #### Windows
-Install: https://mariadb.com/downloads/community/
+Install: https://dev.mysql.com/downloads/installer/
 1. Accept terms
-2. Set folder name destination to cloned repository
+2. Check use Legacy Authentication.
 3. password: password
-4. Set port to 3001
+4. Set port to 3306
 5. Open "MySQL Client (MariaDB)"
 `mysql.server start
 
@@ -188,18 +189,17 @@ cd to ../forum/
 This will keep the database server running, and auto update whenever a new change is made.
 
 ### Windows Commands:
+Download MySQL, insure to use Legacy Authentication.
 
-`mysql -u root -p`
+Launch MySql command line.
 
 enter password 'password' to get access to your database
 
+enter the exact local source path where the `/../` is displayed
 `Source /../forum/sql_files/community.sql`
 
 enter the exact local source path where the `/../` is displayed
-
 `Source /../forum/sql_files/insertdata.sql`
-
-enter the exact local source path where the `/../` is displayed
 
 `ALTER USER 'root'@'localhost' IDENTIFIED BY 'password';`
 
@@ -210,8 +210,8 @@ alters privileges to use defalut root@localhost
 *Above commands only need to be ran first time*
 
 ### In a seperate terminal:
-
-cd to ../forum/
+enter the exact local source path where the `/../` is displayed
+cd to /../forum/
 
 `npm run devStart`
 
