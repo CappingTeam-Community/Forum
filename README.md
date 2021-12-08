@@ -28,29 +28,6 @@ For more info: https://mui.com/
 ### Server Dependencies 
 `npm install express body-parser mysql nodemon cors`
 
-### Database instalation
-#### MacOS
-   `brew install mariadb`
-   `mysql.server start`
-   `brew services start mariadb`
-   `source ./SQL_files/Community.sql`
-   `source ./SQL_files/InsertData.sql`
-   
-#### Windows
-Install: https://dev.mysql.com/downloads/installer/
-1. Accept terms
-2. Check use Legacy Authentication.
-3. password: password
-4. Set port to 3306
-5. Open "MySQL Client (MariaDB)"
-`mysql.server start
-
-New Terminal
-`npm run devStart`
-
-log in as root user
-
-`mysql -u root -p`
 
 
 ## Template Generator
@@ -141,6 +118,31 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 ## Database
 
 ### The steps taken are slightly different for Mac and Windows Users. 
+
+### Instalation
+#### MacOS
+   `brew install mariadb`
+   `mysql.server start`
+   `brew services start mariadb`
+   `source ./SQL_files/Community.sql`
+   `source ./SQL_files/InsertData.sql`
+   
+#### Windows
+Install: https://dev.mysql.com/downloads/installer/
+1. Accept terms
+2. Check use Legacy Authentication.
+3. password: password
+4. Set port to 3306
+5. Open "MySQL Client (MariaDB)"
+`mysql.server start
+
+New Terminal
+`npm run devStart`
+
+log in as root user
+
+`mysql -u root -p`
+
 
 ### Mac Commands:
 
