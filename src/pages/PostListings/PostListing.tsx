@@ -1,16 +1,5 @@
-import {Box, 
-    Button, 
-    Card, 
-    Checkbox, 
-    Container, 
-    FormControl, 
-    Grid, 
-    IconButton, 
-    MenuItem, 
-    Paper, 
-    Typography}
-    from '@mui/material';
-import {Box, Container, Grid, IconButton, Paper, Typography} from '@mui/material';
+
+import {Box, Container, FormControl, Grid, IconButton, MenuItem, Paper, Typography} from '@mui/material';
 import React from "react";
 import Post from "../../shared/Components/Post/Post";
 import CancelIcon from '@mui/icons-material/Cancel';
@@ -99,7 +88,7 @@ function PostListing (props:any) {
     useEffect(() => {
         setBusy(false);
     }, [posts]);
-    }, [CategoryID]);
+
 
     return (
         <Container sx={{display:'block'}}>
