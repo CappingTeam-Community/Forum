@@ -11,6 +11,7 @@ import Axios from "axios";
 import {useEffect, useState} from "react";
 import {IoCreateOutline} from "react-icons/all";
 import {IconContext} from "react-icons";
+import {getCurrentUser} from "../../shared/Authentication";
 
 function Forum (props:any) {
     const [busy, setBusy] = useState(true);
@@ -44,7 +45,6 @@ function Forum (props:any) {
     };
 
     function sendToDBComment() {
-        
         let date = new Date().toJSON().slice(0, 10);
             // TODO: Commenter ID should be current user
             // TODO: is this right?
@@ -53,16 +53,10 @@ function Forum (props:any) {
                 CommentDate: date,
                 CommentTags: tag,
                 PostID_Comment: PostID,
-                CommenterID: 17
+                CommenterID: getCurrentUser().UserID
     
-            }).then(() =>{
+            })
 
-                alert("Inserted")
-                console.log("send DB clicked");
-
-
-            });
-            console.log('clicked');
     }
 
     function handleComment (event: React.FormEvent<HTMLFormElement>) {
@@ -74,7 +68,6 @@ function Forum (props:any) {
 
     const commentChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setComment(event.target.value);
-        console.log(comment);
     }
     const tagChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setTag(event.target.value);
@@ -97,7 +90,7 @@ function Forum (props:any) {
         return (
             <>
                 {!busy &&
-                <Container sx={{marginTop: 8, display: "flex", flexDirection: "column", alignItems: "center"}}>
+                <Container sx={{marginTop: 8, display: "flex", flexDirection: "column", alignItems: "center", alignContent:'center'}}>
                     {post.map((data: any) => {
                         return (
                             <Post 
@@ -112,10 +105,10 @@ function Forum (props:any) {
                             />
                         )
                     })}
-                    <Paper elevation={6} component='form' sx={{ display: 'flex', boxShadow: '4', width:900, mt:1, py:.5}}>
-                            <AccountCircle sx={{alignContent:'center', color: 'action.active', mx:1}}/>
+                    <Paper elevation={6} component='form' sx={{ display: 'flex', boxShadow: '4', width:803, mt:1, py:.5}}>
+                            <AccountCircle sx={{alignContent:'center', color: 'action.active', mx:1, mt:2}}/>
                             <TextField
-                                sx={{width: '80%'}}
+                                sx={{width: '80%', my:2}}
                                 name='comment'
                                 label="Leave a comment..."
                                 variant="filled"
@@ -124,9 +117,9 @@ function Forum (props:any) {
                                 rows={4}
                                 onChange={commentChange}
                             />
-                            <Box sx={{flexDirection:'column', width:'20%'}}>
+                            <Box sx={{flexDirection:'column', width:'20%', mt:2}}>
                                 <TextField
-                                    sx={{ ml:1, width: '90%',}}
+                                    sx={{ ml:1, width: '90%'}}
                                     id="tag"
                                     name='tag'
                                     label="Tags"
@@ -137,7 +130,7 @@ function Forum (props:any) {
                                 <Box component='form'>
                                     <Button
                                         type='submit'
-                                        sx={{m: 1, width: '90%', height: '40px'}}
+                                        sx={{m: 1, mt:2, width: '90%', height: '40px'}}
                                         variant="contained"
                                         onClick={sendToDBComment} 
                                     >
@@ -151,8 +144,8 @@ function Forum (props:any) {
                                 </Box>
                             </Box>
                         </Paper>
-                    <Paper elevation={6} sx={{ display: 'flex', flexDirection:'column', boxShadow: '4', mb: 10, width:900, mt:1, backgroundColor:`rgba(255,255,255,.6)`}}>
-                        <FormControl sx={{m: 0, width: 90, mt: 3, ml:2, my:1}}>
+                    <Paper elevation={6} sx={{ display: 'flex', flexDirection:'column', boxShadow: '4', mb: 10, width:803, mb:10,mt:1, backgroundColor:`rgba(255,255,255,.6)`}}>
+                        <FormControl sx={{m: 0, width: 90, mt: 30, ml:2, my:1}}>
                             <Select
                                 value={sort}
                                 onChange={handleChange}

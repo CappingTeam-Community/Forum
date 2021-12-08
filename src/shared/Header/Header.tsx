@@ -1,5 +1,4 @@
 import * as React from 'react';
-import styles from './Header.module.css';
 import {
     AppBar,
     Box,
@@ -7,22 +6,19 @@ import {
     IconButton,
     Typography,
     InputBase,
-    Badge,
     MenuItem,
     Menu,
     styled,
     Button,
     ButtonProps
 } from '@mui/material';
-import SearchIcon from '@mui/icons-material/Search';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import HomeIcon from '@mui/icons-material/Home';
-import NotificationsIcon from '@mui/icons-material/Notifications';
 import {NavLink, Redirect} from "react-router-dom";
 import {common} from '@mui/material/colors'
-import {FC, useState} from "react";
+import {FC, useEffect, useState} from "react";
 import {IconContext} from "react-icons";
-import {IoCreateOutline} from "react-icons/all";
+import {IoCreateOutline, RiCompassDiscoverLine} from "react-icons/all";
 
 import {removeToken, isAuth} from "../Authentication";
 
@@ -49,15 +45,14 @@ const Header: FC<Props> = (props): JSX.Element => {
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
     const isMenuOpen = Boolean(anchorEl);
     const menuId = 'navBar';
-    const notificationCount = 0;
     const [redirect, setRedirect] = useState(false);
+    const [location, setLocation] = useState('');
 
     function handleLogout() {
         removeToken()
         accountMenuClose()
-        setRedirect(true);
+        window.location.href = '/';
     }
-
     const accountMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorEl(event.currentTarget);
     };
@@ -92,6 +87,7 @@ const Header: FC<Props> = (props): JSX.Element => {
     );
     return (
         <Box sx={{ flexGrow: 1 }}>
+            {redirect ? (<Redirect to={location}/>) : null}
             <AppBar sx={{ backgroundColor: "#212121", position: "static" }}>
                 <Toolbar>
                     <NavLink exact to='/'>
@@ -104,7 +100,20 @@ const Header: FC<Props> = (props): JSX.Element => {
                         Community
                     </Typography>
                     <Box sx={{ flexGrow: 1 }} />
-                    <ColorButton href={`/post`} sx={{mr:2}} variant="contained">
+                    <ColorButton onClick={() => {
+                        setLocation('/discover');
+                        setRedirect(true);
+                    }}
+                                 sx={{mr:2}} variant="contained">
+                        <IconContext.Provider value={{ size: '25', color: "white"}}>
+                            <Box sx={{marginTop:.5}}>
+                                <RiCompassDiscoverLine/>
+                            </Box>
+                        </IconContext.Provider>
+                        <Typography sx={{ml:.5}}>Discover</Typography>
+                    </ColorButton>
+                    <ColorButton onClick={() => {isAuth() ? (setLocation('/post') || setRedirect(true)) : (alert('Please Login to Create a Post'))}}
+                                 sx={{mr:2}} variant="contained">
                         <IconContext.Provider value={{ size: '25', color: "white"}}>
                             <Box sx={{marginTop:.5}}>
                                 <IoCreateOutline/>
@@ -112,27 +121,14 @@ const Header: FC<Props> = (props): JSX.Element => {
                         </IconContext.Provider>
                         <Typography sx={{ml:.5}}>Post</Typography>
                     </ColorButton>
-                    <div className={styles.search}>
-                        <div className={styles.search_icon_wrapper}>
-                            <SearchIcon />
-                        </div>
-                        <StyledInputBase placeholder="Search Forum"></StyledInputBase>
-                    </div>
-
                     <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-                        <IconButton size="large" color="inherit">
-                            <Badge badgeContent={notificationCount} color="error">
-                                <NotificationsIcon style={{fontSize: 40}}/>
-                            </Badge>
-                        </IconButton>
                         <IconButton size="large" edge="end" aria-controls={menuId} onClick={accountMenuOpen} color="inherit">
-                            <AccountCircle style={{fontSize: 40}}/>
+                            <AccountCircle sx={{fontSize: 40, borderRadius:'100%', boxShadow: (isAuth()) ? '0px 0px 5px 4px green' : null}}/>
                         </IconButton>
                     </Box>
                 </Toolbar>
             </AppBar>
             {renderMenu}
-            {redirect ? <Redirect to={'/'}/> : null}
         </Box>
     );
 }

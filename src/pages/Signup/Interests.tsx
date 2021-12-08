@@ -38,11 +38,8 @@ function Interests () {
     async function handleSubmit (event:any) {
         event.preventDefault();
         const uid = getCurrentUser().UserID;
-        console.log('interests', interests);
         try {
             await Promise.all([interests.forEach((category:any) => {
-                console.log(uid);
-                console.log(category);
                 Axios.post(`http://localhost:3001/user-category/insert/`, {
                     uid: uid,
                     cid: category.CategoryID
@@ -78,7 +75,7 @@ function Interests () {
                 <Button type='submit' variant='contained' sx={{mt: 3, mb: 2, width: '100%'}}>Complete Sign
                     Up</Button>
             </Box>
-            {redirect ? (<Redirect to={'/category'}/>) : null}
+            {redirect ? (<Redirect to='/category/'/>) : null}
         </Container>
     )
 }

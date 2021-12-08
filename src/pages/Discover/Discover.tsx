@@ -13,6 +13,7 @@ import { Box } from '@mui/material';
 import styles from './Discover.module.css';
 import React, {useEffect, useState} from "react";
 import Axios from "axios";
+import {Redirect} from "react-router-dom";
 
 function Discover () {
     const [data, setData] = useState<any>([]);
@@ -65,10 +66,12 @@ interface PropsCategory {
 
 function Category (props:PropsCategory) {
     const route = '/category/' + (props.id).toString()
+    const [redirect, setRedirect] = useState(false);
     return (
         <Container sx={{alignItems:"center", justifyContent:'center'}}>
+            {redirect ? (<Redirect to={`/category/${(props.id).toString()}`} />) : null}
             <Card sx={{alignItems:"center", justifyContent:'center', mb:2, height:520, width: 450, border: 1, borderColor: "grey.500" }}>
-                <CardActionArea href={route}>
+                <CardActionArea onClick={() => {setRedirect(true)}}>
                     <CardMedia
                         component="img"
                         height="250"

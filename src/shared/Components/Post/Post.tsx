@@ -120,7 +120,6 @@ class Post extends Component<Props, State> {
         return (
             <Container sx={{ display: 'flex'}}>
                 <Card sx={{width: 900, border: 1, borderColor: "grey.500", height:""}}>
-                    {/* TODO: Replace test with card forum page */}
                     <CardActionArea href={this.route}>
                         <CardHeader
                             avatar={<Avatar sx={{bgcolor: this.avatarColor}}>{this.author.charAt(0)}</Avatar>}

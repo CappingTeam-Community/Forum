@@ -16,8 +16,8 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // Select all Posts
-app.get('/post/select', (req, res) => {
-    const sqlSelectPost = "SELECT PostId, PostTitle, PostVotes, PostDate, PostBody, PostImage, UserID, UserName FROM Post_tbl, User_tbl WHERE CreatorID = UserID ORDER BY PostDate"
+app.get('/post/select/recent', (req, res) => {
+    const sqlSelectPost = "SELECT PostID, PostTitle, PostVotes, PostDate, PostBody, PostImage, UserID, UserName FROM Post_tbl, User_tbl WHERE CreatorID = UserID ORDER BY PostDate DESC"
     db.query(sqlSelectPost, (err, result) => {
         if (err){
             console.log(err);
@@ -26,6 +26,27 @@ app.get('/post/select', (req, res) => {
         res.send(result);
     });
 })
+app.get('/post/select/Popular', (req, res) => {
+    const sqlSelectPost = "SELECT PostID, PostTitle, PostVotes, PostDate, PostBody, PostImage, UserID, UserName FROM Post_tbl, User_tbl WHERE CreatorID = UserID ORDER BY PostVotes DESC"
+    db.query(sqlSelectPost, (err, result) => {
+        if (err){
+            console.log(err);
+        } else {
+            res.send(result);
+        }
+    });
+})
+app.get('/post/select/oldest', (req, res) => {
+    const sqlSelectPost = "SELECT PostID, PostTitle, PostVotes, PostDate, PostBody, PostImage, UserID, UserName FROM Post_tbl, User_tbl WHERE CreatorID = UserID ORDER BY PostDate"
+    db.query(sqlSelectPost, (err, result) => {
+        if (err){
+            console.log(err);
+        } else {
+            res.send(result);
+        }
+    });
+})
+
 
 // Select Post by id
 app.get('/post/select/:id', (req, res) => {
@@ -34,9 +55,9 @@ app.get('/post/select/:id', (req, res) => {
     db.query(sqlSelectPost, [id], (err, result) => {
         if (err){
             console.log(err);
+        } else {
+            res.send(result);
         }
-        console.log(result);
-        res.send(result);
     });
 });
 
@@ -48,9 +69,9 @@ app.get('/post-category/select/:id/recent', (req, res) => {
     db.query(sqlSelectPost, [id], (err, result)=> {
         if (err){
             console.log("pc error", err);
+        } else {
+            res.send(result);
         }
-        console.log('result', result);
-        res.send(result);
     });
 });
 
@@ -61,9 +82,9 @@ app.get('/post-category/select/:id/popular', (req, res) => {
     db.query(sqlSelectPost, [id], (err, result)=> {
         if (err){
             console.log("pc error", err);
+        } else {
+            res.send(result);
         }
-        console.log('result', result);
-        res.send(result);
     });
 });
 
@@ -334,19 +355,6 @@ app.post('/comment/unliked/update', (req, res) => {
         console.log(result);
     });
 });
-
-// Select posts under all categories in users interests
-/*
-app.get('/post/select/interests/:uid', (req, res) => {
-    const uid = req.params.uid;
-    const sqlSelectPosts = "SELECT PostTitle, PostVotes, PostID, PostDate, PostVotes, PostBody, PostImage, UserName, UserID FROM Post_tbl, User_tbl, UserCategory WHERE IDUser = ? AND IDCategory = CategoryID_Post AND CreatorID = UserID ORDER BY PostDate DESC"
-    db.query(sqlSelectPosts, [uid], (err, result) => {
-        if (err) {
-            console.log(err);
-        }
-        res.send(result)
-    });
-});*/
 
 // Select posts under all categories in users interests
 app.get('/post-category/select/interests/:uid/:sort', (req, res) => {

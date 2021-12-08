@@ -209,7 +209,7 @@ Then, after that sales channel, it comes to subscription streaming services.", "
         (1, "Eternals is being released November 5", "2021-10-11", 1, 5, null),
         (1, "I think so that it matches with the release of the Eternals. More HYPE and more marketing so people are more likely to watch it then", "2021-10-11", 0, 2, null),
         (1, "45 day minimum. They are holding off because it has been successful in theaters. It hasn’t even come to theaters in some areas yet", "2021-10-11", 0, 5, null);
-        
+
 INSERT INTO Comment_tbl
 (PostID_Comment, Comment, CommentDate, CommentVotes, CommenterID, CommentTags)
 VALUES  (2, "I think that’s pretty accurate. I think the MCU not having access to hardly any of your A listers was a good thing for them. They laid down a solid foundation for the MCU with a B list appetizer Now we get our A list main course.", "2021-10-13", 10, 6, null),
@@ -222,7 +222,7 @@ VALUES  (2, "I think that’s pretty accurate. I think the MCU not having access
         (2, "Yep, that's true, I forgot about that.", "2021-10-13", 1, 2, null),
         (2, "how do you measure iconicness? it has be put down in numbers somehow and sales are a good barometer", "2021-10-13", 1, 2, 'iconicness'),
         (2, "My list is your list.", "2021-10-13", 1, 3, null);
-        
+
 INSERT INTO Comment_tbl
 (PostID_Comment, Comment, CommentDate, CommentVotes, CommenterID, CommentTags)
 VALUES  (3, "Natasha is dead as of End Game as well. Steve isn't dead just retired", "2021-10-13", 2, 4, null),
@@ -391,7 +391,6 @@ INSERT INTO Comment_tbl
 VALUES (18, "what a suprise", "2021-12-01", 0, 23, ''),
         (18, "wow, lets go back.", "2021-12-01", 0, 22, ''),
         (18, "The old way was flawed but at least it worked.", "2021-12-01", 0, 21, '');
-
 
 SELECT * FROM Comment_tbl;
 

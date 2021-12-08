@@ -4,9 +4,7 @@ import Axios from "axios";
 import React, {useState} from "react";
 import {IconContext} from "react-icons";
 import {GiPadlock} from "react-icons/all";
-import {token} from "../../shared/Authentication";
-import {Redirect} from "react-router-dom";
-
+import {isAuth, token} from "../../shared/Authentication";
 
 const Login = (props:any): JSX.Element => {
     const [email, setEmail] = useState('');
@@ -16,7 +14,16 @@ const Login = (props:any): JSX.Element => {
     const handleSubmit = async (event: any) => {
         event.preventDefault();
         await(token({email,password}));
-        setRedirect(true);
+
+        if(isAuth()){
+            setRedirect(true);
+        } else {
+            alert('Login Not Authorized.')
+        }
+    }
+    // Use this function instead of <Redirect> to rerender the header as well
+    function changeLocation() {
+        window.location.href='/';
     }
     return (
         <Container maxWidth='xs'>
@@ -69,7 +76,7 @@ const Login = (props:any): JSX.Element => {
                     </Box>
                 </Grid>
             </Box>
-            {redirect ? (<Redirect to={'/'} />) : null}
+            {redirect ? changeLocation() : null}
         </Container>
     )
 };
