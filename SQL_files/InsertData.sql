@@ -326,6 +326,72 @@ Falcon - No superpowers to speak of, and all he has is carbon-fiber wings and sp
         (6, "Yeah, later.", "2021-10-14", 0, 9, null),
         (6, "And none of those died lol.... Stark is extremely weak. One of my favorite characters still but so weak. Cap destroyed him (which hurt to see but)", "2021-10-14", 0, 3, "ironman");
 
+INSERT INTO Comment_tbl
+(PostID_Comment, Comment, CommentDate, CommentVotes, CommenterID, CommentTags)
+VALUES (7, "not funny.", "2021-12-01", 0, 26, ''),
+        (7, "lame", "2021-12-01", 0, 25, ''),
+        (7, "trash", "2021-12-01", 0, 24, '');
+
+INSERT INTO Comment_tbl
+(PostID_Comment, Comment, CommentDate, CommentVotes, CommenterID, CommentTags)
+VALUES (8, "I wonder why?", "2021-12-01", 0, 23, ''),
+        (8, "Thats weird, mine updated.", "2021-12-01", 0, 22, ''),
+        (8, "I thought the same exact thing", "2021-12-01", 0, 21, '');
+
+INSERT INTO Comment_tbl
+(PostID_Comment, Comment, CommentDate, CommentVotes, CommenterID, CommentTags)
+VALUES (9, "bro fuck teemo", "2021-12-01", 0, 23, '');
+
+INSERT INTO Comment_tbl
+(PostID_Comment, Comment, CommentDate, CommentVotes, CommenterID, CommentTags)
+VALUES (10, "OMG the worst!", "2021-12-01", 0, 23, ''),
+        (10, "Idk i kinda liked them", "2021-12-01", 0, 22, ''),
+        (10, "at least they tried", "2021-12-01", 0, 21, '');
+
+INSERT INTO Comment_tbl
+(PostID_Comment, Comment, CommentDate, CommentVotes, CommenterID, CommentTags)
+VALUES (11, "Try resetting it", "2021-12-01", 0, 23, ''),
+        (11), "You can reset any corrupted files in settings.", "2021-12-01", 0, 22, '');
+
+INSERT INTO Comment_tbl
+(PostID_Comment, Comment, CommentDate, CommentVotes, CommenterID, CommentTags)
+VALUES (12, "Happens man", "2021-12-01", 0, 23, ''),
+        (12, "the same thing happened to me just the other day", "2021-12-01", 0, 22, ''),
+        (12, "I wondeer if its because of the new update.", "2021-12-01", 0, 21, '');
+
+INSERT INTO Comment_tbl
+(PostID_Comment, Comment, CommentDate, CommentVotes, CommenterID, CommentTags)
+VALUES (13, "Is that even legal?", "2021-12-01", 0, 23, ''),
+        (13, "not suprised about the new administration", "2021-12-01", 0, 22, ''),
+        (13, "hey at least hes doing more than our last president", "2021-12-01", 0, 21, '');
+
+INSERT INTO Comment_tbl
+(PostID_Comment, Comment, CommentDate, CommentVotes, CommenterID, CommentTags)
+VALUES (14, "Is that even legal?", "2021-12-01", 0, 23, ''),
+        (14, "That should not be mandated", "2021-12-01", 0, 22, ''),
+        (14, "Its a choice you should choose to take", "2021-12-01", 0, 21, '');
+
+INSERT INTO Comment_tbl
+(PostID_Comment, Comment, CommentDate, CommentVotes, CommenterID, CommentTags)
+VALUES (15, "Thats what happens when you elect a grandpa", "2021-12-01", 0, 23, ''),
+        (15, "why coal? shouldnt we be focusing on renewable energy?", "2021-12-01", 0, 22, ''),
+        (15, "Cmon biden! you should be the one looking ot be more progressive", "2021-12-01", 0, 21, '');
+
+INSERT INTO Comment_tbl
+(PostID_Comment, Comment, CommentDate, CommentVotes, CommenterID, CommentTags)
+VALUES (16, "lol perv", "2021-12-01", 0, 23, ''),
+        (16, "happens man", "2021-12-01", 0, 22, '');
+
+INSERT INTO Comment_tbl
+(PostID_Comment, Comment, CommentDate, CommentVotes, CommenterID, CommentTags)
+VALUES (17, "Lets cancel him", "2021-12-01", 0, 23, '');
+
+INSERT INTO Comment_tbl
+(PostID_Comment, Comment, CommentDate, CommentVotes, CommenterID, CommentTags)
+VALUES (18, "what a suprise", "2021-12-01", 0, 23, ''),
+        (18, "wow, lets go back.", "2021-12-01", 0, 22, ''),
+        (18, "The old way was flawed but at least it worked.", "2021-12-01", 0, 21, '');
+
 
 SELECT * FROM Comment_tbl;
 
@@ -346,3 +412,4 @@ INSERT INTO UserComment
 VALUES(2, 1), (2, 13), (2,3), (2, 16);
 
 SELECT * FROM UserPost;
+
