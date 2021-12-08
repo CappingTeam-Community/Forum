@@ -40,7 +40,7 @@ CREATE TABLE User_tbl(
     FirstName VARCHAR(100) NOT NULL,
     LastName VARCHAR(100) NOT NULL,
     UserName VARCHAR(100) NOT NULL,
-    PassWord VARCHAR(100) NOT NULL,
+    Password VARCHAR(100) NOT NULL,
     Email VARCHAR(100) NOT NULL,
     CategoryID_User INT,
     PostID_User INT,

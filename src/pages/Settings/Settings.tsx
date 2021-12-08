@@ -1,8 +1,7 @@
 import { Avatar, Box, Button, Checkbox, Container, CssBaseline, FormControlLabel, FormGroup, Grid, IconButton, Paper, Popover, TextField, Typography } from '@mui/material';
-import React, { Dispatch, FC, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { styled } from '@mui/material/styles';
 import Axios from 'axios';
-import { UserState } from '../../App';
 
 function stringToColor(string: string) {
     let hash = 0;
@@ -24,14 +23,8 @@ function stringToColor(string: string) {
     return color;
 }
 
-type UserProps = {
-    userData: any,
-    setUserData: Dispatch<UserState>,
-    auth: any,
-    setAuth: Dispatch<boolean>
-}
 
-const Settings: FC<UserProps> = (props): JSX.Element => {
+const Settings = (props:any): JSX.Element => {
     const [categories, setCategories] = useState<any>([]);
 
     useEffect(() => {
@@ -79,7 +72,6 @@ const Settings: FC<UserProps> = (props): JSX.Element => {
             }
         }
     }
-
     const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null);
 
     const handlePopoverOpen = (event: React.MouseEvent<HTMLElement>) => {

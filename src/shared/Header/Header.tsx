@@ -18,20 +18,18 @@ import SearchIcon from '@mui/icons-material/Search';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import HomeIcon from '@mui/icons-material/Home';
 import NotificationsIcon from '@mui/icons-material/Notifications';
-import { NavLink } from "react-router-dom";
-import { purple } from '@mui/material/colors';
+import {NavLink, Redirect} from "react-router-dom";
 import {common} from '@mui/material/colors'
-import {Dispatch, FC} from "react";
+import {FC, useState} from "react";
 import {IconContext} from "react-icons";
 import {IoCreateOutline} from "react-icons/all";
-import { transform } from 'typescript';
 
+import {removeToken, isAuth} from "../Authentication";
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
     color: 'inherit',
     '& .MuiInputBase-input': {
         padding: theme.spacing(1, 1, 1, 0),
-        // vertical padding + font size from searchIcon
         paddingLeft: `calc(1em + ${theme.spacing(4)})`,
         width: '100%',
     },
@@ -40,15 +38,11 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 const ColorButton = styled(Button)<ButtonProps>(({ theme }) => ({
     color: 'rgb(255,255,255)',
     backgroundColor: "#1976d2",
-    '&:hover': {
-        //backgroundColor: purple[700],
-    },
     textDecoration: 'none'
 }));
 
 type Props = {
-    auth: any,
-    setAuth: Dispatch<boolean>
+    setSearch: any
 }
 
 const Header: FC<Props> = (props): JSX.Element => {
@@ -56,9 +50,12 @@ const Header: FC<Props> = (props): JSX.Element => {
     const isMenuOpen = Boolean(anchorEl);
     const menuId = 'navBar';
     const notificationCount = 0;
+    const [redirect, setRedirect] = useState(false);
 
     function handleLogout() {
-        props.setAuth(false);
+        removeToken()
+        accountMenuClose()
+        setRedirect(true);
     }
 
     const accountMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
@@ -67,7 +64,32 @@ const Header: FC<Props> = (props): JSX.Element => {
     const accountMenuClose = () => {
         setAnchorEl(null);
     };
-
+    const renderMenu = (
+        <Menu
+            anchorEl={anchorEl}
+            anchorOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+            }}
+            id={menuId}
+            keepMounted
+            open={isMenuOpen}
+            onClose={accountMenuClose}
+        >
+            {isAuth() ? (
+                <>
+                    <MenuItem><Button href={'/settings'}>Settings</Button></MenuItem>
+                    <MenuItem><Button onClick={handleLogout}>Logout</Button></MenuItem>
+                </>
+            ) : (
+                <>
+                    <MenuItem><Button href={'/login'}>Login</Button></MenuItem>
+                    <MenuItem><Button href={'/signup'}>Signup</Button></MenuItem>
+                </>
+            )
+            }
+        </Menu>
+    );
     return (
         <Box sx={{ flexGrow: 1 }}>
             <AppBar sx={{ backgroundColor: "#212121", position: "static" }}>
@@ -109,37 +131,8 @@ const Header: FC<Props> = (props): JSX.Element => {
                     </Box>
                 </Toolbar>
             </AppBar>
-            { props.auth ? (
-                <Menu
-                    anchorEl={anchorEl}
-                    anchorOrigin={{
-                        vertical: 'top',
-                        horizontal: 'right',
-                    }}
-                    id={menuId}
-                    keepMounted
-                    open={isMenuOpen}
-                    onClose={accountMenuClose}
-                >
-                    <MenuItem><Button href={'/settings'}>Settings</Button></MenuItem>
-                    <MenuItem><Button href={'/discover'} onClick={handleLogout}>Logout</Button></MenuItem>
-                </Menu>
-            ) : (
-                <Menu
-                    anchorEl={anchorEl}
-                    anchorOrigin={{
-                        vertical: 'top',
-                        horizontal: 'right',
-                    }}
-                    id={menuId}
-                    keepMounted
-                    open={isMenuOpen}
-                    onClose={accountMenuClose}
-                >
-                    <MenuItem><Button href={'/login'}>Login</Button></MenuItem>
-                    <MenuItem><Button href={'/signup'}>Signup</Button></MenuItem>
-                </Menu>
-            )}
+            {renderMenu}
+            {redirect ? <Redirect to={'/'}/> : null}
         </Box>
     );
 }

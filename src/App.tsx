@@ -9,16 +9,13 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Discover from "./pages/Discover/Discover";
 import Forum from './pages/Forum/Forum';
 import {ThemeProvider, createTheme} from "@mui/material"
-import { useState} from "react";
+import {useState} from "react";
 import Settings from './pages/Settings/Settings';
 import BreadCrumbs from './shared/BreadCrumbs/BreadCrumbs';
+import { isAuth } from "./shared/Authentication";
 
 export interface UserState {
-    firstName: any,
-    lastName: any,
     username: any,
-    email: any,
-    password: any,
     interests: Array<any>
 }
 
@@ -40,50 +37,44 @@ const theme = createTheme({
 });
 
 function App() {
-    const [userData, setUserData] = useState<UserState>({
-        firstName: '',
-        lastName: '',
-        username: '',
-        email: '',
-        password: '',
-        interests: [],
-    });
-    const [auth, setAuth] = useState(false);
+    const [search, setSearch] = useState('');
 
     // TODO: 2 settings routes
     return (
             <ThemeProvider theme={theme}>
                 <div className='App'>
                         <BrowserRouter>
-                            <Header auth={auth} setAuth={setAuth} />
+                            <Header setSearch={setSearch}/>
                             <BreadCrumbs/>
                             <Switch>
                                 <Route exact path='/'>
-                                        <Discover />
+                                    <Discover />
                                 </Route>
-                                <Route exact path='/category/:CategoryID' render={(props) => <PostListing {...props} />} />
-                                <Route exact path='/category/' render={(props) => <PostListing {...props} />} />
-                                <Route exact path='/post'>
-                                    <CreatePost />
-                                </Route>
-                                <Route exact path='/user'>
-                                    <Settings auth={auth} setAuth={setAuth} userData={userData} setUserData={setUserData}/>
-                                </Route>
-                                <Route exact path='/settings'>
-                                    <Settings auth={auth} setAuth={setAuth} userData={userData} setUserData={setUserData} />
-                                </Route>
+                                <Route exact path='/category/:CategoryID' render={(props) => <PostListing search={search} {...props} />} />
+                                <Route exact path='/category' render={(props) => <PostListing search={search} {...props} />} />
+
                                 <Route exact path='/login'>
-                                    <Login auth={auth} setAuth={setAuth} userData={userData} setUserData={setUserData} />
+                                    <Login />
                                 </Route>
                                 <Route exact path='/signup'>
-                                    <Signup auth={auth} setAuth={setAuth} userData={userData} setUserData={setUserData}/>
+                                    <Signup />
                                 </Route>
                                 <Route exact path='/forum/:PostID' render={(props) => <Forum {...props} />} />
+                                {isAuth() ? (
+                                    <>
+                                        <Route exact path='/post'>
+                                            <CreatePost />
+                                        </Route>
+                                        <Route exact path='/settings'>
+                                            <Settings />
+                                        </Route>
+                                    </>
+                                    ) : null
+                                }
                             </Switch>
                         </BrowserRouter>
                 </div>
             </ThemeProvider>
     );
 }
-
 export default App;

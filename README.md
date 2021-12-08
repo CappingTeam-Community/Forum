@@ -83,8 +83,8 @@ Clone the Repo (Main Devs)
 3. Go to desired directory in terminal
 4. `git clone COPIED_URL`
 5. Enter Github Username
-6. Enter Personal Access Token
-   7. Account -> Developer Account -> Personal Access Token -> Generate New Token
+6. Enter Personal Access Authentication
+   7. Account -> Developer Account -> Personal Access Authentication -> Generate New Authentication
 
 ### Auth0
 1. For Developers: Auth0 credentials make public under .env files. To get access to Auth0 application information, 

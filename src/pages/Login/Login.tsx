@@ -1,31 +1,23 @@
 import {Box, Container, CssBaseline, FormGroup, Grid, Link, Paper, TextField, Typography} from "@mui/material";
 import Button from "@mui/material/Button";
-import React, {Dispatch, FC} from "react";
 import Axios from "axios";
-import {UserState} from "../../App";
+import React, {useState} from "react";
 import {IconContext} from "react-icons";
 import {GiPadlock} from "react-icons/all";
+import {token} from "../../shared/Authentication";
+import {Redirect} from "react-router-dom";
 
-type UserProps = {
-    userData: any,
-    setUserData: Dispatch<UserState>,
-    auth: any,
-    setAuth: Dispatch<boolean>
-}
 
-const Login: FC<UserProps> = (props): JSX.Element => {
+const Login = (props:any): JSX.Element => {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [redirect, setRedirect] = useState(false);
 
-    function onSubmit(event: React.FormEvent<HTMLFormElement>) {
+    const handleSubmit = async (event: any) => {
         event.preventDefault();
-        const data = new FormData(event.currentTarget);
-        Axios.get(`http://localhost:3001/user/select/email/${data.get('email')}`)
-            .then(res => {
-                const resData:any = res.data;
-                console.log(resData);
-            })
+        await(token({email,password}));
+        setRedirect(true);
     }
-
-    //Template
     return (
         <Container maxWidth='xs'>
             <CssBaseline />
@@ -50,13 +42,13 @@ const Login: FC<UserProps> = (props): JSX.Element => {
                             Login
                         </Typography>
                         <FormGroup>
-                            <Box component='form' onSubmit={onSubmit} sx={{ mt:3 }}>
+                            <Box sx={{ mt:3 }}>
                                 <Grid container spacing={2}>
                                     <Grid item xs={12} sm={12}>
-                                        <TextField name='email' id='email' label="Email" autoFocus required fullWidth />
+                                        <TextField label="Email" value={email} onChange={event => setEmail(event.target.value)} autoFocus required fullWidth />
                                     </Grid>
                                     <Grid item xs={12}>
-                                        <TextField type='password' name='password' id='password' label="Password" autoFocus required fullWidth />
+                                        <TextField type='password' label="Password" value={password} onChange={event => setPassword(event.target.value)} autoFocus required fullWidth />
                                     </Grid>
                                 </Grid>
                                 <Grid container>
@@ -71,12 +63,13 @@ const Login: FC<UserProps> = (props): JSX.Element => {
                                         </Link>
                                     </Grid>
                                 </Grid>
-                                <Button type='submit' variant='contained' fullWidth sx={{ mt:3, mb:2}}>Continue</Button>
+                                <Button onClick={handleSubmit} variant='contained' fullWidth sx={{ mt:3, mb:2}}>Continue</Button>
                             </Box>
                         </FormGroup>
                     </Box>
                 </Grid>
             </Box>
+            {redirect ? (<Redirect to={'/'} />) : null}
         </Container>
     )
 };
