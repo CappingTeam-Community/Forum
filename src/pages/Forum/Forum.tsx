@@ -46,21 +46,21 @@ function Forum (props:any) {
 
     function sendToDBComment() {
         let date = new Date().toJSON().slice(0, 10);
-            // TODO: Commenter ID should be current user
-            // TODO: is this right?
-            Axios.post(`http://localhost:3001/comment/insert`,{
-                Comment: comment,
-                CommentDate: date,
-                CommentTags: tag,
-                PostID_Comment: PostID,
-                CommenterID: getCurrentUser().UserID
-    
-            })
+        // TODO: Commenter ID should be current user
+        // TODO: is this right?
+        Axios.post(`http://localhost:3001/comment/insert`,{
+            Comment: comment,
+            CommentDate: date,
+            CommentTags: tag,
+            PostID_Comment: PostID,
+            CommenterID: getCurrentUser().UserID
+
+        })
 
     }
 
     function handleComment (event: React.FormEvent<HTMLFormElement>) {
-        event.preventDefault();        
+        event.preventDefault();
         const data = new FormData(event.currentTarget);
         const temp = {body:data.get('comment'), tag:data.get('tag')};
         //setComment(temp);
@@ -87,95 +87,97 @@ function Forum (props:any) {
         setBusy(false);
     }, [comments]);
 
-        return (
-            <>
-                {!busy &&
-                <Container sx={{marginTop: 8, display: "flex", flexDirection: "column", alignItems: "center", alignContent:'center'}}>
+    return (
+        <>
+            {!busy &&
+            <Container sx={{marginTop: 8, display: "flex", flexDirection: "column", alignItems: "center", alignContent:'center'}}>
+                <Box>
                     {post.map((data: any) => {
                         return (
-                            <Post 
-                                  id={data.PostID}
-                                  author={data.UserName}
-                                  title={data.PostTitle}
-                                  date={data.PostDate}
-                                  PostImage={data.PostImage}
-                                  categories={[]}
-                                  voteCount={data.PostVotes}
-                                  postBody={data.PostBody}
+                            <Post
+                                id={data.PostID}
+                                author={data.UserName}
+                                title={data.PostTitle}
+                                date={data.PostDate}
+                                PostImage={data.PostImage}
+                                categories={[]}
+                                voteCount={data.PostVotes}
+                                postBody={data.PostBody}
                             />
                         )
                     })}
-                    <Paper elevation={6} component='form' sx={{ display: 'flex', boxShadow: '4', width:803, mt:1, py:.5}}>
-                            <AccountCircle sx={{alignContent:'center', color: 'action.active', mx:1, mt:2}}/>
-                            <TextField
-                                sx={{width: '80%', my:2}}
-                                name='comment'
-                                label="Leave a comment..."
-                                variant="filled"
-                                size="small"
-                                multiline
-                                rows={4}
-                                onChange={commentChange}
-                            />
-                            <Box sx={{flexDirection:'column', width:'20%', mt:2}}>
-                                <TextField
-                                    sx={{ ml:1, width: '90%'}}
-                                    id="tag"
-                                    name='tag'
-                                    label="Tags"
-                                    variant="filled"
-                                    size="small"
-                                    onChange = {tagChange}
-                                />
-                                <Box component='form'>
-                                    <Button
-                                        type='submit'
-                                        sx={{m: 1, mt:2, width: '90%', height: '40px'}}
-                                        variant="contained"
-                                        onClick={sendToDBComment} 
-                                    >
-                                        <IconContext.Provider value={{ size: '25', color: "white"}}>
-                                            <Box sx={{marginTop:.5}}>
-                                                <IoCreateOutline/>
-                                            </Box>
-                                        </IconContext.Provider>
-                                        <Typography sx={{ml:.5}}>Comment</Typography>
-                                    </Button>
-                                </Box>
-                            </Box>
-                        </Paper>
-                    <Paper elevation={6} sx={{ display: 'flex', flexDirection:'column', boxShadow: '4', mb: 10, width:803, mb:10,mt:1, backgroundColor:`rgba(255,255,255,.6)`}}>
-                        <FormControl sx={{m: 0, width: 90, mt: 30, ml:2, my:1}}>
-                            <Select
-                                value={sort}
-                                onChange={handleChange}
-                                variant={'standard'}
+                </Box>
+                <Paper elevation={6} component='form' sx={{ display: 'flex', boxShadow: '4', width:803, mt:1, py:.5}}>
+                    <AccountCircle sx={{alignContent:'center', color: 'action.active', mx:1, mt:2}}/>
+                    <TextField
+                        sx={{width: '80%', my:2}}
+                        name='comment'
+                        label="Leave a comment..."
+                        variant="filled"
+                        size="small"
+                        multiline
+                        rows={4}
+                        onChange={commentChange}
+                    />
+                    <Box sx={{flexDirection:'column', width:'20%', mt:2}}>
+                        <TextField
+                            sx={{ ml:1, width: '90%'}}
+                            id="tag"
+                            name='tag'
+                            label="Tags"
+                            variant="filled"
+                            size="small"
+                            onChange = {tagChange}
+                        />
+                        <Box component='form'>
+                            <Button
+                                type='submit'
+                                sx={{m: 1, mt:2, width: '90%', height: '40px'}}
+                                variant="contained"
+                                onClick={sendToDBComment}
                             >
-                                <MenuItem value={'Recent'}>Recent</MenuItem>
-                                <MenuItem value={'Popular'}>Popular</MenuItem>
-                                <MenuItem value={'Oldest'}>Oldest</MenuItem>
-                                <MenuItem value={'Tags'}>Tags</MenuItem>
-                            </Select>
-                        </FormControl>
+                                <IconContext.Provider value={{ size: '25', color: "white"}}>
+                                    <Box sx={{marginTop:.5}}>
+                                        <IoCreateOutline/>
+                                    </Box>
+                                </IconContext.Provider>
+                                <Typography sx={{ml:.5}}>Comment</Typography>
+                            </Button>
+                        </Box>
+                    </Box>
+                </Paper>
+                <Paper elevation={6} sx={{ display: 'flex', flexDirection:'column', boxShadow: '4', mb: 10, width:803, mb:10,mt:1, backgroundColor:`rgba(255,255,255,.6)`}}>
+                    <FormControl sx={{m: 0, width: 90, mt: 30, ml:2, my:1}}>
+                        <Select
+                            value={sort}
+                            onChange={handleChange}
+                            variant={'standard'}
+                        >
+                            <MenuItem value={'Recent'}>Recent</MenuItem>
+                            <MenuItem value={'Popular'}>Popular</MenuItem>
+                            <MenuItem value={'Oldest'}>Oldest</MenuItem>
+                            <MenuItem value={'Tags'}>Tags</MenuItem>
+                        </Select>
+                    </FormControl>
 
-                        {comments.map((data: any, index: number) => {
-                            return (
-                                <Grid alignItems="center" justifyContent="center" item md={10} key={index} sx={{pb: 3}}>
-                                    <Comment id={data.CommentID}
-                                             author={data.UserName}
-                                             date={data.CommentDate}
-                                             tags={data.CommentTags}
-                                             voteCount={data.CommentVotes}
-                                             commentBody={data.Comment}
-                                    />
-                                </Grid>
-                            );
-                        })}
-                    </Paper>
-                </Container>
-                }
-            </>
-        )
+                    {comments.map((data: any, index: number) => {
+                        return (
+                            <Grid alignItems="center" justifyContent="center" item md={10} key={index} sx={{pb: 3, mt:2}}>
+                                <Comment id={data.CommentID}
+                                         author={data.UserName}
+                                         date={data.CommentDate}
+                                         tags={data.CommentTags}
+                                         voteCount={data.CommentVotes}
+                                         commentBody={data.Comment}
+                                />
+                            </Grid>
+                        );
+                    })}
+                </Paper>
+            </Container>
+            }
+        </>
+    )
 }
 
 export default Forum;

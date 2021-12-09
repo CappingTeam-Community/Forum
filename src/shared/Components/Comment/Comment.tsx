@@ -118,9 +118,6 @@ class Comment extends Component<Props, State> {
                             {this.tags ? (<Typography color='gray' sx={{pl:1,pr:1}}>#{this.tags}</Typography>) : null}
                             </CommentBody>
                         </CardContent>
-                        <CardActions>
-                            <Button href='commenttest' size='small'sx={{ml:'auto', mr:0}} >Reply</Button>
-                        </CardActions>
                         </List>
                         <Divider />
                         <Box sx={{ m:'auto' }}>
