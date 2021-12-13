@@ -2,7 +2,7 @@ import { Avatar, Box, Button, Checkbox, Container, CssBaseline, FormControlLabel
 import React, { useEffect, useState } from 'react';
 import { styled } from '@mui/material/styles';
 import Axios from 'axios';
-import {getCurrentUser, removeToken, token} from "../../shared/Authentication";
+import {getCurrentUser, token} from "../../shared/Authentication";
 
 function stringToColor(string: string) {
     let hash = 0;

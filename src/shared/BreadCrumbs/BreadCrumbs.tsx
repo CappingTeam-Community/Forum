@@ -15,7 +15,7 @@ const BreadCrumbs = (props: any) => {
                 {pathnames.map((name: any, index: any) => {
                     const routeTo = `/${pathnames.slice(0, index + 1).join("/")}`;
                     const isLast = index === pathnames.length - 1;
-                    return (isLast || name == 'forum') ? (<Typography sx={{color:'black'}}> {name} </Typography>) :
+                    return (isLast || name === 'forum') ? (<Typography sx={{color:'black'}}> {name} </Typography>) :
                         (<Link underline="hover" color="black" onClick={() => history.push(routeTo)}>{name}</Link>);
                 })}
 

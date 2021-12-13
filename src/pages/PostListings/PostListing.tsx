@@ -23,7 +23,7 @@ function PostListing (props:any) {
             console.log('setShow', props.location.state.CategoryID);
             setShow(props.location.state.CategoryID);
         }
-        getCategories();
+        getCategories().then(() => {});
 
     },[]);
     useEffect(() => {
@@ -32,7 +32,7 @@ function PostListing (props:any) {
     }, [categories]);
     useEffect(() => {
         setBusy(true);
-        getPosts()
+        getPosts().then(() => {})
     }, [sort, show]);
     useEffect(() => {
         setBusy(false);
@@ -47,13 +47,13 @@ function PostListing (props:any) {
     }
 
     const getPosts = async () => {
-        if (show == 'all') {
+        if (show === 'all') {
             await Axios.get(`http://localhost:3001/post/select/${sort}`)
                 .then(res => {
                     const data = res.data;
                     setPosts(data)
                 })
-        } else if (show == 'interests') {
+        } else if (show === 'interests') {
             if (isAuth()) {
                 Axios.get(`http://localhost:3001/post-category/select/interests/${uid}/${sort}`)
                     .then(res => {
@@ -98,9 +98,9 @@ function PostListing (props:any) {
                                     variant={'standard'}
                                 >
                                     <MenuItem value={'all'}>Show All</MenuItem>
-                                    {isAuth() ? (<MenuItem value={'interests'}>My Interests</MenuItem>) : null}
+                                    {isAuth() ? <MenuItem value={'interests'}>My Interests</MenuItem> : null}
                                     {categories.map((category:any, index: any) => {
-                                        return (<MenuItem value={category.CategoryID}>{category.CategoryName}</MenuItem>)
+                                        return <MenuItem key={index} value={category.CategoryID}>{category.CategoryName}</MenuItem>
                                     })}
                                 </Select>
                             </FormControl>

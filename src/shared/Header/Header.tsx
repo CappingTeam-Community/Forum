@@ -5,12 +5,11 @@ import {
     Toolbar,
     IconButton,
     Typography,
-    InputBase,
     MenuItem,
     Menu,
     styled,
     Button,
-    ButtonProps
+    ButtonProps, MenuList
 } from '@mui/material';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import HomeIcon from '@mui/icons-material/Home';
@@ -21,15 +20,6 @@ import {IconContext} from "react-icons";
 import {IoCreateOutline, RiCompassDiscoverLine} from "react-icons/all";
 
 import {removeToken, isAuth} from "../Authentication";
-
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
-    color: 'inherit',
-    '& .MuiInputBase-input': {
-        padding: theme.spacing(1, 1, 1, 0),
-        paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-        width: '100%',
-    },
-}));
 
 const ColorButton = styled(Button)<ButtonProps>(({ theme }) => ({
     color: 'rgb(255,255,255)',
@@ -73,15 +63,15 @@ const Header: FC<Props> = (): JSX.Element => {
             onClose={accountMenuClose}
         >
             {isAuth() ? (
-                <>
+                <MenuList>
                     <MenuItem><Button href={'/settings'}>Settings</Button></MenuItem>
                     <MenuItem><Button onClick={handleLogout}>Logout</Button></MenuItem>
-                </>
+                </MenuList>
             ) : (
-                <>
+                <MenuList>
                     <MenuItem><Button href={'/login'}>Login</Button></MenuItem>
                     <MenuItem><Button href={'/signup'}>Signup</Button></MenuItem>
-                </>
+                </MenuList>
             )
             }
         </Menu>

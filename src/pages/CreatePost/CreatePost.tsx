@@ -24,7 +24,7 @@ function CreatePost() {
 
     function sendToDB() {
         let date = new Date().toJSON().slice(0, 10);
-        if (image == "") {
+        if (image === "") {
             image = "https://upload.wikimedia.org/wikipedia/commons/6/6c/No_image_3x4.svg";
         }
         if(title.length > 0 && content.length > 0 && tag) {

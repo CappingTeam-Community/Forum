@@ -1,5 +1,4 @@
 import Axios from "axios";
-import React from "react";
 const jwt = require('jsonwebtoken');
 
 //TODO: implement .env file, syntax to call is process.env.REACT_APP_SECRET. Secures data.
