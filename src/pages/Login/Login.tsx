@@ -1,12 +1,11 @@
 import {Box, Container, CssBaseline, FormGroup, Grid, Link, Paper, TextField, Typography} from "@mui/material";
 import Button from "@mui/material/Button";
-import Axios from "axios";
 import React, {useState} from "react";
 import {IconContext} from "react-icons";
 import {GiPadlock} from "react-icons/all";
 import {isAuth, token} from "../../shared/Authentication";
 
-const Login = (props:any): JSX.Element => {
+const Login = (): JSX.Element => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [redirect, setRedirect] = useState(false);
@@ -55,7 +54,7 @@ const Login = (props:any): JSX.Element => {
                                         <TextField label="Email" value={email} onChange={event => setEmail(event.target.value)} autoFocus required fullWidth />
                                     </Grid>
                                     <Grid item xs={12}>
-                                        <TextField type='password' label="Password" value={password} onChange={event => setPassword(event.target.value)} autoFocus required fullWidth />
+                                        <TextField type='password' label="Password" value={password} onChange={event => setPassword(event.target.value)} required fullWidth />
                                     </Grid>
                                 </Grid>
                                 <Grid container>

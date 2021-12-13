@@ -14,9 +14,9 @@ import {
 } from '@mui/material';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import HomeIcon from '@mui/icons-material/Home';
-import {NavLink, Redirect} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 import {common} from '@mui/material/colors'
-import {FC, useEffect, useState} from "react";
+import {FC} from "react";
 import {IconContext} from "react-icons";
 import {IoCreateOutline, RiCompassDiscoverLine} from "react-icons/all";
 
@@ -41,17 +41,18 @@ type Props = {
     setSearch: any
 }
 
-const Header: FC<Props> = (props): JSX.Element => {
+const Header: FC<Props> = (): JSX.Element => {
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
     const isMenuOpen = Boolean(anchorEl);
     const menuId = 'navBar';
-    const [redirect, setRedirect] = useState(false);
-    const [location, setLocation] = useState('');
 
     function handleLogout() {
         removeToken()
         accountMenuClose()
         window.location.href = '/';
+    }
+    function handleRedirect(path:string) {
+        window.location.href = path;
     }
     const accountMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorEl(event.currentTarget);
@@ -87,7 +88,6 @@ const Header: FC<Props> = (props): JSX.Element => {
     );
     return (
         <Box sx={{ flexGrow: 1 }}>
-            {redirect ? (<Redirect to={location}/>) : null}
             <AppBar sx={{ backgroundColor: "#212121", position: "static" }}>
                 <Toolbar>
                     <NavLink exact to='/'>
@@ -101,8 +101,7 @@ const Header: FC<Props> = (props): JSX.Element => {
                     </Typography>
                     <Box sx={{ flexGrow: 1 }} />
                     <ColorButton onClick={() => {
-                        setLocation('/discover');
-                        setRedirect(true);
+                        handleRedirect('/discover')
                     }}
                                  sx={{mr:2}} variant="contained">
                         <IconContext.Provider value={{ size: '25', color: "white"}}>
@@ -112,7 +111,7 @@ const Header: FC<Props> = (props): JSX.Element => {
                         </IconContext.Provider>
                         <Typography sx={{ml:.5}}>Discover</Typography>
                     </ColorButton>
-                    <ColorButton onClick={() => {isAuth() ? (setLocation('/post') || setRedirect(true)) : (alert('Please Login to Create a Post'))}}
+                    <ColorButton onClick={() => isAuth() ? handleRedirect('/post') : (alert('Please Login to Create a Post'))}
                                  sx={{mr:2}} variant="contained">
                         <IconContext.Provider value={{ size: '25', color: "white"}}>
                             <Box sx={{marginTop:.5}}>

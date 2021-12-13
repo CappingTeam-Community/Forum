@@ -1,5 +1,4 @@
 import {
-    Button,
     Card,
     CardActionArea,
     CardActions,
@@ -63,13 +62,15 @@ interface PropsCategory {
     votes: string
 }
 
-
 function Category (props:PropsCategory) {
-    const route = '/category/' + (props.id).toString()
     const [redirect, setRedirect] = useState(false);
     return (
         <Container sx={{alignItems:"center", justifyContent:'center'}}>
-            {redirect ? (<Redirect to={`/category/${(props.id).toString()}`} />) : null}
+            {redirect ? (
+                <Redirect to={{
+                    pathname:`/`,
+                    state: {CategoryID: props.id} }} />
+            ) : null}
             <Card sx={{alignItems:"center", justifyContent:'center', mb:2, height:520, width: 450, border: 1, borderColor: "grey.500" }}>
                 <CardActionArea onClick={() => {setRedirect(true)}}>
                     <CardMedia

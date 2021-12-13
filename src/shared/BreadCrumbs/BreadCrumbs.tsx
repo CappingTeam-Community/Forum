@@ -1,14 +1,10 @@
 import {Breadcrumbs, Link, Paper, Typography} from '@mui/material';
 import { withRouter } from 'react-router';
 
-
-
 const BreadCrumbs = (props: any) => {
-    //Logic
     const { history, location } = props;
     const { pathname } = location;
     const pathnames = pathname.split("/").filter((x: any) => x);
-    //Template
     return (
         <Paper sx={{display:'flex', backgroundColor: "#1e88e5", mt:.1, color:'black', pr:2, width:'max-content'}}>
             <Breadcrumbs aria-label="breadcrumb">

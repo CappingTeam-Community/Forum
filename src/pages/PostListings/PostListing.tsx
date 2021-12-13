@@ -1,10 +1,8 @@
-
 import {Box, Container, FormControl, Grid, MenuItem, Typography} from '@mui/material';
 import React from "react";
 import Post from "../../shared/Components/Post/Post";
 import { useState, useEffect } from "react";
 import Select from '@mui/material/Select';
-
 import Axios from 'axios';
 import {getCurrentUser, isAuth} from "../../shared/Authentication";
 
@@ -12,7 +10,7 @@ function PostListing (props:any) {
     const [busy, setBusy] = useState(true);
     const [posts, setPosts] = useState<any>([]);
     const [show, setShow] = useState<any>('all');
-    const [sort, setSort] = useState();
+    const [sort, setSort] = useState<any>();
     const [uid, setUid] = useState();
     const [categories, setCategories] = useState<any>([]);
 
@@ -21,8 +19,9 @@ function PostListing (props:any) {
         if (isAuth()) {
             setUid(getCurrentUser().UserID);
         }
-        if (props.match.params.CategoryID) {
-            setShow(props.match.params.CategoryID);
+        if (props.location.state) {
+            console.log('setShow', props.location.state.CategoryID);
+            setShow(props.location.state.CategoryID);
         }
         getCategories();
 
@@ -121,7 +120,7 @@ function PostListing (props:any) {
                                 />
                             </Grid>
                         );
-                    })};
+                    })}
                 </Container>
             ) : null }
         </Container>

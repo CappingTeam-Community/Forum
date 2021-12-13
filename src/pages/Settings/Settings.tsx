@@ -2,6 +2,7 @@ import { Avatar, Box, Button, Checkbox, Container, CssBaseline, FormControlLabel
 import React, { useEffect, useState } from 'react';
 import { styled } from '@mui/material/styles';
 import Axios from 'axios';
+import {getCurrentUser, removeToken, token} from "../../shared/Authentication";
 
 function stringToColor(string: string) {
     let hash = 0;
@@ -11,7 +12,6 @@ function stringToColor(string: string) {
     for (i = 0; i < string.length; i += 1) {
         hash = string.charCodeAt(i) + ((hash << 5) - hash);
     }
-
     let color = '#';
 
     for (i = 0; i < 3; i += 1) {
@@ -19,12 +19,11 @@ function stringToColor(string: string) {
         color += `00${value.toString(16)}`.substr(-2);
     }
     /* eslint-enable no-bitwise */
-
     return color;
 }
 
 
-const Settings = (props:any): JSX.Element => {
+const Settings = (): JSX.Element => {
     const [categories, setCategories] = useState<any>([]);
 
     useEffect(() => {
@@ -43,35 +42,39 @@ const Settings = (props:any): JSX.Element => {
             children: `${name.split(' ')[0][0]}${name.split(' ')[1][0]}`,
         };
     }
-
-    function onComplete(event: React.FormEvent<HTMLFormElement>) {
+    async function handleSubmit(event: any) {
         event.preventDefault();
-        Axios.post(`http://localhost:3001/settings/insert`, {
-            FirstName: props.userData.firstName,
-            LastName: props.userData.lastName,
-            UserName: props.userData.username,
-            Password: props.userData.password,
-            Email: props.userData.email
+        await Axios.post(`http://localhost:3001/user/update/${getCurrentUser().UserID}`, {
+            FirstName: firstname,
+            LastName: lastname,
+            UserName: username,
+            Email: email,
+            Password: password
+        }).then(() => {
+            token({email : getCurrentUser().Email, password: getCurrentUser().Password});
         });
+        window.location.href='/';
     }
 
-    function onSelectInterest(event: React.ChangeEvent<HTMLInputElement>) {
+    // TODO: Must remove old from database as well, also make old ones pre-selected
+    function handleSelect (event:any) {
+        event.preventDefault();
+        let data = JSON.parse(event.target.value);
+        data = {IDUser:user.UserID, IDCategory:data.CategoryID};
         if (event.target.checked) {
             if (event.currentTarget.labels) {
-                let temp = Object.assign({}, props.userData);
-                temp.interests = [...temp.interests, event.currentTarget.labels[0].innerText];
-                props.setUserData(temp);
+                let temp = [...interests, data];
+                setInterests(temp);
             }
         } else {
-            if (event.currentTarget.labels) {
-                const index = props.userData.interests.indexOf(event.currentTarget.labels[0].innerText);
-                let temp = Object.assign({}, props.userData);
-
-                temp.interests.splice(index, 1);
-                props.setUserData(temp);
+            if (event.currentTarget.labels){
+                const index = interests.indexOf(data);
+                let temp = interests.splice(index,1);
+                setInterests(temp);
             }
         }
     }
+
     const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null);
 
     const handlePopoverOpen = (event: React.MouseEvent<HTMLElement>) => {
@@ -83,232 +86,205 @@ const Settings = (props:any): JSX.Element => {
     };
 
     const open = Boolean(anchorEl);
-
-
-    const [firstName, setFName] = React.useState('');
-
-    const firstChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setFName(event.target.value);
-    };
-
-
-
-    const [lastName, setLName] = React.useState('');
-
-    const lastChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setLName(event.target.value);
-    };
-
-    const [userName, setUName] = React.useState('');
-
-    const userNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setUName(event.target.value);
-    };
-
-    const [newEmail, setEmail] = React.useState('');
-
-    const emailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setEmail(event.target.value);
-    };
-
-    const [newpw, setPW] = React.useState('');
-
-    const pwChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setPW(event.target.value);
-    };
+    const [user, setUser] = useState<any>(getCurrentUser());
+    const [firstname, setFirstname] = React.useState<any>(user.FirstName);
+    const [lastname, setLastname] = React.useState<any>(user.LastName);
+    const [username, setUsername] = React.useState<any>(user.UserName);
+    const [email, setEmail] = React.useState<any>(user.Email);
+    const [password, setPassword] = React.useState<any>();
+    const [interests, setInterests] = React.useState<any>([]);
+    const [busy, setBusy] = React.useState(false)
 
     const Input = styled('input')({
         display: 'none',
     });
+    useEffect(() => {
+        setUser(getCurrentUser());
+        setBusy(true);
+        Axios.get(`http://localhost:3001/user-category/select/${user.UserID}`)
+            .then((res) => {
+                const data = res.data;
+                console.log('data', data);
+                setInterests(data);
+            })
+    },[]);
+    useEffect(() => {
+        setFirstname(user.FirstName);
+        setLastname(user.LastName);
+        setUsername(user.UserName);
+        setEmail(user.Email);
+    }, [user]);
 
+    useEffect(() => {
+        setBusy(false);
+    }, [interests]);
     //Template
     return (
         <div>
-            <Box sx={{ display: 'flex', flexWrap: 'wrap', alignContent: "center", justifyContent: "left", px: 8, m: 2 }}>
-
-                <label htmlFor="icon-button-file">
-                    <Input accept="image/*" id="icon-button-file" type="file" />
-                    <IconButton color="primary" aria-label="upload picture" component="span">
-                        <Avatar
-                            aria-owns={open ? 'mouse-over-popover' : undefined}
-                            aria-haspopup="true"
-                            onMouseEnter={handlePopoverOpen}
-                            onMouseLeave={handlePopoverClose}
-                            alt="User Name"
-                            src="/broken-image.jpg"
-                            {...stringAvatar('User Name')}
-                            sx={{ display: 'flex', width: 350, height: 350, m: 4, }}
+            {busy ? null : (
+                <>
+                    <Box sx={{ display: 'flex', flexWrap: 'wrap', alignContent: "center", justifyContent:'center', px: 8, m: 2 }}>
+                            <label htmlFor="icon-button-file" style={{alignItems:'center', display:'flex'}}>
+                                <Input accept="image/*" id="icon-button-file" type="file" />
+                                <IconButton color="primary" aria-label="upload picture" component="span">
+                                    <Avatar
+                                        aria-owns={open ? 'mouse-over-popover' : undefined}
+                                        aria-haspopup="true"
+                                        onMouseEnter={handlePopoverOpen}
+                                        onMouseLeave={handlePopoverClose}
+                                        alt="User Name"
+                                        src="/broken-image.jpg"
+                                        {...stringAvatar(firstname + " " + lastname)}
+                                        sx={{ display: 'flex', width: 150, height: 150}}
+                                    >
+                                    </Avatar>
+                                </IconButton>
+                            </label>
+                        <Popover
+                            id="mouse-over-popover"
+                            sx={{
+                                pointerEvents: 'none',
+                            }}
+                            open={open}
+                            anchorEl={anchorEl}
+                            anchorOrigin={{
+                                vertical: 'bottom',
+                                horizontal: 'center',
+                            }}
+                            transformOrigin={{
+                                vertical: 'center',
+                                horizontal: 'center',
+                            }}
+                            onClose={handlePopoverClose}
                         >
-
-                        </Avatar>
-                    </IconButton>
-                </label>
-
-                <Popover
-                    id="mouse-over-popover"
-                    sx={{
-                        pointerEvents: 'none',
-                    }}
-                    open={open}
-                    anchorEl={anchorEl}
-                    anchorOrigin={{
-                        vertical: 'bottom',
-                        horizontal: 'center',
-                    }}
-                    transformOrigin={{
-                        vertical: 'center',
-                        horizontal: 'center',
-                    }}
-
-                    onClose={handlePopoverClose}
-
-                >
-                    <label htmlFor="contained-button-file">
-                        <Input accept="image/*" id="contained-button-file" multiple type="file" />
-                        <Button variant="outlined" component="span">
-                            Upload Image
-                        </Button>
-                    </label>
-                </Popover>
-
-
-                <Typography variant="h3" component="div" gutterBottom sx={{ py: 20, m: 2, px: 10, justifyContent: 'center' }}>
-                    User Settings
-                </Typography>
-
-            </Box>
-            <Box sx={{ display: 'flex', flexWrap: 'wrap', alignContent: "center", justifyContent: "center", px: 35, m: 2}}>
-                <Paper elevation={4} sx={{ display: 'flex', flexWrap: 'wrap' }}>
-                    <Grid container columns={1} rowSpacing={1} display = "flex" flexWrap ="wrap">
-                        <Grid item xs={6}>
-                            <Typography variant="overline" display="block" sx={{ m:1, px: 3, pt: 3, fontWeight: 'bold', fontSize: 16}}>
-                                Change Name
-                            </Typography>
-                        </Grid>
-
-
-                        <Grid item sx={{ justifyContent: "center", alignContent: "center", mx: 'auto'}}>
-                            <TextField
-                                sx={{ m:1, width: '37ch', alignContent: "left", justifyContent: "center"}}
-                                id="firstName"
-                                label="First Name"
-                                multiline
-                                maxRows={1}
-                                value={firstName}
-                                onChange={firstChange}
-                                variant="outlined"
-                            />
-                             <TextField
-                                sx={{m:1, width: '37ch', alignContent: "right", justifyContent: "center"}}
-                                id="lastName"
-                                label="Last Name"
-                                multiline
-                                maxRows={1}
-                                value={lastName}
-                                onChange={lastChange}
-                                variant="outlined"
-                            />
-                        </Grid>
-
-                        <Grid item xs={6}>
-                            <Typography variant="overline" display="block" sx={{ m: 0, px: 3, pt: 3, fontWeight: 'bold', fontSize: 16 }}>
-                                Change Username
-                            </Typography>
-                        </Grid>
-
-                        <Grid item sx={{ justifyContent: "center", alignContent: "center", mx: 'auto' }}>
-                            <TextField
-                                sx={{ m: 1, width: '76ch', }}
-                                id="userName"
-                                label="UserName"
-                                multiline
-                                maxRows={1}
-                                value={userName}
-                                onChange={userNameChange}
-                                variant="outlined"
-                            />
-                        </Grid>
-
-                        <Grid item xs={6} >
-                            <Typography variant="overline" display="block" sx={{ m: 0, px: 3, pt: 3, fontWeight: 'bold', fontSize: 16}}>
-                                Change email
-                            </Typography>
-                        </Grid>
-
-                        <Grid item sx={{ justifyContent: "center", alignContent: "center", mx: 'auto'}}>
-                            <TextField
-                                sx={{ m: 1, width: '76ch', }}
-                                id="email"
-                                label="New Email"
-                                multiline
-                                maxRows={1}
-                                value={newEmail}
-                                onChange={emailChange}
-                                variant="outlined"
-                            />
-                        </Grid>
-
-                        <Grid item xs={6}>
-                            <Typography variant="overline" display="block" gutterBottom sx={{ m: 1, px: 3, pt: 3, fontWeight: 'bold', fontSize: 16}}>
-                                Change Password
-                            </Typography>
-                        </Grid>
-
-                        <Grid item sx={{ justifyContent: "center", alignContent: "center", mx: 'auto', pb: 5 }}>
-                            <TextField
-                                sx={{ m: 1, width: '76ch', }}
-                                id="password"
-                                label="Old Password"
-                                multiline
-                                maxRows={1}
-                                value={newpw}
-                                onChange={pwChange}
-                                variant="outlined"
-                            />
-                            <TextField
-                                sx={{ m: 1, width: '76ch', }}
-                                id="password"
-                                label="New Password"
-                                multiline
-                                maxRows={1}
-                                value={newpw}
-                                onChange={pwChange}
-                                variant="outlined"
-                            />
-                            <Button
-                        sx={{ ml: 5, mt:3,  width: "25", justifyContent: "center", alignContent: "center" }}
-                        variant="contained"
-                        color="primary">
-                        Submit Changes
-                    </Button>
-                        </Grid>
-                    </Grid>
-                </Paper>
-            </Box>
-
-            <Container maxWidth='md' sx={{ marginTop: 8, display: "flex", flexDirection: "column", alignItems: "center" }}>
-                <CssBaseline />
-                <Typography component='h1' variant='h5' sx={{ p: 5, fontSize: 30 }}>
-                    Choose Interests
-                </Typography>
-                <FormGroup>
-                    <Box component='form' onSubmit={onComplete} sx={{ width: '100%' }}>
-                        <Grid container spacing={{ md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
-                            {categories.map((category: any, index: number) => {
-                                return (
-                                    <Grid item md={6} key={index}>
-                                        <Paper sx={{ width: '100%', color: 'black', backgroundColor: `rgba(0, 186, 219, 0.5)` }}>
-                                            <FormControlLabel control={<Checkbox color='success' onChange={onSelectInterest} />} label={category.CategoryName} sx={{ pl: 2 }} />
-                                        </Paper>
-                                    </Grid>
-                                );
-                            })}
-                        </Grid>
-                        <Button type='submit' variant='contained' sx={{ mt: 3, mb: 2, width: '100%' }}>Confirm Changes</Button>
+                            <label htmlFor="contained-button-file">
+                                <Input accept="image/*" id="contained-button-file" multiple type="file" />
+                                <Button variant="outlined" component="span">
+                                    Upload Image
+                                </Button>
+                            </label>
+                        </Popover>
+                        <Typography variant="h3" component="div" gutterBottom sx={{ m: 2, px: 2, display:'flex', alignItems:'center', justifyContent: 'center' }}>
+                            Welcome, {firstname}
+                        </Typography>
                     </Box>
-                </FormGroup>
-            </Container>
-
+                    <Box sx={{ display: 'flex', flexWrap: 'wrap', alignContent: "center", justifyContent: "center"}}>
+                        <Paper elevation={4} sx={{ display: 'flex', flexWrap: 'wrap', width:'60%', my:1}}>
+                            <Typography variant={'h4'} component="div" gutterBottom sx={{ pt:4, mx: 'auto', justifyContent: 'center'}}>
+                               Update Info
+                            </Typography>
+                            <Grid container columns={1} rowSpacing={1} display = "flex" flexWrap ="wrap">
+                                <Grid item xs={6}>
+                                    <Typography variant="overline" display="block" sx={{ mb:1, px: 3, pt: 1, fontWeight: 'bold', fontSize: 16}}>
+                                        Change Name
+                                    </Typography>
+                                </Grid>
+                                <Grid item sx={{ justifyContent: "center", alignContent: "center", mx: 'auto'}}>
+                                    <TextField
+                                        sx={{ m:1, width: '37ch', alignContent: "left", justifyContent: "center"}}
+                                        id="firstName"
+                                        label="First Name"
+                                        multiline
+                                        maxRows={1}
+                                        value={firstname}
+                                        onChange={event => {setFirstname(event.target.value)}}
+                                        variant="outlined"
+                                    />
+                                     <TextField
+                                        sx={{m:1, width: '37ch', alignContent: "right", justifyContent: "center"}}
+                                        id="lastName"
+                                        label="Last Name"
+                                        multiline
+                                        maxRows={1}
+                                        value={lastname}
+                                        onChange={event => {setLastname(event.target.value)}}
+                                        variant="outlined"
+                                    />
+                                </Grid>
+                                <Grid item xs={6}>
+                                    <Typography variant="overline" display="block" sx={{ m: 0, px: 3, pt: 3, fontWeight: 'bold', fontSize: 16 }}>
+                                        Change Username
+                                    </Typography>
+                                </Grid>
+                                <Grid item sx={{ justifyContent: "center", alignContent: "center", mx: 'auto' }}>
+                                    <TextField
+                                        sx={{ m: 1, width: '76ch', }}
+                                        id="userName"
+                                        label="UserName"
+                                        multiline
+                                        maxRows={1}
+                                        value={username}
+                                        onChange={event => {setUsername(event.target.value)}}
+                                        variant="outlined"
+                                    />
+                                </Grid>
+                                <Grid item xs={6} >
+                                    <Typography variant="overline" display="block" sx={{ m: 0, px: 3, pt: 3, fontWeight: 'bold', fontSize: 16}}>
+                                        Change email
+                                    </Typography>
+                                </Grid>
+                                <Grid item sx={{ justifyContent: "center", alignContent: "center", mx: 'auto'}}>
+                                    <TextField
+                                        sx={{ m: 1, width: '76ch', }}
+                                        id="email"
+                                        label="New Email"
+                                        multiline
+                                        maxRows={1}
+                                        value={email}
+                                        onChange={event => {setEmail(event.target.value)}}
+                                        variant="outlined"
+                                    />
+                                </Grid>
+                                <Grid item xs={6}>
+                                    <Typography variant="overline" display="block" gutterBottom sx={{ m: 0, px: 3, pt: 3, fontWeight: 'bold', fontSize: 16}}>
+                                        Change Password
+                                    </Typography>
+                                </Grid>
+                                <Grid item sx={{ justifyContent: "center", alignContent: "center", mx: 'auto', pb: 5 }}>
+                                    <TextField
+                                        sx={{ m: 1, width: '76ch', }}
+                                        id="password"
+                                        label="Change Password"
+                                        multiline
+                                        maxRows={1}
+                                        value={password}
+                                        onChange={event => {setPassword(event.target.value)}}
+                                        variant="outlined"
+                                    />
+                                </Grid>
+                            </Grid>
+                        </Paper>
+                        <Paper elevation={4} sx={{ mt:2, width:'60%', display: 'flex', flexWrap: 'wrap' }}>
+                            <Container maxWidth='md' sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+                                <CssBaseline />
+                                    <Typography  variant='h4' sx={{py:3}}>
+                                        Update Interests
+                                    </Typography>
+                                    <FormGroup>
+                                        <Box sx={{ width: '100%', pb:3 }}>
+                                            <Grid container spacing={{ md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
+                                                {categories.map((category: any, index: number) => {
+                                                    return (
+                                                        <Grid item md={6} key={index}>
+                                                            <Paper sx={{ width: '100%', color: 'black', backgroundColor: `rgba(0, 186, 219, 0.5)` }}>
+                                                                <FormControlLabel control={
+                                                                    <Checkbox color='success'
+                                                                              onChange={handleSelect}
+                                                                              value={JSON.stringify(category)}
+                                                                    />} label={category.CategoryName} sx={{ pl: 2 }} />
+                                                            </Paper>
+                                                        </Grid>
+                                                    );
+                                                })}
+                                            </Grid>
+                                        </Box>
+                                    </FormGroup>
+                            </Container>
+                        </Paper>
+                        <Button onClick={handleSubmit} variant='contained' sx={{ py:1, my:3, width:'45%' }}>Submit Changes</Button>
+                    </Box>
+                </>
+            )}
         </div>
     )
 };

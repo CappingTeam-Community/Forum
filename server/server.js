@@ -207,6 +207,53 @@ app.get('/user/select/:id', (req, res) => {
         res.send(result);
     });
 });
+//insert user
+app.post('/user/insert', (req, res) => {
+    const FirstName = req.body.FirstName;
+    const LastName = req.body.LastName;
+    const UserName = req.body.UserName;
+    const Password = req.body.Password;
+    const Email = req.body.Email;
+
+    const sqlInsertUsers = "INSERT INTO User_tbl (FirstName, LastName, UserName, Password, Email) VALUES  (?, ?, ?, ?, ?)"
+
+    db.query(sqlInsertUsers, [FirstName, LastName, UserName, Password, Email], (err, result) => {
+        console.log(result);
+    });
+    res.send()
+    ;})
+
+//Update user
+app.post('/user/update/:uid', function (req, res) {
+    const uid = req.params.uid;
+    const firstName = req.body.FirstName;
+    const lastName = req.body.LastName;
+    const username = req.body.UserName;
+    const email = req.body.Email;
+    const password = req.body.Password;
+
+    if(password.length > 0) {
+        const sqlUpdate = "UPDATE User_tbl SET Password = ? WHERE UserID = ?";
+        db.query(sqlUpdate, [password, uid], (err, result)=> {
+            console.log(result);
+        });
+    }
+
+    const sqlUpdate = "UPDATE User_tbl SET FirstName = ?, LastName = ?, UserName = ?, Email = ? WHERE UserID = ?"
+    db.query(sqlUpdate, [firstName, lastName, username, email, uid], (err, result)=> {
+        console.log(result);
+    });
+});
+
+
+
+app.post('/post/update', (req, res) => {
+    const PostID = req.body.PostID;
+    const sqlInsert = "UPDATE Post_tbl SET PostVotes = PostVotes + 1 WHERE PostID = ?"
+    db.query(sqlInsert, [PostID], (err, result)=> {
+        console.log(result);
+    });
+});
 
 app.get('/user/select/credentials/:email/:password', (req, res) => {
     const email = req.params.email;
@@ -220,33 +267,6 @@ app.get('/user/select/credentials/:email/:password', (req, res) => {
         }
     });
 });
-
-//insert into comment page
-/*
-app.post('/comment/insert' (req, res) => {
-    const FirstName = req.body.FirstName;
-    const LastName = req.body.LastName;
-    const UserName = req.body.UserName;
-    const Password = req.body.Password;
-    const Email = req.body.Email;
-
-});*/
-
-//insert insto user page
-app.post('/signup/insert', (req, res) => {
-    const FirstName = req.body.FirstName;
-    const LastName = req.body.LastName;
-    const UserName = req.body.UserName;
-    const Password = req.body.Password;
-    const Email = req.body.Email;
-
-    const sqlInsertUsers = "INSERT INTO User_tbl (FirstName, LastName, UserName, Password, Email) VALUES  (?, ?, ?, ?, ?)"
-
-    db.query(sqlInsertUsers, [FirstName, LastName, UserName, Password, Email], (err, result) => {
-        console.log('api.signup.insert.result',result);
-    });
-    res.send()
-;})
 
 //insert
 app.post('/category/insert', (req, res) => {
@@ -280,7 +300,8 @@ app.post('/comment/insert', (req, res) => {
     const CommenterID = req.body.CommenterID
     const sqlInsert = "INSERT INTO Comment_tbl (Comment, CommentDate, CommentTags, PostID_Comment, CommenterID) VALUES (?, ?, ?, ?, ?)"
     db.query(sqlInsert, [Comment, CommentDate, CommentTags, PostID_Comment, CommenterID], (err, result)=> {
-        console.log(result);
+        res.send(result);
+        console.log('comment', result);
     });
 });
 app.post('/user-category/insert', (req, res) => {
@@ -288,7 +309,21 @@ app.post('/user-category/insert', (req, res) => {
     const cid = req.body.cid;
     const sqlInsert = "INSERT INTO UserCategory (IDUser, IDCategory) VALUES (?, ?)"
     db.query(sqlInsert, [uid, cid], (err, result)=> {
-        console.log(result);
+
+    });
+});
+// Get users interests
+app.get('/user-category/select/:uid/', (req, res) => {
+
+    const uid = req.params.uid;
+    const sqlSelect = "SELECT * FROM UserCategory WHERE IDUser = ?"
+    db.query(sqlSelect, [uid], (err, result) => {
+        if (err) {
+            console.log('ERR',err);
+        } else {
+            console.log('RESULT',result);
+            res.send(result);
+        }
     });
 });
 

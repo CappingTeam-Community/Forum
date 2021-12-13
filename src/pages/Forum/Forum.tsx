@@ -11,7 +11,7 @@ import Axios from "axios";
 import {useEffect, useState} from "react";
 import {IoCreateOutline} from "react-icons/all";
 import {IconContext} from "react-icons";
-import {getCurrentUser} from "../../shared/Authentication";
+import {getCurrentUser, isAuth} from "../../shared/Authentication";
 
 function Forum (props:any) {
     const [busy, setBusy] = useState(true);
@@ -20,7 +20,6 @@ function Forum (props:any) {
     const [tag, setTag] = useState('');
     const [post, setPost] = useState<any>([]);
     const [comments, setComments] = useState<any>([]);
-
     const PostID = props.match.params.PostID;
 
     const handleChange = (event: SelectChangeEvent) => {
@@ -44,26 +43,18 @@ function Forum (props:any) {
             })
     };
 
-    function sendToDBComment() {
+    async function sendToDBComment() {
+        setBusy(true);
         let date = new Date().toJSON().slice(0, 10);
-        // TODO: Commenter ID should be current user
-        // TODO: is this right?
-        Axios.post(`http://localhost:3001/comment/insert`,{
+        let uid = getCurrentUser().UserID;
+        await Axios.post(`http://localhost:3001/comment/insert`,{
             Comment: comment,
             CommentDate: date,
             CommentTags: tag,
             PostID_Comment: PostID,
-            CommenterID: getCurrentUser().UserID
-
-        })
-
-    }
-
-    function handleComment (event: React.FormEvent<HTMLFormElement>) {
-        event.preventDefault();
-        const data = new FormData(event.currentTarget);
-        const temp = {body:data.get('comment'), tag:data.get('tag')};
-        //setComment(temp);
+            CommenterID: uid
+        });
+        await getComments();
     }
 
     const commentChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -131,10 +122,9 @@ function Forum (props:any) {
                         />
                         <Box component='form'>
                             <Button
-                                type='submit'
                                 sx={{m: 1, mt:2, width: '90%', height: '40px'}}
                                 variant="contained"
-                                onClick={sendToDBComment}
+                                onClick={() => {isAuth() ? (sendToDBComment()) : (alert('Please Login to Create a Comment'))}}
                             >
                                 <IconContext.Provider value={{ size: '25', color: "white"}}>
                                     <Box sx={{marginTop:.5}}>
@@ -146,7 +136,7 @@ function Forum (props:any) {
                         </Box>
                     </Box>
                 </Paper>
-                <Paper elevation={6} sx={{ display: 'flex', flexDirection:'column', boxShadow: '4', mb: 10, width:803, mb:10,mt:1, backgroundColor:`rgba(255,255,255,.6)`}}>
+                <Paper elevation={6} sx={{ display: 'flex', flexDirection:'column', boxShadow: '4', mb: 10, width:803, mt:1, backgroundColor:`rgba(255,255,255,.6)`}}>
                     <FormControl sx={{m: 0, width: 90, mt: 30, ml:2, my:1}}>
                         <Select
                             value={sort}
@@ -159,7 +149,6 @@ function Forum (props:any) {
                             <MenuItem value={'Tags'}>Tags</MenuItem>
                         </Select>
                     </FormControl>
-
                     {comments.map((data: any, index: number) => {
                         return (
                             <Grid alignItems="center" justifyContent="center" item md={10} key={index} sx={{pb: 3, mt:2}}>
@@ -179,5 +168,4 @@ function Forum (props:any) {
         </>
     )
 }
-
 export default Forum;

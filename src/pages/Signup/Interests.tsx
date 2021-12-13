@@ -4,12 +4,10 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import Button from "@mui/material/Button";
 import Axios from "axios";
 import {getCurrentUser} from "../../shared/Authentication";
-import {Redirect} from "react-router-dom";
 
 function Interests () {
     const [categories, setCategories] = useState<any>([]);
     const [interests, setInterests] = useState<any>([]);
-    const [redirect, setRedirect] = useState(false);
 
     useEffect(() => {
         Axios.get(`http://localhost:3001/category/select/`)
@@ -48,7 +46,7 @@ function Interests () {
         } catch {
             throw Error("Promise.all Failed")
         }
-        setRedirect(true);
+        window.location.href='/'
     }
     // TODO: Redirect to category preferences
     return (
@@ -75,7 +73,6 @@ function Interests () {
                 <Button type='submit' variant='contained' sx={{mt: 3, mb: 2, width: '100%'}}>Complete Sign
                     Up</Button>
             </Box>
-            {redirect ? (<Redirect to='/category/'/>) : null}
         </Container>
     )
 }

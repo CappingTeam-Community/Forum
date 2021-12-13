@@ -16,7 +16,6 @@ import {Component} from "react";
 import {styled} from "@mui/system";
 import Axios from "axios";
 
-
 interface Props {
     id: number,
     author: string,
@@ -56,11 +55,9 @@ class Post extends Component<Props, State> {
         this.postBody = this.props.postBody;
         this.route = '/forum/' + this.id;
         this.avatarColor = this.getRandomColor();
-
-            this.state = {
-                isLiked: false
-            }
-
+        this.state = {
+            isLiked: false
+        }
         this.onLikeClick = this.onLikeClick.bind(this);
     }
     private onLikeClick() {
@@ -75,7 +72,7 @@ class Post extends Component<Props, State> {
                 alert("Inserted")
             });
             Axios.post(`http://localhost:3001/post/liked`,{
-                PostID: this.props.id   
+                PostID: this.props.id
             }).then(() =>{
                 alert("Inserted")
             });

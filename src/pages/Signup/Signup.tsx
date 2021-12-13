@@ -1,23 +1,20 @@
 import {
-    Alert, AlertTitle,
     Box,
-    Collapse,
     Container,
     CssBaseline,
-    Grid, IconButton, Link, Paper, TextField,
+    Grid, Link, Paper, TextField,
     Typography
 } from "@mui/material";
 import Button from "@mui/material/Button";
 import React, {useState} from "react";
 import Axios from "axios";
-import {GiPadlock, IoCloseOutline} from "react-icons/all";
+import {GiPadlock} from "react-icons/all";
 import {IconContext} from "react-icons";
 import Interests from "./Interests";
-import { token } from "../../shared/Authentication";
+import {removeToken, token} from "../../shared/Authentication";
 
-const Signup = (props:any): JSX.Element => {
+const Signup = (): JSX.Element => {
     const [redirect, setRedirect] = useState(false);
-    const [alert, setAlert] = useState(false);
 
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
@@ -26,53 +23,37 @@ const Signup = (props:any): JSX.Element => {
     const [password, setPassword] = useState('');
     const [confirm, setConfirm] = useState('');
 
+    const isValid = ():boolean => {
+        // check integrity of each input data field
+        if (firstName.length > 0 && lastName.length > 0 && username.length > 0 && email.length > 0 && password.length > 0 && confirm.length > 0) {
+            if (email.includes('@')) {
+                if(password === confirm) {
+                    return true
+                } else {alert('Passwords do not match'); return false}
+            } else {alert('Email format incorrect'); return false}
+        } else { alert('Input data incomplete'); return false}
+    }
 
     const handleSubmit = async(event:any) => {
         event.preventDefault();
-        await Axios.post(`http://localhost:3001/signup/insert`,{
+        if (isValid()) {
+            await Axios.post(`http://localhost:3001/user/insert`,{
                 FirstName: firstName,
                 LastName: lastName,
                 UserName: username,
                 Password: password,
                 Email: email
-        }).then(res => { setRedirect(true) });
-
-        // Set token
-        await(token({email, password}));
+            }).then(() => { setRedirect(true) });
+            removeToken()
+            await(token({email, password}));
+        }
     }
-    const MyAlert = () => (
-        <Collapse in={alert}>
-            <Alert
-                variant={'outlined'}
-                severity={'error'}
-                action={
-                    <IconContext.Provider value={{color: "black"}}>
-                        <IconButton
-                            aria-label="close"
-                            color="inherit"
-                            size="small"
-                            onClick={() => {
-                                setAlert(false);
-                            }}
-                        >
-                            <IoCloseOutline fontSize="inherit" />
-                        </IconButton>
-                    </IconContext.Provider>
-                }
-                sx={{ mb: 2 }}
-            >
-                <AlertTitle>Error</AlertTitle>
-                <strong>Already have account</strong>
-            </Alert>
-        </Collapse>
-    );
     return (
         <>
             {redirect ? (<Interests /> ) : (
                 <Container>
                     <CssBaseline />
-                    <Box sx={{ marginTop: 8, display: "flex", flexDirection: "column", alignItems: "center" }}>
-                        <MyAlert/>
+                    <Box sx={{ my:2, display: "flex", flexDirection: "column", alignItems: "center" }}>
                         <Grid container width={'33vw'} component={Paper} elevation={6} square
                               sx={{
                                   backgroundColor:'rgba(255,255,255,.6)',
@@ -99,6 +80,7 @@ const Signup = (props:any): JSX.Element => {
                                     label="First Name"
                                     value={firstName}
                                     onChange={event => setFirstName(event.target.value)}
+                                    autoFocus
                                     sx={{bgcolor:'rgba(255,255,255,.8)', borderRadius:'7px', mr:.5}}
                                 />
                                 <TextField
@@ -158,11 +140,10 @@ const Signup = (props:any): JSX.Element => {
                                 />
                             </Grid>
                             <Button
-                                fullWidth
                                 variant='contained'
                                 onClick={handleSubmit}
                                 sx={{
-                                    background: 'blue',
+                                    width:'90%',
                                     my: 1,
                                     py:1,
                                     '&:hover': {background: 'blue', color: 'white', fontWeight:10}
@@ -171,14 +152,10 @@ const Signup = (props:any): JSX.Element => {
                                 Sign Up
                             </Button>
                             <Grid container>
-                                <Grid item xs>
-                                    <Link href="#" variant="body2" sx={{textDecoration:'none', ml:3}}>
-                                        {"Forgot password?"}
-                                    </Link>
-                                </Grid>
+                                <Grid item xs></Grid>
                                 <Grid item>
-                                    <Link href="#" variant="body2" sx={{textDecoration:'none', mr:3}}>
-                                        {"Login"}
+                                    <Link href="/login" variant="body2" sx={{textDecoration:'none', mr:3}}>
+                                        {"Have an account?"}
                                     </Link>
                                 </Grid>
                             </Grid>

@@ -2,14 +2,16 @@ import Axios from "axios";
 import React from "react";
 const jwt = require('jsonwebtoken');
 
-//TODO: implement .env file -- process.env.REACT_APP_SECRET
-const REACT_APP_SECRET = "secretkey090"
+//TODO: implement .env file, syntax to call is process.env.REACT_APP_SECRET. Secures data.
+const REACT_APP_SECRET = "temporarysecretkey"
 
 export async function token (credentials: any) {
     const user: any = await(getUser(credentials.email, credentials.password));
+    console.log('gettingtoken', credentials.email, credentials.password, user[0]);
     // If user exists, create token
     if(user[0]) {
         const token = encodeJWT(user[0]);
+        console.log('updatingtoken.token');
         updateToken(token);
     }
 }
@@ -34,9 +36,11 @@ const encodeJWT = (user: any) => {
 }
 
 export const getCurrentUser = () => {
-    return jwt.verify(JSON.parse(sessionStorage.getItem('token') as string), REACT_APP_SECRET);
+    if(isAuth()){
+        return jwt.verify(JSON.parse(sessionStorage.getItem('token') as string), REACT_APP_SECRET);
+    }
 }
 
-export const isAuth = () => {
+export const isAuth = () :boolean => {
     return sessionStorage.getItem('token') ? true : false;
 }

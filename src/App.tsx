@@ -51,8 +51,6 @@ function App() {
                                 <Route exact path='/discover'>
                                     <Discover />
                                 </Route>
-                                <Route exact path='/category/:CategoryID' render={(props) => <PostListing search={search} {...props} />} />
-                                <Route exact path='/category/' render={(props) => <PostListing search={search} {...props} />} />
                                 <Route exact path='/login'>
                                     <Login />
                                 </Route>

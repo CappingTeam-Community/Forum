@@ -2,7 +2,6 @@ import {
     Avatar,
     Box,
     Card,
-    CardActions,
     CardContent,
     CardHeader,
     Container,
@@ -14,10 +13,8 @@ import {
 import {orange, red} from "@mui/material/colors";
 import FavoriteIcon from "@mui/icons-material/Favorite"
 import {Component} from "react";
-import Button from "@mui/material/Button";
 import {styled} from "@mui/system";
 import Axios from "axios";
-
 
 interface Props {
     id: number,
@@ -35,7 +32,7 @@ interface State {
 class Comment extends Component<Props, State> {
     private id: number;
     private author: any;
-    private date: string;
+    private date: any
     private tags: string;
     private voteCount: number;
     private commentBody: string;
@@ -44,7 +41,7 @@ class Comment extends Component<Props, State> {
         super(props);
         this.id = this.props.id;
         this.author = this.props.author;
-        this.date = this.props.date;
+        this.date = new Date(Date.parse(this.props.date)).toDateString();
         this.tags = this.props.tags;
         this.voteCount = this.props.voteCount;
         this.commentBody = this.props.commentBody;

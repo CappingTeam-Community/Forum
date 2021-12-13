@@ -21,26 +21,29 @@ function CreatePost() {
     const [content, setContent] = React.useState('');
     var [image, setImage] = React.useState('');
     const [redirect, setRedirect] = React.useState(false);
-    const [string, setString] = React.useState('');
 
     function sendToDB() {
         let date = new Date().toJSON().slice(0, 10);
         if (image == "") {
             image = "https://upload.wikimedia.org/wikipedia/commons/6/6c/No_image_3x4.svg";
-          } 
-        Axios.post(`http://localhost:3001/post/insert`,{
-            PostTitle: title,
-            PostBody: content,
-            CategoryID_Post: tag.CategoryID,
-            PostDate: date,
-            PostImage: image,
-            CreatorID: 1
+        }
+        if(title.length > 0 && content.length > 0 && tag) {
+            Axios.post(`http://localhost:3001/post/insert`,{
+                PostTitle: title,
+                PostBody: content,
+                CategoryID_Post: tag.CategoryID,
+                PostDate: date,
+                PostImage: image,
+                CreatorID: 1
 
-        }).then((res) => {
-            alert("Inserted")
-        });
-        setRedirect(true);
-        setString("/category/" + tag.CategoryID.toString());
+            }).then((res) => {
+                alert("Inserted")
+            });
+            setRedirect(true);
+        } else {
+            alert("Please fill in all data fields (Title, Content, Category)")
+        }
+
     }
 
     useEffect(() => {
@@ -85,7 +88,6 @@ function CreatePost() {
             </FormControl>
         </Paper>
     )
-    //Template
     return (
         <div style={{marginLeft:'25vw', marginTop:'5vh'}}>
             <Box sx={{display: 'block', justifyContent: "left",width:'50vw',m: 2}}>
@@ -148,7 +150,10 @@ function CreatePost() {
                 </Paper>
                 
             </Box>
-            {redirect ? <Redirect to={string}/> : null}
+            {redirect ? <Redirect to={{
+                pathname: '/',
+                state: {CategoryID: tag.CategoryID} }} />
+                : null }
         </div>
     )
 };

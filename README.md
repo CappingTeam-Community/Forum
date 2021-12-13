@@ -29,7 +29,6 @@ For more info: https://mui.com/
 `npm install express body-parser mysql nodemon cors`
 
 
-
 ## Template Generator
 react-generate-cli is an npm package to help streamline development. 
 It can be used in this way, including our modifications:
@@ -37,8 +36,6 @@ It can be used in this way, including our modifications:
 `npx generate-react-cli component COMPONENT_NAME`
 
 `npx generate-react-cli component COMPONENT_NAME --type=PAGE/SHARED`
-
-TODO: First time using may require inital setup. ie) typescript, css modules, etc.
 
 It will create a folder named COMPONENT_NAME with a corresponding .jsx and .css module
 
@@ -63,11 +60,13 @@ Clone the Repo (Main Devs)
 6. Enter Personal Access Authentication
    7. Account -> Developer Account -> Personal Access Authentication -> Generate New Authentication
 
-### Auth0
-1. For Developers: Auth0 credentials make public under .env files. To get access to Auth0 application information, 
-email developer at 'blynch1751@gmail.com'
-   1. Note: any change to .env files require an `npm start`
-2. For Users: 
+### Authentication API
+User data encrypted with JWT tokens. Advised that if this application is released to the public, developer should create a .env file that stores the
+secret key (currently found in Authentication.tsx), as REACT_APP_SECRET. 
+Token is stored as session storage. If logged in, when current user leaves the tab, the user will be logged out.
+1. token: call token({email, password}) to create a new encrypted JWT token
+2. isAuth: tests if user is currently authenticated
+3. getCurrentUser: if logged will, will retrieve the decrypted current user's data in the form of a JSON object.
 
 
 #### Fixing Issues
@@ -76,7 +75,6 @@ email developer at 'blynch1751@gmail.com'
 3. Only push the branch, allow another developer to review the pull request before merging with master
 
 Fork the Repo (Other Devs)
-1.
 
 ## Available Scripts
 
